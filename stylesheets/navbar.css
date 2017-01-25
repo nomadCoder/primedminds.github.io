@@ -1,0 +1,57 @@
+/* NAVBAR STYLING */
+body > nav {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px !important;
+}
+
+nav ul li {
+    text-align: center;
+}
+
+#logo {
+    height: 75px;
+    filter: invert(1);
+    margin-top: -7px;
+    margin-left: -40px;
+    /*float: left;*/
+    /*left: 10;*/
+}
+
+#nav_bar {
+    position:fixed;
+    top: 0 !important;
+    left: 0 !important;
+    /*min-width: 1200px;*/
+    width: 100%;
+    z-index: 100;
+    overflow: hidden;
+    display: block !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#dropdown-about {
+    min-width: 200px;
+}
+
+#dropdown-explorations {
+    min-width: 200px;
+}
+
+.dropdown-content li a {
+    color: red;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover, a.current {
+    background-color: #ffe900
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

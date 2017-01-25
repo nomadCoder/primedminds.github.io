@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Primed Minds</title>
+    <!-- materialize css -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/materialize.min.css">
+
+    <!-- jquery js -->
+    <script src="public/javascript/jquery-1.12.3.min.js"></script>
+
+    <!-- materialize js -->
+    <script src="public/javascript/materialize.min.js"></script>
+
+    <!-- local js -->
+    <script src="javascript/navbar.js"></script>
+
+    <!-- fonts from gapis -->
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300">
+
+    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/contact.css">
+    <script src="javascript/contact.js"></script>
+</head>
+
+<body>
+    <!-- navbar code, copy code to top of body -->
+    <div id="navbar"></div>
+    <!-- load the navbar --> 
+    <script>
+        $(function(){
+            $("#navbar").load("navbar.html"); 
+        });
+    </script>
+
+    <div id="main">
+        <h1> CONTACT US </h1>
+        <p>Name: <input type="text" id="name"></p>
+        <div id="name-msg"></div>
+        <p>Email: <input type="text" id="email"></p>
+        <div id="email-msg"></div>
+        <p>Message: <textarea id="message" rows="10" cols="50"></textarea></p>
+        <div id="message-msg"></div>
+        <p><button onclick="validate()">Submit</button></p>
+        <div id="success"></div>
+    </div>
+
+    <div id="faq">
+        <h1>FAQ</h1>
+        <a href='about.html'>
+            <div class='faq-button'>What is Primed Minds?</div>
+        </a>
+        <br>
+        <a href='resources.html'>
+            <div class='faq-button'>Are there any teacher resources?</div>
+        </a>
+    </div>
+</body>
+
+</html>
