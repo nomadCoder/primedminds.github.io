@@ -100,7 +100,7 @@ function cycleItems() {
 function loadVideo(index) {
     // console.log("loading " + slides[index] + " into iframe"+next_iframe);
     document.getElementById("iframe" + next_iframe).src = 
-        "https://www.youtube.com/embed/" + links[index];
+        "https://www.youtube.com/embed/" + links[index] + "?rel=0";
     currently_loaded["iframe" + next_iframe] = slides[index];
     var ret = next_iframe;
     next_iframe = (next_iframe+1)%2;    
