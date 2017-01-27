@@ -43,6 +43,9 @@ function goToSlide() {
         } else {
             currentIndex = slides.indexOf(param);
         }
+    } else {
+        // if there is no slide param
+        currentIndex = 0;
     }
     window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
     cycleItems();
@@ -64,12 +67,14 @@ function cycleItems() {
     // see if it is a video (V), interactive (I), or slide (S)
     if (descriptor.indexOf("V") != -1) {
         // is video 
-        if ( currently_loaded["iframe0"] != descriptor && currently_loaded["iframe1"] != descriptor) {
+        if ( currently_loaded["iframe0"] == descriptor ) {
+            show = "video0";
+        } else if ( currently_loaded["iframe1"] == descriptor) {
+            show = "video1";
+        } else {
             // set the video link if it is not already loaded
-            loadVideo(currentIndex);
+            show = "video" + loadVideo(currentIndex);
         }
-        // show the video slide
-        show = "video";
     } else if (descriptor.indexOf("I") != -1) {
         // is interactive
         // display slide 
@@ -94,8 +99,9 @@ function loadVideo(index) {
     document.getElementById("iframe" + next_iframe).src = 
         "https://www.youtube.com/embed/" + links[index];
     currently_loaded["iframe" + next_iframe] = slides[index];
-
+    var ret = next_iframe;
     next_iframe = (next_iframe+1)%2;    
+    return ret;
 }
 
 function updateArrows() {
