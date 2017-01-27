@@ -79,8 +79,11 @@ function cycleItems() {
         // is interactive
         // display slide 
         show = "interactive";
-        // start loading next video 
-        loadVideo(currentIndex+1);
+        // start loading next video if not already loaded
+        if ( currently_loaded["iframe0"] != slides[currentIndex+1] &&
+              currently_loaded["iframe1"] != slides[currentIndex+1]) { 
+            loadVideo(currentIndex+1);
+        }
     } else if (descriptor.indexOf("S") != -1) {
         // temp 
         show = "interactive";
