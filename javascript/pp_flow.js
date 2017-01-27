@@ -43,9 +43,9 @@ function goToSlide() {
         } else {
             currentIndex = slides.indexOf(param);
         }
-        cycleItems();
     }
     window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
+    cycleItems();
 }
 
 // actually cycle the slides 

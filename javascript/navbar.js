@@ -13,8 +13,8 @@ $('.dropdown-button').dropdown({
 		}); // End Document Ready
 })(jQuery); // End of jQuery name space
 
-(function() {
-	function setCurrent(val) {
-		$("$(" + val + ")").addClass("current");
-	}
-});
+// (function() {
+// 	function setCurrent(val) {
+// 		$("$(" + val + ")").addClass("current");
+// 	}
+// });
