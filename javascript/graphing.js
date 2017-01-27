@@ -29,7 +29,7 @@ $(function() {
 
   var nextConfig = document.getElementById('nextConfig');
   nextConfig.onclick = function() {
-    nextConfig();
+    nextSetup();
   }
 
   // static values 
@@ -155,7 +155,7 @@ $(function() {
         }
     }
 
-    function nextConfig() {
+    function nextSetup() {
       myGraph.clearPath();
       clearHits();
       currentConfig = (currentConfig+1)%NUM_CONFIGS;
