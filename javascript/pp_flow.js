@@ -5,10 +5,17 @@ var urlParams = {};
 
 var slides = ["PPV1", "PPI1", "PPV2", "PPI2", "PPV3", "PPS3", "PPV4", "PPI4",
               "PPV5", "PPI5", "PPV6", "PPV6B", "PPI6", "PPV7", "PPI7",
-              "PPV8", "PPI8", "PPV9", "PPI9", "PPV10", "PPI10", "PPV11"];
+              "PPV8", "PPI8", "PPV9", "PPI9", "PPV10", "PPI10", "PPV11",];
+
+var links = ["zbfVO-JvW10", "", "F1ULIVqnkbc", "", "uvEQjJW1UzY", "", "97CunrfBqyQ", "",
+             "sepeZGYTyk8", "", "JxOgqNtglas", "jR8OfQrjF5Q", "", "f79SjueqhoM", "",
+             "1gV4Dclvg38", "", "nlGLZRmv8fw", "", "EofnBtT5Z14", "", "DGk6iJLl0AQ"];
+
+var currently_loaded = [{"iframe0": slides[0]}, {"interactive": slides[1]}, {"iframe1": slides[2]}];
+var next_iframe = 0;
 
 // find the URL parameters
-// i.e. http://website.com/index.html?param1=x&param2=y
+// i.e. http://website.com/page.html?param1=x&param2=y
 //      returns param1 = x, param2 = y
 (window.onpopstate = function () {
     var match,
@@ -23,15 +30,14 @@ var slides = ["PPV1", "PPI1", "PPV2", "PPI2", "PPV3", "PPS3", "PPV4", "PPI4",
     }
 })();
 
-
-function changeSlide() {
+// go to the slide specified by the URL param
+function goToSlide() {
     // if already has slide param
     if ( urlParams["s"] != null) {
         // for safety, make sure index exists 
-        var numSlides = document.querySelectorAll(".slide").length-1;
         var param = urlParams["s"];
         if (slides.indexOf(param) == -1) {
-            console.log('slide not found');
+            console.log("slide not found");
             // if it does not exist, just go to slide 0
             currentIndex = 0; 
         } else {
@@ -44,15 +50,51 @@ function changeSlide() {
 
 // actually cycle the slides 
 function cycleItems() {
-    // get all slides 
+    // hide all the slides 
     var items = document.querySelectorAll(".slide");
-    var item = document.getElementsByClassName('slide')[currentIndex];
     for(var i=0; i<items.length; i++) {
         items[i].style.display = 'none';
     }
-    item.style.display = 'inline-block';
 
+    // get the string descriptor 
+    var descriptor = slides[currentIndex];
+
+    var show = ""; 
+
+    // see if it is a video (V), interactive (I), or slide (S)
+    if (descriptor.indexOf("V") != -1) {
+        // is video 
+        if ( currently_loaded["iframe0"] != descriptor && currently_loaded["iframe1"] != descriptor) {
+            // set the video link if it is not already loaded
+            loadVideo(currentIndex);
+        }
+        // show the video slide
+        show = "video";
+    } else if (descriptor.indexOf("I") != -1) {
+        // is interactive
+        // display slide 
+        show = "interactive";
+        // start loading next video 
+        loadVideo(currentIndex+1);
+    } else if (descriptor.indexOf("S") != -1) {
+        // temp 
+        show = "interactive";
+    } else {
+        // not found
+        console.log("ERROR - type not found");
+    }
+
+    document.getElementById(show).style.display = 'inline-block';
     updateArrows();
+}
+
+function loadVideo(index) {
+    // console.log("loading " + slides[index] + " into iframe"+next_iframe);
+    document.getElementById("iframe" + next_iframe).src = 
+        "https://www.youtube.com/embed/" + links[index];
+    currently_loaded["iframe" + next_iframe] = slides[index];
+
+    next_iframe = (next_iframe+1)%2;    
 }
 
 function updateArrows() {
@@ -76,12 +118,18 @@ function updateArrows() {
 // when the page loads
 $(document).ready(function () {
     // save length
-    TOTAL_NUM_SLIDES = document.querySelectorAll(".slide").length;
+    TOTAL_NUM_SLIDES = slides.length;
 
     // call this so that if url sent with a specific slide number, it will start at that slide
-    changeSlide();
-    //slider
-    var items = $('#main .slide');
+    goToSlide();
+
+    $('.right-arrow').on('click', function() {
+        slideChange(1);
+    });
+
+    $('.left-arrow').on('click', function() {
+        slideChange(-1);
+    });
 
     function slideChange(n) {
         currentIndex += n; 
@@ -95,12 +143,4 @@ $(document).ready(function () {
         cycleItems();
         window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
     }
-
-    $('.right-arrow').on('click', function() {
-        slideChange(1);
-    });
-
-    $('.left-arrow').on('click', function() {
-        slideChange(-1);
-    });
 });
