@@ -142,7 +142,7 @@ $(document).ready(function () {
         // } else if ( currently_loaded["iframe1"] == slides[currentIndex]) {
         //     $("#iframe1").pauseVideo();
         // }
-
+//
         // update current index
         currentIndex += n; 
         if (currentIndex >= TOTAL_NUM_SLIDES) { 
