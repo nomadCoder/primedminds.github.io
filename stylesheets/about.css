@@ -65,6 +65,10 @@ h3 > #main {
     z-index: 0;
 }
 
+.slides {
+    width: 100%;
+}
+
 .rounded { 
     border-radius: 30px;
 }
