@@ -88,6 +88,7 @@ function cycleItems() {
     updateArrows();
 }
 
+// load the video onto the least recently used div
 function loadVideo(index) {
     // console.log("loading " + slides[index] + " into iframe"+next_iframe);
     document.getElementById("iframe" + next_iframe).src = 
