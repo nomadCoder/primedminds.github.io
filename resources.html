@@ -21,6 +21,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:800" rel="stylesheet">
 
+    <!-- lightbox -->
+    <link rel="stylesheet" type="text/css" href="lightbox/css/boom-lightbox/boom-lightbox.1.0.0.min.css" />
+    <script type="text/javascript" src="lightbox/js/boom-lightbox/boom-lightbox.1.0.0.min.js"></script>
+
     <!-- local css -->
     <link rel="stylesheet" type="text/css" href="stylesheets/resources.css">
 </head>
@@ -86,33 +90,33 @@
         <div class="bio1 sources">
             <h3>Numberphile<a href='http://www.numberphile.com/' target="_blank"><i class="material-icons">exit_to_app</i></a></h3>
             <p>A wonderful Youtube channel that has many videos that talk about all sorts of delightful lands from the world of mathematics. Subject matter ranges in difficulty, but some great places to start include contributions by: </p>
-            <p>Tadashi Tokieda: <a href="#" onclick="boomLightBoxShow('divStatic');">Freaky Dot</a>
+            <p>Tadashi Tokieda: <a onclick="boomLightBoxShow('divStatic');">Freaky Dot</a>
                 <span id="divStatic" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/QAja2jp1VjE" frameborder="0" allowfullscreen></iframe>
-                </span> and <a href="#" onclick="boomLightBoxShow('divResponsive');">Perplexing Paperclip</a>
+                </span> and <a onclick="boomLightBoxShow('divResponsive');">Perplexing Paperclip</a>
                 <span id="divResponsive" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/wGkvyN6s9cY" frameborder="0" allowfullscreen></iframe>
                 </span>
             </p>
             <p>Vi Hart:
-                <a href="#" onclick="boomLightBoxShow('divResponsive2');">Infinity Elephant</a>
+                <a onclick="boomLightBoxShow('divResponsive2');">Infinity Elephant</a>
                 <span id="divResponsive2" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/DK5Z709J2eo"  frameborder="0" allowfullscreen></iframe>
                 </span>
                 and
-                <a href="#" onclick="boomLightBoxShow('divResponsive3');">Hexaflagon</a>
+                <a onclick="boomLightBoxShow('divResponsive3');">Hexaflagon</a>
                 <span id="divResponsive3" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/VIVIegSt81k" frameborder="0" allowfullscreen></iframe>
                 </span>
             </p>
             <p>Simon Pampena:
-                <a href="#" onclick="boomLightBoxShow('divResponsive4');">The Epic Story of Circle</a>
+                <a onclick="boomLightBoxShow('divResponsive4');">The Epic Story of Circle</a>
                 <span id="divResponsive4" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/sG_6nlMZ8f4" frameborder="0" allowfullscreen></iframe>
                 </span>
             </p>
             <p>Katie Steckles:
-                <a href="#" onclick="boomLightBoxShow('divResponsive5');">Fold and Cut</a>
+                <a onclick="boomLightBoxShow('divResponsive5');">Fold and Cut</a>
                 <span id="divResponsive5" class="boom-lightbox" style="display: none;">
                     <iframe id="ytplayer" width="720" height="405" src="https://www.youtube.com/embed/ZREp1mAPKTM" frameborder="0" allowfullscreen></iframe>
                 </span>
@@ -181,6 +185,49 @@
         }
         slides[slideIndex - 1].style.display = "block";
     }
+</script>
+
+<!-- place the initialization at the end of the code -->
+<script type="text/javascript">
+    (function() { //document ready, init one or more lightbox divs
+        boomLightBoxInit([{
+            selector: 'divStatic',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }, {
+            selector: 'divResponsive',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }, {
+            selector: 'divResponsive2',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }, {
+            selector: 'divResponsive3',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }, {
+            selector: 'divResponsive4',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }, {
+            selector: 'divResponsive5',
+            configs: {
+                width: '775px',
+                height: '460px'
+            }
+        }]);
+    })();
 </script>
 
 </html>
