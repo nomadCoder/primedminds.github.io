@@ -118,12 +118,6 @@ function updateArrows() {
     }
 }
 
-// function onPlayerStateChange(event) {
-//     if (event.data == YT.PlayerState.ENDED) {
-//         console.log('ended')
-//     }
-// }
-
 
 // when the page loads
 $(document).ready(function () {
@@ -142,6 +136,14 @@ $(document).ready(function () {
     });
 
     function slideChange(n) {
+        // if current slide is video, stop it 
+        // if ( currently_loaded["iframe0"] == slides[currentIndex] ) {
+        //     $("#iframe0").pauseVideo();
+        // } else if ( currently_loaded["iframe1"] == slides[currentIndex]) {
+        //     $("#iframe1").pauseVideo();
+        // }
+
+        // update current index
         currentIndex += n; 
         if (currentIndex >= TOTAL_NUM_SLIDES) { 
             // stay on last page
