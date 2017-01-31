@@ -24,6 +24,8 @@
     <!-- local css -->
     <link rel="stylesheet" type="text/css" href="stylesheets/contact.css">
     <script src="javascript/contact.js"></script>
+    <!-- about js imported for question/ answer format --> 
+    <script src="javascript/about.js"></script>
 </head>
 
 <body>
@@ -36,28 +38,33 @@
         });
     </script>
 
-    <div id="main">
-        <h1> CONTACT US </h1>
-        <p>Name: <input type="text" id="name"></p>
-        <div id="name-msg"></div>
-        <p>Email: <input type="text" id="email"></p>
-        <div id="email-msg"></div>
-        <p>Message: <textarea id="message" rows="10" cols="50"></textarea></p>
-        <div id="message-msg"></div>
-        <p><button onclick="validate()">Submit</button></p>
-        <div id="success"></div>
-    </div>
+    <div class="grid" id="faq">
+        <div class="col-1-2 QnA">
+            <h1>FAQ</h1>
+            <div class="question" id='q1'>What is Primed Minds?</div>
+            <div class="answer" id="a1">
+                <p>Primed Minds is a tool to inspire you mathematically!</p>
+                <p>Showcasing the joy and beauty inherent in mathematics, our Explorations, unlike traditional presentations, are a wild affair that impart the thrill of discovery by alternately entertaining and actively engaging. </p>
+                <p>Each <a href="/explorations.html">Exploration</a> consists of a sequence of short entertaining videos (30-90 second), and interactive content that immerse you in the experience of being a real mathematician! You'll experience how a dead-end alley becomes an A-ha moment. You'll smell the mathematical flowers that blossom around intractable unsolved mysteries. And you might even learn a little math along the way. </p>
+                <p> Want to learn more? Visit our <a href="about.html">About Us</a> page!</p>
+            </div>
+            <div class="question" id='q2'>Are there any teacher resources?</div>
+            <div class="answer" id="a2">
+                <p> Yes, there are! Check out our resources <a href="resources.html">here</a>!</p>
+            </div>
+        </div>
 
-    <div id="faq">
-        <h1>FAQ</h1>
-        <a href='about.html'>
-            <div class='faq-button'>What is Primed Minds?</div>
-        </a>
-        <br>
-        <a href='resources.html'>
-            <div class='faq-button'>Are there any teacher resources?</div>
-        </a>
-    </div>
+        <div class="col-2-2" id="main">
+            <h1> CONTACT US </h1>
+            <p>Name: <input type="text" id="name"></p>
+            <div id="name-msg"></div>
+            <p>Email: <input type="text" id="email"></p>
+            <div id="email-msg"></div>
+            <p>Message: <textarea id="message" rows="10" cols="50"></textarea></p>
+            <div id="message-msg"></div>
+            <p><button onclick="validate()">Submit</button></p>
+            <div id="success"></div>
+        </div>
 </body>
 
 </html>
