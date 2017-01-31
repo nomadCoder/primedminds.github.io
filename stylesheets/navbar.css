@@ -2,26 +2,18 @@
 body nav * {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px !important;
-    /*vertical-align: middle;*/
 }
 
 nav ul li {
     text-align: center;
     line-height: 75px;
 }
-/*
-li, li > a {
-    height: 100%;
-}*/
 
 #logo {
     height: 85px;
     filter: invert(1);
     margin-top: -7px;
     margin-left: -40px;
-    /*float: left;*/
-    /*left: 10;*/
-    /*cursor: pointer;*/
 }
 
 #nav_bar {
