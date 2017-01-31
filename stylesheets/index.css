@@ -23,6 +23,24 @@ video#bgvid {
     width: 800px;
     margin: 0 auto;
     margin-top: 275px;
+    transition: 0.5s;
+}
+
+#homeText:after {
+  content: '  \00bb';
+  position: relative;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+#homeText:hover {
+  padding-right: 25px;
+}
+
+#homeText:hover:after {
+  opacity: 1;
+  right: 0;
 }
 
 footer {
