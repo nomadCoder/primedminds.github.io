@@ -14,6 +14,13 @@ video#bgvid {
     background-size: cover;
 }
 
+#volume {
+    float: right;
+    margin-right: 340px;
+    margin-top: 70px;
+    cursor: pointer;
+}
+
 #homeText {
     color: white;
     font-size: 28pt;
@@ -65,11 +72,3 @@ This pads the rest of the page below the navbar */
 body {
     font-family: 'Open Sans', sans-serif;
 }
-
-/* NAVBAR STYLING */
-/*#logo{
-    float: left; 
-    height: 100px;
-    margin-top: -20px;
-    filter: invert(100%);
-}*/
