@@ -64,7 +64,7 @@ function cycleItems() {
 
     var show = ""; 
 
-    // see if it is a video (V), interactive (I), or slide (S)
+    // see if it is a video (V), interactive (I), or slideshow (S)
     if (descriptor.indexOf("V") != -1) {
         // is video 
         if ( currently_loaded["iframe0"] == descriptor ) {
@@ -86,7 +86,9 @@ function cycleItems() {
         }
     } else if (descriptor.indexOf("S") != -1) {
         // temp 
-        show = "interactive";
+        show = "slideshow";
+        $("#slideshow").load(descriptor + ".html"); 
+
     } else {
         // not found
         console.log("ERROR - type not found");
