@@ -1,0 +1,38 @@
+table, th, td {
+   border: 1px solid black;
+  float: right;
+}
+
+td {
+  background: rgba(70, 70, 180, 0.3)
+}
+
+#heading {
+  text-align: center;
+}
+
+#pigeonid, #doublepigeonsid {
+  position: relative;
+  z-index: -1;
+}
+
+#pgncontainer {
+  border: 100 px solid blue;
+  float: left;
+  height: 500 px;
+  width: 500 px;
+}
+
+#counter {
+  background-color: red;
+  border: 1px solid black;
+  width: 200px;
+  text-align: center;
+  margin: auto;
+}
+
+#button {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
