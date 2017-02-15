@@ -6,7 +6,7 @@
 var dot, bg;
 
 function setup() {
-  createCanvas(1000,500);
+  createCanvas(1000,600);
   
   //create a sprite and add the 3 animations
   dot = createSprite(100, 100, 5, 10);
@@ -34,10 +34,12 @@ function setup() {
 
 
 var water = [];
-water.push({x: 0.244, y: 0.14});
-water.push({x: 0.45, y: 0.14}); 
-water.push({x: 0.424, y:0.344}); 
-water.push({x: 0.27, y: 0.326});
+water.push({x: 0.25, y: 0.21667});
+water.push({x: 0.346, y: 0.20267}); 
+water.push({x: 0.447, y:0.236}); 
+water.push({x: 0.43, y: 0.37933});
+water.push({x: 0.358, y: 0.356});
+water.push({x: 0.283, y: 0.35267});
 
 var time = -1; 
 var last_x = -1;
@@ -49,15 +51,18 @@ var path = [];
 function draw() {
   background(bg);
 
+  // the adjusted y position to give the position at the bottom of the feet
+  var adjusted_y = dot.position.y + 50;
+
   // debug purposes - press space bar
   if (keyIsDown(32)) {
-    console.log(dot.position.x/width, (dot.position.y + 50)/height);
+    console.log(dot.position.x/width, (adjusted_y)/height);
     console.log("path length", path.length);
   }
 
   // check if dot hit water 
   // positions are adjusted so that it checks the dot's *foot* position
-  if ( isInWater(dot.position.x, dot.position.y + 50) ) {
+  if ( isInWater(dot.position.x, adjusted_y) ) {
     // if just hit water, save the frameCount at which the water was hit 
     // also save the x and y at which you hit the water, and which direction you were walking
     if (time == -1) { 
@@ -67,6 +72,11 @@ function draw() {
       // save direction you were walking
       if (dot.velocity.x > 0) { x_direction = -1; } else { x_direction = 1; }
       if (dot.velocity.y > 0) { y_direction = -1; } else { y_direction = 1; }
+
+      // if walked down into the water, adjust the position so it looks like drowning over water
+      if (y_direction == -1) {
+        dot.position.y += 70;
+      }
     }
 
     // stop from moving 
@@ -160,6 +170,7 @@ function drawPath() {
     smooth();
     strokeJoin(ROUND);
     strokeWeight(6);
+    stroke('red');
     // if (i%5 > 0 && i%5 < 5) {
       line(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
     // }
