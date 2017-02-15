@@ -52,6 +52,7 @@ function draw() {
   // debug purposes - press space bar
   if (keyIsDown(32)) {
     console.log(dot.position.x/width, (dot.position.y + 50)/height);
+    console.log("path length", path.length);
   }
 
   // check if dot hit water 
@@ -156,7 +157,12 @@ function draw() {
 // draws the dot's path
 function drawPath() {
   for (var i=1; i<path.length; i++) {
-    line(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
+    smooth();
+    strokeJoin(ROUND);
+    strokeWeight(6);
+    // if (i%5 > 0 && i%5 < 5) {
+      line(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
+    // }
   }
 }
 

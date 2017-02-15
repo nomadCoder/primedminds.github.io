@@ -3,12 +3,12 @@
 }
 
 .left-arrows {
-    /*left: 0;*/
+    left: 0;
     cursor: pointer;
 }
 
 .right-arrows {
-    /*right: 0;*/
+    right: 100%;
     cursor: pointer;
 }
 

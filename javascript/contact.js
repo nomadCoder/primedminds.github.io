@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    $('#bt1').click(function() {
+        $('#form').attr('action',
+                       'mailto:vshubin@usc.edu?subject=' +
+                       $('#name-msg').val() + '&body=' + $('#message').val());
+        $('#form').submit();
+    });
+});
+
 function validate()
 {
 		document.getElementById('success').innerHTML = '';
