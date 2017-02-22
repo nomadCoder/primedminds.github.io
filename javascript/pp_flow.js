@@ -7,7 +7,7 @@ var slides = ["PPV1", "PPI1", "PPV2", "PPI2", "PPV3", "PPS3", "PPV4", "PPI4",
               "PPV5", "PPI5", "PPV6", "PPV6B", "PPI6", "PPV7", "PPI7",
               "PPV8", "PPI8", "PPV9", "PPI9", "PPV10", "PPI10", "PPV11",];
 
-var links = ["zbfVO-JvW10", "", "F1ULIVqnkbc", "", "uvEQjJW1UzY", "", "97CunrfBqyQ", "",
+var links = ["zbfVO-JvW10", "PPI1.html", "F1ULIVqnkbc", "", "uvEQjJW1UzY", "", "97CunrfBqyQ", "",
              "sepeZGYTyk8", "", "JxOgqNtglas", "jR8OfQrjF5Q", "", "f79SjueqhoM", "",
              "1gV4Dclvg38", "", "nlGLZRmv8fw", "", "EofnBtT5Z14", "", "DGk6iJLl0AQ"];
 
@@ -77,12 +77,20 @@ function cycleItems() {
         }
     } else if (descriptor.indexOf("I") != -1) {
         // is interactive
-        // display slide 
-        show = "interactive";
         // start loading next video if not already loaded
         if ( currently_loaded["iframe0"] != slides[currentIndex+1] &&
               currently_loaded["iframe1"] != slides[currentIndex+1]) { 
             loadVideo(currentIndex+1);
+        }
+
+        // display slide 
+        show = "interactive";
+        if (descriptor == "PPI1") {
+            $("#interactive").load(descriptor + ".html");
+            $("#interactive").removeClass("placeholder");
+            console.log('here, loading ' + descriptor + ".html");
+        } else {
+            $("#interactive").addClass("placeholder");
         }
     } else if (descriptor.indexOf("S") != -1) {
         // temp 

@@ -32,14 +32,32 @@ function setup() {
   bg = loadImage("assets/bridges/KonigMap.JPG"); 
 }
 
-
+// holds polygon variables that represent bridge locations
 var water = [];
-water.push({x: 0.25, y: 0.21667});
-water.push({x: 0.346, y: 0.20267}); 
-water.push({x: 0.447, y:0.236}); 
-water.push({x: 0.43, y: 0.37933});
-water.push({x: 0.358, y: 0.356});
-water.push({x: 0.283, y: 0.35267});
+
+// bridge 1
+var bridge1 = [];
+bridge1.push({x: 0.25, y: 0.21667});
+bridge1.push({x: 0.346, y: 0.20267}); 
+bridge1.push({x: 0.447, y:0.236}); 
+bridge1.push({x: 0.43, y: 0.37933});
+bridge1.push({x: 0.358, y: 0.356});
+bridge1.push({x: 0.283, y: 0.35267});
+
+// bridge 2
+var bridge2 = [];
+bridge2.push({x: 0.536, y: 0.25799});
+bridge2.push({x: 0.623, y: 0.296}); 
+bridge2.push({x: 0.7256, y: 0.24833}); 
+bridge2.push({x: 0.7896, y: 0.37267});
+bridge2.push({x: 0.7316, y: 0.402667});
+bridge2.push({x: 0.6796, y: 0.48433});
+bridge2.push({x: 0.604, y: 0.486});
+bridge2.push({x: 0.566, y: 0.42267});
+bridge2.push({x: 0.508, y: 0.39933});
+
+water.push(bridge1);
+// water.push(bridge2);
 
 var time = -1; 
 var last_x = -1;
@@ -181,12 +199,8 @@ function drawPath() {
 function isInWater(x, y) {
   var isInWater = false;
 
-  // for(k=0; k<water.length; k++){
-    polygon = water;
-    // console.log('x', x, 'y', y);
-    for(var i=0; i<polygon.length; i++) {
-      // console.log(polygon[i].x * width, polygon[i].y * height);
-    }
+  for(k=0; k<water.length; k++){
+    polygon = water[k];
 
     var j = polygon.length - 1;
     for(var i = 0; i < polygon.length; i++) {
@@ -197,5 +211,12 @@ function isInWater(x, y) {
       }
       j = i;
     }
-    return isInWater; 
+
+    if (isInWater) {
+      return true;
+    }
+  }
+
+  // if reached here, not in water
+  return false; 
 }
