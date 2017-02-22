@@ -20,7 +20,7 @@ function setup() {
   //in this case since the animations have different heights i want to adjust
   //the vertical offset to make the transition between floating and moving look better
   // myAnimation.offY = 18;
-  
+  console.log('in sprites setup');
   var walking = dot.addAnimation("walking", "assets/bridges/WalkingMonster1.png", "assets/bridges/WalkingMonster2.png");
   
   var drowning = dot.addAnimation("drowning", "assets/bridges/WaterMonster1.png", "assets/bridges/WaterMonster2.png", "assets/bridges/WaterMonster3.png");
