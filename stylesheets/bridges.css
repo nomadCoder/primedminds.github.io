@@ -1,3 +1,4 @@
 #dot {
-	float: left;
+	/*float: left;*/
+	z-index: 50;
 }

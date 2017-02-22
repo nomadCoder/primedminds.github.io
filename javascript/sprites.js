@@ -6,7 +6,7 @@
 var dot, bg;
 
 function setup() {
-  createCanvas(1000,500);
+  createCanvas(1000,600);
   
   //create a sprite and add the 3 animations
   dot = createSprite(100, 100, 5, 10);
@@ -20,7 +20,7 @@ function setup() {
   //in this case since the animations have different heights i want to adjust
   //the vertical offset to make the transition between floating and moving look better
   // myAnimation.offY = 18;
-  
+  console.log('in sprites setup');
   var walking = dot.addAnimation("walking", "assets/bridges/WalkingMonster1.png", "assets/bridges/WalkingMonster2.png");
   
   var drowning = dot.addAnimation("drowning", "assets/bridges/WaterMonster1.png", "assets/bridges/WaterMonster2.png", "assets/bridges/WaterMonster3.png");
@@ -32,12 +32,32 @@ function setup() {
   bg = loadImage("assets/bridges/KonigMap.JPG"); 
 }
 
-
+// holds polygon variables that represent bridge locations
 var water = [];
-water.push({x: 0.244, y: 0.14});
-water.push({x: 0.45, y: 0.14}); 
-water.push({x: 0.424, y:0.344}); 
-water.push({x: 0.27, y: 0.326});
+
+// bridge 1
+var bridge1 = [];
+bridge1.push({x: 0.25, y: 0.21667});
+bridge1.push({x: 0.346, y: 0.20267}); 
+bridge1.push({x: 0.447, y:0.236}); 
+bridge1.push({x: 0.43, y: 0.37933});
+bridge1.push({x: 0.358, y: 0.356});
+bridge1.push({x: 0.283, y: 0.35267});
+
+// bridge 2
+var bridge2 = [];
+bridge2.push({x: 0.536, y: 0.25799});
+bridge2.push({x: 0.623, y: 0.296}); 
+bridge2.push({x: 0.7256, y: 0.24833}); 
+bridge2.push({x: 0.7896, y: 0.37267});
+bridge2.push({x: 0.7316, y: 0.402667});
+bridge2.push({x: 0.6796, y: 0.48433});
+bridge2.push({x: 0.604, y: 0.486});
+bridge2.push({x: 0.566, y: 0.42267});
+bridge2.push({x: 0.508, y: 0.39933});
+
+water.push(bridge1);
+// water.push(bridge2);
 
 var time = -1; 
 var last_x = -1;
@@ -49,14 +69,18 @@ var path = [];
 function draw() {
   background(bg);
 
+  // the adjusted y position to give the position at the bottom of the feet
+  var adjusted_y = dot.position.y + 50;
+
   // debug purposes - press space bar
   if (keyIsDown(32)) {
-    console.log(dot.position.x/width, (dot.position.y + 50)/height);
+    console.log(dot.position.x/width, (adjusted_y)/height);
+    console.log("path length", path.length);
   }
 
   // check if dot hit water 
   // positions are adjusted so that it checks the dot's *foot* position
-  if ( isInWater(dot.position.x, dot.position.y + 50) ) {
+  if ( isInWater(dot.position.x, adjusted_y) ) {
     // if just hit water, save the frameCount at which the water was hit 
     // also save the x and y at which you hit the water, and which direction you were walking
     if (time == -1) { 
@@ -66,6 +90,11 @@ function draw() {
       // save direction you were walking
       if (dot.velocity.x > 0) { x_direction = -1; } else { x_direction = 1; }
       if (dot.velocity.y > 0) { y_direction = -1; } else { y_direction = 1; }
+
+      // if walked down into the water, adjust the position so it looks like drowning over water
+      if (y_direction == -1) {
+        dot.position.y += 70;
+      }
     }
 
     // stop from moving 
@@ -156,7 +185,13 @@ function draw() {
 // draws the dot's path
 function drawPath() {
   for (var i=1; i<path.length; i++) {
-    line(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
+    smooth();
+    strokeJoin(ROUND);
+    strokeWeight(6);
+    stroke('red');
+    // if (i%5 > 0 && i%5 < 5) {
+      line(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
+    // }
   }
 }
 
@@ -164,12 +199,8 @@ function drawPath() {
 function isInWater(x, y) {
   var isInWater = false;
 
-  // for(k=0; k<water.length; k++){
-    polygon = water;
-    // console.log('x', x, 'y', y);
-    for(var i=0; i<polygon.length; i++) {
-      // console.log(polygon[i].x * width, polygon[i].y * height);
-    }
+  for(k=0; k<water.length; k++){
+    polygon = water[k];
 
     var j = polygon.length - 1;
     for(var i = 0; i < polygon.length; i++) {
@@ -180,5 +211,12 @@ function isInWater(x, y) {
       }
       j = i;
     }
-    return isInWater; 
+
+    if (isInWater) {
+      return true;
+    }
+  }
+
+  // if reached here, not in water
+  return false; 
 }

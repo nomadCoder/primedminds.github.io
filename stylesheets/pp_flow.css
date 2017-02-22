@@ -23,9 +23,14 @@ html {
 
 .container {
     display: none;
-    width: 85%;
-    height: 85%;
-    margin: 0 auto; /* center horizontally */ 
+    /*width: 85%;*/
+    /*top: 20;*/
+    max-height: 90%;
+    top: 5%;
+    position: absolute;
+    /*max-width: 3000px;*/
+    /*max-height: 1800px;*/
+    margin: 0 auto;  /*center horizontally  */
     animation: floatUp 1s;
     transition: all 2s ease-in-out;
 }
