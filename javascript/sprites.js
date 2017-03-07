@@ -21,7 +21,7 @@ $(function() {
 })
 
 function setup() {
-  canvas = createCanvas(1000,600);
+  canvas = createCanvas(900,540);
 
   canvas.parent("#main");
   canvas.id("canvas");
