@@ -3,10 +3,30 @@
 //move the mouse and click
 //press and hold the up and down keys
 
-var dot, bg;
+var dot, bg, canvas;
+
+$(function() {
+    $("body").click(function(e) {
+        if (e.target.id == "right_arrow") {
+          // current hack
+          window.location.href = "flow_video.html?s=PPV2";
+        } else if (e.target.id == "left_arrow") {
+          window.location.href = "flow_video.html?s=PPV1";
+        } else if (e.target.id == "canvas") { 
+           draw();
+        } else { 
+           //alert("Outside div");
+        }
+    });
+})
 
 function setup() {
   canvas = createCanvas(1000,600);
+
+  canvas.parent("#main");
+  canvas.id("canvas");
+
+  canvas.mousePressed(draw);
   
   //create a sprite and add the 3 animations
   dot = createSprite(100, 100, 5, 10);
@@ -76,10 +96,8 @@ function draw() {
       fill('red');
       stroke('red');
       beginShape();
-      console.log(i);
       var shape = water[i];
       for (var j=0; j<shape.length; j++) {
-        console.log(shape[j].x, shape[j].y); 
         vertex(shape[j].x, shape[j].y);
       }
       endShape(CLOSE);

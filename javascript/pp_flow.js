@@ -57,6 +57,8 @@ function showItem() {
     var descriptor = flow[currentIndex].descriptor;
     if (descriptor.indexOf("V") != -1) {
         loadVideo();
+    } else if (descriptor.indexOf("I") != -1) {
+        loadInteractive();
     }
 }
 
@@ -122,6 +124,22 @@ function loadVideo() {
         "https://www.youtube.com/embed/" + flow[currentIndex].link + "?rel=0";
 }
 
+function loadInteractive() {
+    if (flow[currentIndex].link == "") {
+        loadPlaceholder();
+    } else {
+        console.log("loading " + flow[currentIndex].link);
+        $("#body").load(flow[currentIndex].link);
+        console.log(document.getElementById("body"));
+    }
+}
+
+function loadPlaceholder() {
+    $("#main").addClass("container");
+    $("#main").addClass("placeholder");
+    $("#main").addClass("slide");
+}
+
 function updateArrows() {
     if ( currentIndex == 0 ) {
         $('.left-arrow').hide();
@@ -142,6 +160,8 @@ $(document).ready(function () {
     // call this so that if url sent with a specific slide number, it will start at that slide
     goToSlide();
 
+    updateArrows();
+
     $('.right-arrow').on('click', function() {
         slideChange(1);
     });
@@ -151,6 +171,7 @@ $(document).ready(function () {
     });
 
     function slideChange(n) {
+        console.log('slide change');
         // update current index
         var nextIndex = currentIndex + n; 
         if (nextIndex >= TOTAL_NUM_SLIDES) { 
@@ -160,7 +181,20 @@ $(document).ready(function () {
             // stay on first page
             nextIndex = 0;
         }
-        // findNext();
-        window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
+
+        var nextDescriptor = flow[nextIndex].descriptor; 
+        if (nextDescriptor.indexOf("V") != -1) {
+            // is video 
+            window.location.href = "flow_video.html?s=" + nextDescriptor;
+        } else if (nextDescriptor.indexOf("I") != -1) {
+            // is interactive 
+            if (nextDescriptor == "") {
+                // placeholder
+                // $("#main").addClass("container placeholder slide");     
+                loadPlaceholder();  
+            } else {
+                window.location.href = "pp_flow.html?s=" + nextDescriptor;
+            }
+        }
     }
 });
