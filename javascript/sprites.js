@@ -6,7 +6,7 @@
 var dot, bg;
 
 function setup() {
-  createCanvas(1000,600);
+  canvas = createCanvas(1000,600);
   
   //create a sprite and add the 3 animations
   dot = createSprite(100, 100, 5, 10);
@@ -57,7 +57,7 @@ bridge2.push({x: 0.566, y: 0.42267});
 bridge2.push({x: 0.508, y: 0.39933});
 
 water.push(bridge1);
-// water.push(bridge2);
+water.push(bridge2);
 
 var time = -1; 
 var last_x = -1;
@@ -66,8 +66,26 @@ var x_direction, y_direction;
 
 var path = [];
 
+var on = true; 
+
 function draw() {
   background(bg);
+
+  if (on) {
+    for(var i=0; i<water.length; i++) {
+      fill('red');
+      stroke('red');
+      beginShape();
+      console.log(i);
+      var shape = water[i];
+      for (var j=0; j<shape.length; j++) {
+        console.log(shape[j].x, shape[j].y); 
+        vertex(shape[j].x, shape[j].y);
+      }
+      endShape(CLOSE);
+    }
+    on = false;
+  }
 
   // the adjusted y position to give the position at the bottom of the feet
   var adjusted_y = dot.position.y + 50;
