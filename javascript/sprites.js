@@ -3,10 +3,30 @@
 //move the mouse and click
 //press and hold the up and down keys
 
-var dot, bg;
+var dot, bg, canvas;
+
+$(function() {
+    $("body").click(function(e) {
+        if (e.target.id == "right_arrow") {
+          // current hack
+          window.location.href = "flow_video.html?s=PPV2";
+        } else if (e.target.id == "left_arrow") {
+          window.location.href = "flow_video.html?s=PPV1";
+        } else if (e.target.id == "canvas") { 
+           draw();
+        } else { 
+           //alert("Outside div");
+        }
+    });
+})
 
 function setup() {
-  createCanvas(1000,600);
+  canvas = createCanvas(1000,600);
+
+  canvas.parent("#main");
+  canvas.id("canvas");
+
+  canvas.mousePressed(draw);
   
   //create a sprite and add the 3 animations
   dot = createSprite(100, 100, 5, 10);
@@ -57,7 +77,7 @@ bridge2.push({x: 0.566, y: 0.42267});
 bridge2.push({x: 0.508, y: 0.39933});
 
 water.push(bridge1);
-// water.push(bridge2);
+water.push(bridge2);
 
 var time = -1; 
 var last_x = -1;
@@ -66,8 +86,24 @@ var x_direction, y_direction;
 
 var path = [];
 
+var on = true; 
+
 function draw() {
   background(bg);
+
+  if (on) {
+    for(var i=0; i<water.length; i++) {
+      fill('red');
+      stroke('red');
+      beginShape();
+      var shape = water[i];
+      for (var j=0; j<shape.length; j++) {
+        vertex(shape[j].x, shape[j].y);
+      }
+      endShape(CLOSE);
+    }
+    on = false;
+  }
 
   // the adjusted y position to give the position at the bottom of the feet
   var adjusted_y = dot.position.y + 50;

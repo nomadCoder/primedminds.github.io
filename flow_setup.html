@@ -7,19 +7,8 @@
 
     <title>Parity and Pigeons Exploration</title>
     
-    <!-- materialize css -->
-    <link rel="stylesheet" type="text/css" href="stylesheets/materialize.min.css">
     <!-- local css -->
     <link rel="stylesheet" type="text/css" href="stylesheets/pp_flow.css">
-
-    <!-- jquery js -->
-    <script src="public/javascript/jquery-1.12.3.min.js"></script>
-    <!-- materialize js -->
-    <script src="public/javascript/materialize.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- local js -->
-    <script src="javascript/pp_flow.js"></script>
 
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,15 +22,14 @@
     </div>
 
     <div class='left-arrow arrow'>
-        <i class="material-icons md-48" onclick="slideChange(-1)">arrow_back</i>
+        <i class="material-icons md-48" id="left_arrow">arrow_back</i>
     </div>
 
     <div class='right-arrow arrow'>
-        <i class="material-icons md-48" onclick="slideChange(1)">arrow_forward</i>
+        <i class="material-icons md-48" id="right_arrow">arrow_forward</i>
     </div>
 
-    <div id="main">  
-        <div id="inside" class="container slide"  style="display: inline-block;"></div>
+    <div id="main">        
     </div> <!-- end main --> 
 </body>
 

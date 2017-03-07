@@ -1,6 +1,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+
+   <!-- jquery js -->
+    <script src="public/javascript/jquery-1.12.3.min.js"></script>
+    <!-- materialize js -->
+    <script src="public/javascript/materialize.min.js"></script>
+
   	<script language="javascript" src="public/javascript/p5.min.js"></script>
   	<script language="javascript" src="public/javascript/p5.collide2d.js"></script>
   	<script language="javascript" src="public/javascript/p5.play.js"></script>  
@@ -8,6 +14,17 @@
 </head>
 
 <body>
-	<p> hello world </p>
+	<div id = "setup">
+	</div>
+
+	<div id = "main">
+	</div>
 </body>
+
+<script>
+	$(function(){
+        $("#setup").load("flow_setup.html"); 
+    });   
+</script>
+
 </html>

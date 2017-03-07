@@ -3,16 +3,30 @@ var currentIndex = 0;
 var TOTAL_NUM_SLIDES;
 var urlParams = {};
 
-var slides = ["PPV1", "PPI1", "PPV2", "PPI2", "PPV3", "PPS3", "PPV4", "PPI4",
-              "PPV5", "PPI5", "PPV6", "PPV6B", "PPI6", "PPV7", "PPI7",
-              "PPV8", "PPI8", "PPV9", "PPI9", "PPV10", "PPI10", "PPV11",];
+var flow = [{descriptor: "PPV1", link: "zbfVO-JvW10"},
+            {descriptor: "PPI1", link: "PPI1.html"},      // konig bridge interactive
+            {descriptor: "PPV2", link: "F1ULIVqnkbc"},
+            {descriptor: "PPI2", link: ""},
+            {descriptor: "PPV3", link: "uvEQjJW1UzY"},
+            {descriptor: "PPS3", link: "PPS3.html"},
+            {descriptor: "PPV4", link: "97CunrfBqyQ"},     
+            {descriptor: "PPI4", link: ""},
+            {descriptor: "PPV5", link: "sepeZGYTyk8"},
+            {descriptor: "PPI5", link: ""},
+            {descriptor: "PPV6", link: "JxOgqNtglas"},     
+            {descriptor: "PPV6B", link: "jR8OfQrjF5Q"},     
+            {descriptor: "PPI6", link: ""},
+            {descriptor: "PPV7", link: "f79SjueqhoM"},
+            {descriptor: "PPI7", link: ""},
+            {descriptor: "PPV8", link: "1gV4Dclvg38"},     
+            {descriptor: "PPI8", link: ""},
+            {descriptor: "PPV9", link: "nlGLZRmv8fw"},
+            {descriptor: "PPI9", link: ""},
+            {descriptor: "PPV10", link: "EofnBtT5Z14"},
+            {descriptor: "PPI10", link: ""},
+            {descriptor: "PPV11", link: "DGk6iJLl0AQ"},
 
-var links = ["zbfVO-JvW10", "PPI1.html", "F1ULIVqnkbc", "", "uvEQjJW1UzY", "", "97CunrfBqyQ", "",
-             "sepeZGYTyk8", "", "JxOgqNtglas", "jR8OfQrjF5Q", "", "f79SjueqhoM", "",
-             "1gV4Dclvg38", "", "nlGLZRmv8fw", "", "EofnBtT5Z14", "", "DGk6iJLl0AQ"];
-
-var currently_loaded = [{"iframe0": slides[0]}, {"interactive": slides[1]}, {"iframe1": slides[2]}];
-var next_iframe = 0;
+]; 
 
 // find the URL parameters
 // i.e. http://website.com/page.html?param1=x&param2=y
@@ -30,91 +44,73 @@ var next_iframe = 0;
     }
 })();
 
+
 // go to the slide specified by the URL param
 function goToSlide() {
+    var found = false;
     // if already has slide param
     if ( urlParams["s"] != null) {
         // for safety, make sure index exists 
         var param = urlParams["s"];
-        if (slides.indexOf(param) == -1) {
-            console.log("slide not found");
-            // if it does not exist, just go to slide 0
-            currentIndex = 0; 
-        } else {
-            currentIndex = slides.indexOf(param);
+        for (var i=0; i<flow.length; i++) {
+            if ( param == flow[i].descriptor ) {
+                currentIndex = i; 
+                found = true;
+            }
         }
     } else {
         // if there is no slide param
         currentIndex = 0;
     }
-    window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
-    cycleItems();
+    if (!found) {
+        currentIndex = 0;
+    }
+    window.history.pushState(urlParams, "", "?s=" + flow[currentIndex].descriptor);
+    // cycleItems();
+    showItem();
 }
 
-// actually cycle the slides 
-function cycleItems() {
-    // hide all the slides 
-    var items = document.querySelectorAll(".slide");
-    for(var i=0; i<items.length; i++) {
-        items[i].style.display = 'none';
-    }
-
-    // get the string descriptor 
-    var descriptor = slides[currentIndex];
-
-    var show = ""; 
-
-    // see if it is a video (V), interactive (I), or slideshow (S)
+function showItem() {
+    var descriptor = flow[currentIndex].descriptor;
     if (descriptor.indexOf("V") != -1) {
-        // is video 
-        if ( currently_loaded["iframe0"] == descriptor ) {
-            show = "video0";
-        } else if ( currently_loaded["iframe1"] == descriptor) {
-            show = "video1";
-        } else {
-            // set the video link if it is not already loaded
-            show = "video" + loadVideo(currentIndex);
-        }
+        loadVideo();
     } else if (descriptor.indexOf("I") != -1) {
-        // is interactive
-        // start loading next video if not already loaded
-        if ( currently_loaded["iframe0"] != slides[currentIndex+1] &&
-              currently_loaded["iframe1"] != slides[currentIndex+1]) { 
-            loadVideo(currentIndex+1);
-        }
-
-        // display slide 
-        show = "interactive";
-        if (descriptor == "PPI1") {
-            $("#interactive").load(descriptor + ".html");
-            $("#interactive").removeClass("placeholder");
-            console.log('here, loading ' + descriptor + ".html");
-        } else {
-            $("#interactive").addClass("placeholder");
-        }
+        loadInteractive();
     } else if (descriptor.indexOf("S") != -1) {
-        // temp 
-        show = "slideshow";
-        $("#slideshow").load(descriptor + ".html"); 
-
-    } else {
-        // not found
-        console.log("ERROR - type not found");
+        loadSlideshow();
     }
-
-    document.getElementById(show).style.display = 'inline-block';
-    updateArrows();
 }
 
 // load the video onto the least recently used div
-function loadVideo(index) {
-    // console.log("loading " + slides[index] + " into iframe"+next_iframe);
-    document.getElementById("iframe" + next_iframe).src = 
-        "https://www.youtube.com/embed/" + links[index] + "?rel=0";
-    currently_loaded["iframe" + next_iframe] = slides[index];
-    var ret = next_iframe;
-    next_iframe = (next_iframe+1)%2;    
-    return ret;
+function loadVideo() {
+    console.log("loading " + flow[currentIndex].link + " into iframe0");
+    document.getElementById("iframe0").src = 
+        "https://www.youtube.com/embed/" + flow[currentIndex].link + "?rel=0";
+}
+
+function loadInteractive() {
+    if (flow[currentIndex].link == "") {
+        loadPlaceholder();
+    } else {
+        console.log("loading " + flow[currentIndex].link);
+        $("#body").load(flow[currentIndex].link);
+        console.log(document.getElementById("body"));
+    }
+}
+
+function loadPlaceholder() {
+    $("#inside").addClass("placeholder");
+}
+
+function loadSlideshow() {
+    console.log("loading " + flow[currentIndex].link);
+    // make sure its not empty 
+    if ( flow[currentIndex].link == "" ) {
+        loadPlaceholder();
+    } else {
+        $("#inside").load(flow[currentIndex].link);
+        $("#inside").addClass("container-slideshow");
+    }
 }
 
 function updateArrows() {
@@ -131,11 +127,13 @@ function updateArrows() {
 
 // when the page loads
 $(document).ready(function () {
-    // save length
-    TOTAL_NUM_SLIDES = slides.length;
+//     // save length
+    TOTAL_NUM_SLIDES = flow.length;
 
     // call this so that if url sent with a specific slide number, it will start at that slide
     goToSlide();
+
+    updateArrows();
 
     $('.right-arrow').on('click', function() {
         slideChange(1);
@@ -146,15 +144,9 @@ $(document).ready(function () {
     });
 
     function slideChange(n) {
-        // if current slide is video, stop it 
-        // if ( currently_loaded["iframe0"] == slides[currentIndex] ) {
-        //     $("#iframe0").pauseVideo();
-        // } else if ( currently_loaded["iframe1"] == slides[currentIndex]) {
-        //     $("#iframe1").pauseVideo();
-        // }
-//
         // update current index
         currentIndex += n; 
+        console.log('slide change', currentIndex);
         if (currentIndex >= TOTAL_NUM_SLIDES) { 
             // stay on last page
             currentIndex = TOTAL_NUM_SLIDES - 1;
@@ -162,7 +154,17 @@ $(document).ready(function () {
             // stay on first page
             currentIndex = 0;
         }
-        cycleItems();
-        window.history.pushState(urlParams, "", "?s=" + slides[currentIndex]);
+
+        var nextDescriptor = flow[currentIndex].descriptor; 
+        if (nextDescriptor.indexOf("V") != -1) {
+            // is video 
+            window.location.href = "flow_video.html?s=" + nextDescriptor;
+        } else if (nextDescriptor.indexOf("I") != -1) {
+            // is interactive 
+            window.location.href = "pp_flow.html?s=" + nextDescriptor;
+        } else if (nextDescriptor.indexOf("S") != -1) {
+            // is slideshow
+            window.location.href = "pp_flow.html?s=" + nextDescriptor;
+        }
     }
 });
