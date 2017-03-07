@@ -71,14 +71,26 @@ function goToSlide() {
 }
 
 function showItem() {
+    // hide all the slides 
+    var items = document.querySelectorAll(".slide");
+    for(var i=0; i<items.length; i++) {
+        items[i].style.display = 'none';
+    }
+
+    var show;
     var descriptor = flow[currentIndex].descriptor;
     if (descriptor.indexOf("V") != -1) {
         loadVideo();
+        show = "video";
     } else if (descriptor.indexOf("I") != -1) {
         loadInteractive();
+        show = "inside";
     } else if (descriptor.indexOf("S") != -1) {
         loadSlideshow();
+        show = "inside";
     }
+
+    document.getElementById(show).style.display = 'inline-block';
 }
 
 // load the video onto the least recently used div
@@ -158,7 +170,7 @@ $(document).ready(function () {
         var nextDescriptor = flow[currentIndex].descriptor; 
         if (nextDescriptor.indexOf("V") != -1) {
             // is video 
-            window.location.href = "flow_video.html?s=" + nextDescriptor;
+            window.location.href = "pp_flow.html?s=" + nextDescriptor;
         } else if (nextDescriptor.indexOf("I") != -1) {
             // is interactive 
             window.location.href = "pp_flow.html?s=" + nextDescriptor;

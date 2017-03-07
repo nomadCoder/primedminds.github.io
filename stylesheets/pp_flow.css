@@ -159,7 +159,7 @@ html {
 }
 
 .placeholder {
-    display: block;
+    display: inline-block;
     height: 85%;
     width: 90%;
     margin: 20 auto;
