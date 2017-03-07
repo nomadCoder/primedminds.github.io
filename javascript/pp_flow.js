@@ -135,9 +135,7 @@ function loadInteractive() {
 }
 
 function loadPlaceholder() {
-    $("#main").addClass("container");
-    $("#main").addClass("placeholder");
-    $("#main").addClass("slide");
+    $("#inside").addClass("placeholder");
 }
 
 function updateArrows() {
@@ -171,9 +169,9 @@ $(document).ready(function () {
     });
 
     function slideChange(n) {
-        console.log('slide change');
         // update current index
         var nextIndex = currentIndex + n; 
+        console.log('slide change', nextIndex);
         if (nextIndex >= TOTAL_NUM_SLIDES) { 
             // stay on last page
             nextIndex = TOTAL_NUM_SLIDES - 1;
@@ -195,6 +193,8 @@ $(document).ready(function () {
             } else {
                 window.location.href = "pp_flow.html?s=" + nextDescriptor;
             }
+        } else if (nextDescriptor.indexOf("S") != -1) {
+            
         }
     }
 });
