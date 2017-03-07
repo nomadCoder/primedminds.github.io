@@ -49,7 +49,7 @@ function setup() {
   walking.frameDelay = 6;
   drowning.frameDelay = 12;
 
-  bg = loadImage("assets/bridges/KonigMap.JPG"); 
+  bg = loadImage("assets/bridges/KonigMap.jpg"); 
 }
 
 // holds polygon variables that represent bridge locations
