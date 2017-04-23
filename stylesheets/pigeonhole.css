@@ -1,0 +1,284 @@
+#background {
+  height: 900px;
+  width: 1500px;
+  z-index: 1;
+}
+
+.hover {
+  position: absolute;
+  height: 75px;
+  width: 75px;
+  //background-color: red;
+  opacity: 0.0;
+  z-index: 2;
+}
+
+.message {
+  position: absolute;
+  background-color: #ffe900;
+  width: 500px;
+  margin: auto;
+  border-style: solid;
+  border-color: #DC2222;
+  border-radius: 25px;
+   box-shadow: 0 0 30px black;
+  -moz-box-shadow: 0 0 30px black;
+  -webkit-box-shadow: 0 0 30px black;
+  visibility: hidden;
+  z-index: 3;
+}
+
+p {
+  width: 300px;
+  font-size: 30px;
+  padding: 5px;
+  text-decoration: none;
+  padding-left: 40px;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+#slideshow, #handout {
+  position: absolute;
+  right: 50px;
+  top: 30%;
+  height: 62.5px;
+  width: 62.5px;
+}
+
+#video {
+  position: absolute;
+  right: 50px;
+  top: 30%;
+  height: 62.5px;
+  width: 85px;
+}
+
+#interactive {
+  position: absolute;
+  right: 50px;
+  top: 30%;
+  height: 62.5px;
+  width: 100px;
+}
+
+.openvideo {
+  height: 750px;
+  width: 1350px;
+  position: absolute;
+  background-color: #ffe900;
+  top: 100px;
+  left: 100px;
+  margin: auto;
+  border-style: solid;
+  border-color: #DC2222;
+  border-radius: 50px;
+  z-index: 4;
+}
+
+.video {
+  position: absolute;
+  top: 100px;
+  left: 125px;
+  width: 1067.5px;
+  height: 600px;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 100px;
+  width: 100px;
+}
+
+#hHandout1, #mHandout1 {
+top: 692.5px; 
+left: 537.5px; 
+} 
+
+#hPPV1, #mPPV1 {
+top: 747.5px; 
+left: 250.5px;  
+} 
+
+#hPPI1 {
+top: 767.5px; 
+left: 607.5px; 
+} 
+
+#mPPI1 {
+  top: 717.5px; 
+  left: 607.5px;
+}
+
+#hPPV2, #mPPV2 {
+top: 437.5px; 
+left: 532.5px; 
+} 
+
+#hHandout2, #mHandout2 {
+top: 267.5px; 
+left: 177.5px; 
+} 
+
+#hPPI2, #mPPI2 {
+top: 307.5px; 
+left: 317.5px; 
+} 
+
+#hHandout3, #mHandout3 {
+top: 42.5px; 
+left: 452.5px; 
+} 
+
+#hPPV3, #mPPV3 {
+top: 17.5px; 
+left: 677.5px; 
+} 
+
+#hPPS3, #mPPS3 {
+top: 277.5px; 
+left: 822.5px; 
+} 
+
+#hPPV4, #mPPV4 {
+top: 287.5px; 
+left: 1077.5px; 
+} 
+
+ 
+#hPPTRK1, #mPPTRK1 {
+top: 737.5px; 
+left: 132.5px; 
+} 
+
+#hPPTRK2, #mPPTRK2 {
+top: 662.5px; 
+left: 657.5px; 
+} 
+
+#hPPTRK3, #mPPTRK3 {
+top: 357.5px; 
+left: 232.5px; 
+} 
+
+#hPPTRK4, #mPPTRK4 {
+top: 252.5px; 
+left: 262.5px; 
+} 
+
+#hPPTRK5, #mPPTRK5 {
+top: 27.5px; 
+left: 382.5px; 
+} 
+
+#hPPTRK6, #mPPTRK6 {
+top: 192.5px; 
+left: 862.5px; 
+} 
+
+#hcombination {
+top: 302.5px; 
+left: 1357.5px; 
+}
+
+#mcombination {
+  top: 50px;
+  left: 900px;
+}
+
+.openvideo {
+  height: 750px;
+  width: 1350px;
+  position: absolute;
+  background-color: #ffe900;
+  top: 100px;
+  left: 100px;
+  margin: auto;
+  border-style: solid;
+  border-color: #DC2222;
+  border-radius: 50px;
+}
+
+.video {
+  position: absolute;
+  top: 100px;
+  left: 125px;
+  width: 1067.5px;
+  height: 600px;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 100px;
+  width: 100px;
+}
+
+#one {
+  position: absolute;
+  height: 285px;
+  width: 508.5px;
+  top: 50px;
+  left: 112.5px;
+}
+
+#two {
+  position: absolute;
+  height: 285px;
+  width: 508.5px;
+  top: 50px;
+  right: 112.5px;
+}
+
+#three {
+  position: absolute;
+  height: 285px;
+  width: 508.5px;
+  bottom: 50px;
+  left: 112.5px;
+}
+
+#four {
+  position: absolute;
+  height: 285px;
+  width: 508.5px;
+  bottom: 50px;
+  right: 112.5px;
+}
+
+#videoone {
+  position: absolute;
+  right: 50px;
+  top: 150px;
+  height: 62.5px;
+  width: 85px;
+}
+#videotwo {
+  position: absolute;
+  right: 50px;
+  top: 300px;
+  height: 62.5px;
+  width: 85px;
+}
+#videothree {
+  position: absolute;
+  right: 50px;
+  top: 435px;
+  height: 62.5px;
+  width: 85px;
+}
+#videofour {
+  position: absolute;
+  right: 50px;
+  top: 565px;
+  height: 62.5px;
+  width: 85px;
+}
