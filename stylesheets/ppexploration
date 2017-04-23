@@ -1,0 +1,251 @@
+#background {
+  height: calc(900 vh / 9);
+  width: calc(1500 vh / 9);
+  z - index: 1;
+}
+
+.hover {
+  position: absolute;
+  height: calc(75 vh / 9);
+  width: calc(75 vh / 9);
+  //background-color: red;
+  opacity: 0.0;
+  z - index: 2;
+}
+
+.message {
+  position: absolute;
+  background - color: #fe900;
+  width: calc(500 vh / 9);
+  margin: auto;
+  border - style: solid;
+  border - color: #C2222;
+  border - radius: 25 px;
+  box - shadow: 0 0 30 px black; -
+  moz - box - shadow: 0 0 30 px black; -
+  webkit - box - shadow: 0 0 30 px black;
+  visibility: hidden;
+  z - index: 3;
+}
+
+p {
+  font - size: 20 px;
+  padding: 5 px;
+  text - decoration: none;
+  padding - left: 40 px;
+}
+
+p: not(.videotext): not(#ablecar) {
+  width: calc(300 vh / 9);
+}
+
+#cablecar {
+  padding - right: 40 px;
+}
+
+a: link {
+  text - decoration: none;
+  color: black;
+}
+
+a: visited {
+  color: black;
+}
+
+span {
+  font - weight: bold;
+}
+
+#slideshow {
+  position: absolute;
+  right: calc(50 vh / 9);
+  top: 25 % ;
+  height: calc(62.5 vh / 9);
+  width: calc(62.5 vh / 9);
+}
+
+#video {
+  float: right;
+  margin: 75 px 30 px 0 0;
+  height: calc(62.5 vh / 9);
+  width: calc(85 vh / 9);
+}
+
+#interactive {
+  position: absolute;
+  right: calc(50 vh / 9);
+  top: 25 % ;
+  margin - left: calc(10 vh / 9);
+  height: calc(62.5 vh / 9);
+  width: calc(100 vh / 9);
+}
+
+.openvideo {
+  height: calc(750 vh / 9);
+  width: calc(1350 vh / 9);
+  position: absolute;
+  background - color: #fe900;
+  top: calc(100 vh / 9);
+  left: calc(100 vh / 9);
+  margin: auto;
+  border - style: solid;
+  border - color: #C2222;
+  border - radius: 50 PX;
+  z - index: 4;
+}
+
+.video {
+  position: absolute;
+  top: calc(100 vh / 9);
+  left: calc(125 vh / 9);
+  width: calc(1067.5 vh / 9);
+  height: calc(600 vh / 9);
+}
+
+.close {
+  position: absolute;
+  top: calc(10 vh / 9);
+  right: calc(10 vh / 9);
+  height: calc(100 vh / 9);
+  width: calc(100 vh / 9);
+}
+
+#hPPV1, #PPV1 {
+  top: calc(645 vh / 9);
+  left: calc(222 vh / 9);
+}
+
+#hPPI1, #PPI1 {
+  top: calc(506 vh / 9);
+  left: calc(284 vh / 9);
+}
+
+#hPPV2, #PPV2 {
+  top: calc(404 vh / 9);
+  left: calc(69 vh / 9);
+}
+
+#hPPI2, #PPI2 {
+  top: calc(164 vh / 9);
+  left: calc(50 vh / 9);
+}
+
+#hPPV3, #PPV3 {
+  top: calc(80 vh / 9);
+  left: calc(278 vh / 9);
+}
+
+#hPPS3, #PPS3 {
+  top: calc(273 vh / 9);
+  left: calc(315 vh / 9);
+}
+
+#hPPV4, #PPV4 {
+  top: calc(405 vh / 9);
+  left: calc(465 vh / 9);
+}
+
+#hPPI4, #PPI4 {
+  top: calc(198 vh / 9);
+  left: calc(582 vh / 9);
+}
+
+#hPPV5, #PPV5 {
+  top: calc(33 vh / 9);
+  left: calc(501 vh / 9);
+}
+
+#hPPI5, #PPI5 {
+  top: calc(17 vh / 9);
+  left: calc(753 vh / 9);
+}
+
+#hPPV6, #PPV6 {
+  top: calc(185 vh / 9);
+  left: calc(761 vh / 9);
+}
+
+#hPPV6B, #PPV6B {
+  top: calc(374 vh / 9);
+  left: calc(689 vh / 9);
+}
+
+#hCableCar, #CableCar {
+  top: calc(476 vh / 9);
+  left: calc(693 vh / 9);
+}
+
+#hPPI6, #PPI6 {
+  top: calc(632 vh / 9);
+  left: calc(461 vh / 9);
+}
+
+#hPPV7 {
+  top: calc(797 vh / 9);
+  left: calc(456 vh / 9);
+}
+
+#mPPV7 {
+  top: calc(597 vh / 9);
+  left: calc(456 vh / 9);
+}
+
+#hPPI7 {
+  top: calc(803 vh / 9);
+  left: calc(755 vh / 9);
+}
+
+#mPPI7 {
+  top: calc(753 vh / 9);
+  left: calc(755 vh / 9);
+}
+
+#hPPV8, #PPV8 {
+  top: calc(542 vh / 9);
+  left: calc(752 vh / 9);
+}
+
+#hPPI8, #PPI8 {
+  top: calc(455 vh / 9);
+  left: calc(947 vh / 9);
+}
+
+#hPPV9 {
+  top: calc(444 vh / 9);
+  left: calc(1151 vh / 9);
+}
+
+#mPPV9 {
+  top: calc(444 vh / 9);
+  left: calc(951 vh / 9);
+}
+
+#hPPI9 {
+  top: calc(399 vh / 9);
+  left: calc(1356 vh / 9);
+}
+
+#mPPI9 {
+  top: calc(399 vh / 9);
+  left: calc(956 vh / 9);
+}
+
+#hPPV10 {
+  top: calc(239 vh / 9);
+  left: calc(1235 vh / 9);
+}
+
+#mPPV10 {
+  top: calc(239 vh / 9);
+  left: calc(935 vh / 9);
+}
+
+#hPPI10, #PPI10 {
+  top: calc(224 vh / 9);
+  left: calc(980 vh / 9);
+}
+
+#hPPV11, #PPV11 {
+  top: calc(41 vh / 9);
+  left: calc(1080 vh / 9);
+}
