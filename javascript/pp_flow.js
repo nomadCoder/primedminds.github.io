@@ -25,7 +25,6 @@ var flow = [{descriptor: "PPV1", link: "zbfVO-JvW10"},
             {descriptor: "PPV10", link: "EofnBtT5Z14"},
             {descriptor: "PPI10", link: ""},
             {descriptor: "PPV11", link: "DGk6iJLl0AQ"},
-            {descriptor: "PPIKonigsberg-Map", link: "konigsberg.html"},     //konigsberg map link
 
 ]; 
 
