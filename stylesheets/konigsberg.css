@@ -1,14 +1,13 @@
 #background {
-  height: 900px;
-  width: 1500px;
+  height: 100vh;
+  width: 166.67vh;
   z-index: 1;
-  overflow: scroll;
 }
 
 .hover {
   position: absolute;
-  height: 75px;
-  width: 75px;
+  height: 9vh;
+  width: 9vh;
   //background-color: red;
   opacity: 0.0;
   z-index: 2;
@@ -17,7 +16,7 @@
 .message {
   position: absolute;
   background-color: #ffe900;
-  width: 500px;
+  width: calc(500vh / 9);
   margin: auto;
   border-style: solid;
   border-color: #DC2222;
@@ -30,11 +29,11 @@
 }
 
 p {
-  width: 300px;
-  font-size: 30px;
+  width: 33.33vh;
+  font-size: 3.33vh;
   padding: 5px;
   text-decoration: none;
-  padding-left: 40px;
+  padding-left: 4.44vh;
 }
 
 a:link {
@@ -48,35 +47,35 @@ a:visited {
 
 #slideshow, #handout {
   position: absolute;
-  right: 50px;
+  right: 5.55vh;
   top: 30%;
-  height: 62.5px;
-  width: 62.5px;
+  height: calc(62.5vh / 9);
+  width: calc(62.5vh / 9);
 }
 
 #video {
   position: absolute;
-  right: 50px;
+  right: 5.55vh;
   top: 30%;
-  height: 62.5px;
-  width: 85px;
+  height: (62.5vh / 9);
+  width: calc(85vh / 9);
 }
 
 #interactive {
   position: absolute;
-  right: 50px;
+  right: 5.55vh;
   top: 30%;
-  height: 62.5px;
-  width: 100px;
+  height: calc(62.5vh / 9);
+  width: calc(100vh / 9);
 }
 
 .openvideo {
-  height: 750px;
-  width: 1350px;
+  height: calc(750vh / 9);
+  width: calc(1350vh / 9);
   position: absolute;
   background-color: #ffe900;
-  top: 100px;
-  left: 100px;
+  top: calc(100vh / 9);
+  left: calc(100vh / 9);
   margin: auto;
   border-style: solid;
   border-color: #DC2222;
@@ -86,122 +85,122 @@ a:visited {
 
 .video {
   position: absolute;
-  top: 100px;
-  left: 125px;
-  width: 1067.5px;
-  height: 600px;
+  top: calc(100vh / 9);
+  left: calc(125vh / 9);
+  width: calc(1067.5vh / 9);
+  height: calc(600vh / 9);
 }
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 100px;
-  width: 100px;
+  top: calc(10vh / 9);
+  right: calc(10vh / 9);
+  height: calc(100vh / 9);
+  width: calc(100vh / 9);
 }
 
 #hHandout1, #mHandout1 {
-top: 692.5px; 
-left: 537.5px; 
+top: calc(692.5vh / 9); 
+left: calc(537.5vh / 9); 
 } 
 
 #hPPV1, #mPPV1 {
-top: 747.5px; 
-left: 250.5px;  
+top: calc(747.5vh / 9); 
+left: calc(250.5vh / 9);  
 } 
 
 #hPPI1 {
-top: 767.5px; 
-left: 607.5px; 
+top: calc(767.5vh / 9); 
+left: calc(607.5vh / 9); 
 } 
 
 #mPPI1 {
-  top: 717.5px; 
-  left: 607.5px;
+  top: calc(717.5vh / 9); 
+  left: calc(607.5vh / 9);
 }
 
 #hPPV2, #mPPV2 {
-top: 437.5px; 
-left: 532.5px; 
+top: calc(437.5vh / 9); 
+left: calc(532.5vh / 9); 
 } 
 
 #hHandout2, #mHandout2 {
-top: 267.5px; 
-left: 177.5px; 
+top: calc(267.5vh / 9); 
+left: calc(177.5vh / 9); 
 } 
 
 #hPPI2, #mPPI2 {
-top: 307.5px; 
-left: 317.5px; 
+top: calc(307.5vh / 9); 
+left: calc(317.5vh / 9); 
 } 
 
 #hHandout3, #mHandout3 {
-top: 42.5px; 
-left: 452.5px; 
+top: calc(42.5vh / 9); 
+left: calc(452.5vh / 9); 
 } 
 
 #hPPV3, #mPPV3 {
-top: 17.5px; 
-left: 677.5px; 
+top: calc(17.5vh / 9); 
+left: calc(677.5vh / 9); 
 } 
 
 #hPPS3, #mPPS3 {
-top: 277.5px; 
-left: 822.5px; 
+top: calc(277.5vh / 9); 
+left: calc(822.5vh / 9); 
 } 
 
 #hPPV4, #mPPV4 {
-top: 287.5px; 
-left: 1077.5px; 
+top: calc(287.5vh / 9); 
+left: calc(1077.5vh / 9); 
 } 
 
  
 #hPPTRK1, #mPPTRK1 {
-top: 737.5px; 
-left: 132.5px; 
+top: calc(737.5vh / 9); 
+left: calc(132.5vh / 9); 
 } 
 
 #hPPTRK2, #mPPTRK2 {
-top: 662.5px; 
-left: 657.5px; 
+top: calc(662.5vh / 9); 
+left: calc(657.5vh / 9); 
 } 
 
 #hPPTRK3, #mPPTRK3 {
-top: 357.5px; 
-left: 232.5px; 
+top: calc(357.5vh / 9); 
+left: calc(232.5vh / 9); 
 } 
 
 #hPPTRK4, #mPPTRK4 {
-top: 252.5px; 
-left: 262.5px; 
+top: calc(252.5vh / 9); 
+left: calc(262.5vh / 9); 
 } 
 
 #hPPTRK5, #mPPTRK5 {
-top: 27.5px; 
-left: 382.5px; 
+top: calc(27.5vh / 9); 
+left: calc(382.5vh / 9); 
 } 
 
 #hPPTRK6, #mPPTRK6 {
-top: 192.5px; 
-left: 862.5px; 
+top: calc(192.5vh / 9); 
+left: calc(862.5vh / 9); 
 } 
 
 #hcombination {
-top: 302.5px; 
-left: 1357.5px; 
+top: calc(302.5vh / 9); 
+left: calc(1357.5vh / 9); 
 }
 
 #mcombination {
-  top: 50px;
-  left: 900px;
+  top: calc(50vh / 9);
+  left: calc(900vh / 9);
 }
 
 .openvideo {
-  height: 750px;
-  width: 1350px;
+  height: calc(750vh / 9);
+  width: calc(1350vh / 9);
   position: absolute;
   background-color: #ffe900;
-  top: 100px;
-  left: 100px;
+  top: calc(100vh / 9);
+  left: calc(100vh / 9);
   margin: auto;
   border-style: solid;
   border-color: #DC2222;
@@ -210,76 +209,76 @@ left: 1357.5px;
 
 .video {
   position: absolute;
-  top: 100px;
-  left: 125px;
-  width: 1067.5px;
-  height: 600px;
+  top: calc(100vh / 9);
+  left: calc(125vh / 9);
+  width: calc(1067.5vh / 9);
+  height: calc(600vh / 9);
 }
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 100px;
-  width: 100px;
+  top: calc(10vh / 9);
+  right: calc(10vh / 9);
+  height: calc(100vh / 9);
+  width: calc(100vh / 9);
 }
 
 #one {
   position: absolute;
-  height: 285px;
-  width: 508.5px;
-  top: 50px;
-  left: 112.5px;
+  height: calc(285vh / 9);
+  width: calc(508.5vh / 9);
+  top: calc(50vh / 9);
+  left: calc(112.5vh / 9);
 }
 
 #two {
   position: absolute;
-  height: 285px;
-  width: 508.5px;
-  top: 50px;
-  right: 112.5px;
+  height: calc(285vh / 9);
+  width: calc(508.5vh / 9);
+  top: calc(50vh / 9);
+  right: calc(112.5vh / 9);
 }
 
 #three {
   position: absolute;
-  height: 285px;
-  width: 508.5px;
-  bottom: 50px;
-  left: 112.5px;
+  height: calc(285vh / 9);
+  width: calc(508.5vh / 9);
+  bottom: calc(50vh / 9);
+  left: calc(112.5vh / 9);
 }
 
 #four {
   position: absolute;
-  height: 285px;
-  width: 508.5px;
-  bottom: 50px;
-  right: 112.5px;
+  height: calc(285vh / 9);
+  width: calc(508.5vh / 9);
+  bottom: calc(50vh / 9);
+  right: calc(112.5vh / 9);
 }
 
 #videoone {
   position: absolute;
-  right: 50px;
-  top: 150px;
-  height: 62.5px;
-  width: 85px;
+  right: calc(50vh / 9);
+  top: calc(150vh / 12);
+  height: calc(62.5vh / 9);
+  width: calc(85vh / 9);
 }
 #videotwo {
   position: absolute;
-  right: 50px;
-  top: 300px;
-  height: 62.5px;
-  width: 85px;
+  right: calc(50vh / 9);
+  top: calc(300vh / 12);
+  height: calc(62.5vh / 9);
+  width: calc(85vh / 9);
 }
 #videothree {
   position: absolute;
-  right: 50px;
-  top: 435px;
-  height: 62.5px;
-  width: 85px;
+  right: calc(50vh / 9);
+  top: calc(435vh / 12);
+  height: calc(62.5vh / 9);
+  width: calc(85vh / 9);
 }
 #videofour {
   position: absolute;
-  right: 50px;
-  top: 565px;
-  height: 62.5px;
-  width: 85px;
+  right: calc(50vh / 9);
+  top: calc(565vh / 12);
+  height: calc(62.5vh / 9);
+  width: calc(85vh / 9);
 }
