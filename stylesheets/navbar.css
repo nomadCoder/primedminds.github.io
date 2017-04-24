@@ -40,6 +40,10 @@ nav ul li {
     min-width: 200px;
 }
 
+#dropdown-resources {
+    min-width: 200px;
+}
+
 .dropdown-content * {
     z-index: 100;
 }
