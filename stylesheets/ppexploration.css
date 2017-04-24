@@ -6,8 +6,6 @@ body {
   height: calc(900vh / 9);
   width: calc(1500vh / 9);
   z-index: 1;
-  margin: auto;
-  display: block;
 }
 
 .hover {
