@@ -84,8 +84,7 @@ function showItem() {
 // load the video onto the least recently used div
 function loadVideo() {
     console.log("loading " + flow[currentIndex].link + " into iframe0");
-    document.getElementById("iframe0").src = 
-        "https://www.youtube.com/embed/" + flow[currentIndex].link + "?rel=0";
+    document.getElementById("iframe0").src = "https://www.youtube.com/embed/" + flow[currentIndex].link + "?rel=0";
 }
 
 function loadInteractive() {
