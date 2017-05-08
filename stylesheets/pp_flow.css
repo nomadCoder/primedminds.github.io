@@ -140,36 +140,6 @@ html {
     transform: scale(1.07);
 }
 
-#backMenu-container {
-    z-index: 1;
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    color: #7d7979;
-    font-size: 14px;
-    transition: all .5s;
-}
-
-#backMenu {
-    top: 27px;
-    position: absolute;
-    background-color: white;
-    border-radius: 50px;
-    height: 35px;
-    width: 35px;
-    display: block;
-    background-image: url("https://i.imgur.com/1rUjP5K.png");
-    background-position: center;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .3);
-    float: left;
-}
-
-#backMenu-container:hover {
-    transform: scale(1.07);
-}
-
 @keyframes floatUp {
     0% {
         transform: translateY(200px);
