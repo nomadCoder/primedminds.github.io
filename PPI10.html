@@ -3,11 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Monster Handshake 1.0</title>
-        <script src="https://cdn.rawgit.com/stevekrouse/WoofJS/1ab0c194/dist/woof.js"> </script>
-        <script src="javascript/monsterhandshake.js"> </script>
+  <title>Monster Handshake Interactive</title>
+  
+    <!-- jquery js -->
+      <script src="public/javascript/jquery-1.12.3.min.js"></script>
+    <!-- materialize js -->
+      <script src="public/javascript/materialize.min.js"></script>
+    <!-- woof js -->  
+      <script src="https://cdn.rawgit.com/stevekrouse/WoofJS/1ab0c194/dist/woof.js"> </script>
+    <!-- get js -->
+      <script src="javascript/monsterhandshake.js"> </script>
 </head>
+  
 <body>
-
+  <div id = "setup"></div>
+ 	<div id = "main"></div>
 </body>
+  
+<script>
+ 	$(function(){
+    $("#setup").load("flow_setup.html"); 
+  });   
+</script>
+ 
 </html>
