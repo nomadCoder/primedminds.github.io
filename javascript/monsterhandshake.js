@@ -16,6 +16,11 @@ $(function() {
 })
 
 
+var project = new Woof({global: false})
+
+fullScreen = false
+project.setBackdropSize(window.innerWidth, window.innerHeight)
+
 //helps determine position of monsters
 var ontheright = null;
 var ontheleft = null;
@@ -24,7 +29,8 @@ var ontheleft = null;
 var currentlydragging = null;
 
 //makes sure that no monster can shake hands if they don't have a partner
-var onlyone = new Text({
+var onlyone = new project.Text({
+  project: project,
   text: () => "Hey! There's only one monster here!"
 })
 onlyone.y = 100;
@@ -38,7 +44,8 @@ var onlyonefunction = () => {
 }
 
 //makes sure that each monster pair can only shake hands once
-var done = new Text({
+var done = new project.Text({
+  project: project,
   text: () => "Hey! You already shook my hand!"
 })
 done.y = 100;
@@ -74,26 +81,29 @@ var orangeandred = "undone";
 var purpleandred = "undone";
 
 //creation of monsters
-var redstanding = new Image({
+var redstanding = new project.Image({
+  project: project,
   url: "https://s17.postimg.org/63c0a49in/Red_Monster.png",
   height: 80,
   width: 65,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 200
 })
-var redleft = new Image({
+var redleft = new project.Image({
+  project: project,
   url: "https://s17.postimg.org/o7tyjbmb3/Red_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 200
 })
 redleft.hide()
-var redright = new Image({
+var redright = new project.Image({
+  project: project,
   url: "https://s22.postimg.org/kpywpf8sx/Red_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 200
 })
 redright.hide()
@@ -103,41 +113,46 @@ var redlu = "https://s27.postimg.org/rvr653idf/Red_LU.png";
 var redld = "https://s4.postimg.org/n60gjh76l/Red_LD.png";
 var redlefturl = "https://s17.postimg.org/o7tyjbmb3/Red_L.png";
 var redrighturl = "https://s22.postimg.org/kpywpf8sx/Red_R.png";
-var redhome = new Rectangle({
+var redhome = new project.Rectangle({
+  project: project,
   color: "red",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: 200
 })
 redhome.sendToBack()
-var redshakes = new Text({
+var redshakes = new project.Text({
+  project: project,
   text: () => redshakes,
   x: 200,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 redshakes = 0
 
-var purplestanding = new Image({
+var purplestanding = new project.Image({
+  project: project,
   url: "https://s14.postimg.org/w79o1z0td/Purple_Monster.png",
   height: 80,
   width: 65,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 120
 })
-var purpleleft = new Image({
+var purpleleft = new project.Image({
+  project: project,
   url: "https://s12.postimg.org/v63b1spu5/Purple_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 120
 })
 purpleleft.hide()
-var purpleright = new Image({
+var purpleright = new project.Image({
+  project: project,
   url: "https://s15.postimg.org/92dq1rb97/Purple_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 120
 })
 purpleright.hide()
@@ -147,41 +162,46 @@ var purplelu = "https://s31.postimg.org/pu97kg657/Purple_LU.png";
 var purpleld = "https://s21.postimg.org/qpuxhvfmv/Purple_LD.png";
 var purplelefturl = "https://s12.postimg.org/v63b1spu5/Purple_L.png";
 var purplerighturl = "https://s15.postimg.org/92dq1rb97/Purple_R.png";
-var purplehome = new Rectangle({
+var purplehome = new project.Rectangle({
+  project: project,
   color: "purple",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: 125
 })
 purplehome.sendToBack();
-var purpleshakes = new Text({
+var purpleshakes = new project.Text({
+  project: project,
   text: () => purpleshakes,
   x: 125,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 purpleshakes = 0;
 
-var orangestanding = new Image({
+var orangestanding = new project.Image({
+  project: project,
   url: "https://s4.postimg.org/fxlmvvxp9/Orange_Monster.png",
   height: 80,
   width: 65,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -260
 })
-var orangeleft = new Image({
+var orangeleft = new project.Image({
+  project: project,
   url: "https://s7.postimg.org/g9ryezhyj/Orange_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -260
 })
 orangeleft.hide();
-var orangeright = new Image({
+var orangeright = new project.Image({
+  project: project,
   url: "https://s10.postimg.org/7q094xle1/Orange_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -260
 })
 orangeright.hide();
@@ -191,41 +211,46 @@ var orangelu = "https://s32.postimg.org/c1e3pi43p/Orange_LU.png";
 var orangeld = "https://s16.postimg.org/y524mcz0l/Orange_LD.png";
 var orangelefturl = "https://s7.postimg.org/g9ryezhyj/Orange_L.png";
 var orangerighturl = "https://s10.postimg.org/7q094xle1/Orange_R.png";
-var orangehome = new Rectangle({
+var orangehome = new project.Rectangle({
+  project: project,
   color: "orange",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: -245
 })
 orangehome.sendToBack();
-var orangeshakes = new Text({
+var orangeshakes = new project.Text({
+  project: project,
   text: () => orangeshakes,
   x: -245,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 orangeshakes = 0;
 
-var greenstanding = new Image({
+var greenstanding = new project.Image({
+  project: project,
   url: "https://s21.postimg.org/72l4mqgk7/Green_Monster.png",
   height: 80,
   width: 65,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -185
 })
-var greenleft = new Image({
+var greenleft = new project.Image({
+  project: project,
   url: "https://s23.postimg.org/uxe1hwk3f/Green_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -185
 })
 greenleft.hide();
-var greenright = new Image({
+var greenright = new project.Image({
+  project: project,
   url: "https://s12.postimg.org/ir8wowywd/Green_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -185
 })
 greenright.hide();
@@ -235,41 +260,46 @@ var greenlu = "https://s24.postimg.org/pwgarfy2t/Green_LU.png";
 var greenld = "https://s12.postimg.org/wkb28h8v1/Green_LD.png";
 var greenlefturl = "https://s23.postimg.org/uxe1hwk3f/Green_L.png";
 var greenrighturl = "https://s12.postimg.org/ir8wowywd/Green_R.png";
-var greenhome = new Rectangle({
+var greenhome = new project.Rectangle({
+  project: project,
   color: "green",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: -170
 })
 greenhome.sendToBack()
-var greenshakes = new Text({
+var greenshakes = new project.Text({
+  project: project,
   text: () => greenshakes,
   x: -170,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 greenshakes = 0;
 
-var bluestanding = new Image({
+var bluestanding = new project.Image({
+  project: project,
   url: "https://s23.postimg.org/5ljnq0niz/Blue_Monster.png",
   height: 100,
   width: 80,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -109
 })
-var blueleft = new Image({
+var blueleft = new project.Image({
+  project: project,
   url: "https://s23.postimg.org/hg8gekp8b/Blue_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -109
 })
 blueleft.hide();
-var blueright = new Image({
+var blueright = new project.Image({
+  project: project,
   url: "https://s24.postimg.org/ra1gmb9at/Blue_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -109
 })
 blueright.hide();
@@ -279,41 +309,46 @@ var bluelu = "https://s30.postimg.org/76hw4eydd/Blue_LU.png";
 var blueld = "https://s30.postimg.org/woqit8moh/Blue_LD.png";
 var bluelefturl = "https://s23.postimg.org/hg8gekp8b/Blue_L.png";
 var bluerighturl = "https://s24.postimg.org/ra1gmb9at/Blue_R.png";
-var bluehome = new Rectangle({
+var bluehome = new project.Rectangle({
+  project: project,
   color: "blue",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: -99
 })
 bluehome.sendToBack();
-var blueshakes = new Text({
+var blueshakes = new project.Text({
+  project: project,
   text: () => blueshakes,
   x: -100,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 blueshakes = 0;
 
-var blackstanding = new Image({
+var blackstanding = new project.Image({
+  project: project,
   url: "https://s3.postimg.org/91v2lmrjn/Black_Monster.png",
   height: 90,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 39
 })
-var blackleft = new Image({
+var blackleft = new project.Image({
+  project: project,
   url: "https://s23.postimg.org/7ui6oe9bv/Black_L.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 39
 })
 blackleft.hide()
-var blackright = new Image({
+var blackright = new project.Image({
+  project: project,
   url: "https://s30.postimg.org/5z9lqtrpd/Black_R.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: 39
 })
 blackright.hide()
@@ -323,41 +358,46 @@ var blacklu = "https://s29.postimg.org/dx3ne3ixz/Black_LU.png"
 var blackld = "https://s30.postimg.org/i4zq3z4ap/Black_LD.png"
 var blacklefturl = "https://s23.postimg.org/7ui6oe9bv/Black_L.png"
 var blackrighturl = "https://s30.postimg.org/5z9lqtrpd/Black_R.png"
-var blackhome = new Rectangle({
+var blackhome = new project.Rectangle({
+  project: project,
   color: "black",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: 49
 })
 blackhome.sendToBack()
-var blackshakes = new Text({
+var blackshakes = new project.Text({
+  project: project,
   text: () => blackshakes,
   x: 47,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 blackshakes = 0
 
-var bandwstanding = new Image({
+var bandwstanding = new project.Image({
+  project: project,
   url: "https://s1.postimg.org/wdvck7p9b/Black_White_Monster.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -39
 })
-var bandwleft = new Image({
+var bandwleft = new project.Image({
+  project: project,
   url: "https://s28.postimg.org/evuzw6r19/Band_WL.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -39
 })
 bandwleft.hide()
-var bandwright = new Image({
+var bandwright = new project.Image({
+  project: project,
   url: "https://s27.postimg.org/qkdkp3v1v/Band_WR.png",
   height: 100,
   width: 75,
-  y: maxY - 60,
+  y: project.maxY - 60,
   x: -39
 })
 bandwright.hide()
@@ -367,29 +407,33 @@ var bandwlu = "https://s29.postimg.org/5jsmvcrqf/Band_WLU.png"
 var bandwld = "https://s23.postimg.org/9uetsghij/Band_WLD.png"
 var bandwlefturl = "https://s28.postimg.org/evuzw6r19/Band_WL.png"
 var bandwrighturl = "https://s27.postimg.org/qkdkp3v1v/Band_WR.png"
-var bandwhome = new Rectangle({
+var bandwhome = new project.Rectangle({
+  project: project,
   color: "gray",
   width: 75,
-  y: maxY - 100,
+  y: project.maxY - 100,
   x: -29
 })
 bandwhome.sendToBack()
-var bandwshakes = new Text({
+var bandwshakes = new project.Text({
+  project: project,
   text: () => bandwshakes,
   x: -30,
-  y: maxY - 120,
+  y: project.maxY - 120,
   size: 30
 })
 bandwshakes = 0
 
 //creation of pedestals
-var leftpedestal = new Image({
+var leftpedestal = new project.Image({
+  project: project,
   url: "https://s27.postimg.org/46cpjfvk3/Empty_L.png",
   height: 100,
   width: 75,
   x: -37,
 })
-var rightpedestal = new Image({
+var rightpedestal = new project.Image({
+  project: project,
   url: "https://s28.postimg.org/455nwxekt/Empty_R.png",
   height: 100,
   width: 75,
@@ -423,31 +467,31 @@ var drop = (input1, input2, input3) => {
 //macro drag and drop function
 var macrodd = (input1, input2, input3, input4, input5) => {
   //drag function
-  if ((input1.mouseOver || input1.distanceTo(mouseX, mouseY) < 50) && mouseDown) {
+  if ((input1.mouseOver || input1.distanceTo(project.mouseX, project.mouseY) < 50) && project.mouseDown) {
     dragto(input1)
     currentlydragging = input2
   }
   //drops at right pedestal
-  if (input1.distanceTo(rightpedestal) < 40 && !mouseDown) {
+  if (input1.distanceTo(rightpedestal) < 40 && !project.mouseDown) {
     drop(input1, rightpedestal, input3)
     ontheright = input2
     currentlydragging = null
   }
   //drops at left pedestal
-  if (input1.distanceTo(leftpedestal) < 40 && !mouseDown) {
+  if (input1.distanceTo(leftpedestal) < 40 && !project.mouseDown) {
     drop(input1, leftpedestal, input4)
     ontheleft = input2
     currentlydragging = null
   }
   //if not close enough to either pedestal, returns the monster home
-  if (input1.distanceTo(rightpedestal) > 40 && (input1.distanceTo(leftpedestal) > 40) && !(input1.touching(input4)) && !(mouseDown)) {
+  if (input1.distanceTo(rightpedestal) > 40 && (input1.distanceTo(leftpedestal) > 40) && !(input1.touching(input4)) && !(project.mouseDown)) {
     sendhome(input1, input5, input4)
     currentlydragging = null
   }
 }
 
 //all of these separate lines of code were necessary to fix a glitch wherein you could drag two monsters simultaneously
-forever(() => {
+project.forever(() => {
   if ((currentlydragging != "bandw") && (currentlydragging != "blue") && (currentlydragging != "green") && (currentlydragging != "orange") && (currentlydragging != "purple") && (currentlydragging != "red")) {
     macrodd(blackstanding, "black", blackright, blackleft, blackhome)
   }
@@ -472,14 +516,16 @@ forever(() => {
 })
 
 //this is the red button that you click to shake hands
-var shakebutton = new Rectangle({
+var shakebutton = new project.Rectangle({
+  project: project,
   width: 80,
-  height: height / 30,
+  height: project.height / 30,
   color: "#DC2222",
   y: -75,
   x: 0
 })
-var shaketext = new Text({
+var shaketext = new project.Text({
+  project: project,
   text: () => "shake hands!",
   y: -75,
   color: "white"
@@ -523,14 +569,16 @@ var shake = (input1, input2, input3, input4) => {
 }
 
 //this is the yellow button that clears the pedestals
-var sendbutton = new Rectangle({
+var sendbutton = new project.Rectangle({
+  project: project,
   color: "#ffe900",
   width: 150,
   height: 20,
   x: 0,
   y: -100
 })
-var sendtext = new Text({
+var sendtext = new project.Text({
+  project: project,
   text: () => "never mind - send us back!",
   x: 0,
   y: -100
@@ -541,7 +589,7 @@ var sendhome = (input1, input2, input3) => {
   input3.hide()
   input1.show()
   input1.x = input2.x - 10
-  input1.y = maxY - 60
+  input1.y = project.maxY - 60
 }
 
 //this controls what happens when you click the yellow button
