@@ -5,7 +5,7 @@
   <title>Monster Handshake Interactive</title>
   
     <!-- jquery js -->
-     <script src="public/javascript/jquery-1.12.3.min.js"></script>
+<!--      <script src="public/javascript/jquery-1.12.3.min.js"></script> -->
     <!-- materialize js -->
 <!--     <script src="public/javascript/materialize.min.js"></script> -->
     <!-- woof js -->  
@@ -15,9 +15,30 @@
 <!--       	<script language="javascript" src="public/javascript/p5.min.js"></script>
   	<script language="javascript" src="public/javascript/p5.collide2d.js"></script>
   	<script language="javascript" src="public/javascript/p5.play.js"></script> -->
+	    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/pp_flow.css">
+
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
   
-<body>
+<body id="body">
+	    <div id='backHome-container'>
+        <a href='explorations.html'>
+            <div id='backHome'></div>
+        Back to Explorations </a> 
+    </div>
+
+    <div class='left-arrow arrow'>
+        <i class="material-icons md-48" id="left_arrow">arrow_back</i>
+    </div>
+
+    <div class='right-arrow arrow'>
+        <i class="material-icons md-48" id="right_arrow">arrow_forward</i>
+    </div>
+
+    <div id="main">        
+    </div> <!-- end main -->
   <div id = "setup"></div>
  	<div id = "main"></div>
 </body>
