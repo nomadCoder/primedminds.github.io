@@ -1,6 +1,7 @@
 //Monster Handshake 1.0
 
 var project = new Woof({global: false, width: 300, height: 300})
+project.parent("#main")
 
 // fullScreen = false
 // project.setBackdropSize(window.innerWidth, window.innerHeight)
