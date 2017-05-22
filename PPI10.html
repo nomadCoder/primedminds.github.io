@@ -1,50 +1,28 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-  <title>Monster Handshake Interactive</title>
-  
-	 <link rel="stylesheet" type="text/css" href="stylesheets/PPI10.css">
 
-    <!-- jquery js -->
-<!--      <script src="public/javascript/jquery-1.12.3.min.js"></script> -->
+   <!-- jquery js -->
+    <script src="public/javascript/jquery-1.12.3.min.js"></script>
     <!-- materialize js -->
-<!--     <script src="public/javascript/materialize.min.js"></script> -->
-
-	    <!-- local css -->
-    <!-- icons -->
-<!--     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <script src="public/javascript/materialize.min.js"></script>
+	
+    <script global="false" src="https://cdn.rawgit.com/stevekrouse/WoofJS/1ab0c194/dist/woof.js"> </script>
+    <script language="javascript" src="javascript/monsterhandshake.js"></script>
 </head>
-  
-<body id="body">
-	    <div id='backHome-container'>
-        <a href='explorations.html'>
-            <div id='backHome'></div>
-        Back to Explorations </a> 
-    </div>
 
-    <div class='left-arrow arrow'>
-        <i class="material-icons md-48" id="left_arrow">arrow_back</i>
-    </div>
+<body>
+	<div id = "setup">
+	</div>
 
-    <div class='right-arrow arrow'>
-        <i class="material-icons md-48" id="right_arrow">arrow_forward</i>
-    </div>
-
-    <div id="main">        
-    </div> <!-- end main -->
-<!--   <div id = "setup"></div>
- 	<div id = "main"></div> -->
-	    <!-- woof js -->  
-      <script global="false" src="https://cdn.rawgit.com/stevekrouse/WoofJS/1ab0c194/dist/woof.js"> </script>
-    <!-- get js -->
-      <script src="javascript/monsterhandshake.js"> </script>
+	<div id = "main">
+	</div>
 </body>
-  
-<!-- <script>
+
+<script>
 	$(function(){
         $("#setup").load("flow_setup.html"); 
     });   
-</script> -->
-	
+</script>
+
 </html>
