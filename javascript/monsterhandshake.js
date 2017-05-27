@@ -2,9 +2,7 @@
 
 // function setup() {
   
-var project = new Woof({global: false, width: 400, height: 300})
-var main = document.body.getElementById("main")
-main.appendChild(project)// project.parent("#main")
+var project = new Woof({global: false, width: 300, height: 300})
 // }
 
 // fullScreen = false
