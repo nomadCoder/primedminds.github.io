@@ -25,7 +25,7 @@ onlyone.hide();
 
 var onlyonefunction = () => {
   onlyone.show();
-  after(2, "seconds", () => {
+  project.after(2, "seconds", () => {
     onlyone.hide();
   })
 }
@@ -40,7 +40,7 @@ done.hide();
 
 var donefunction = () => {
   done.show();
-  after(2, "seconds", () => {
+  project.after(2, "seconds", () => {
     done.hide();
   })
 }
@@ -520,37 +520,37 @@ var shaketext = new project.Text({
 
 //this function controls the shaking
 var shake = (input1, input2, input3, input4) => {
-  after(2.5, "seconds", () => {
+  project.after(2.5, "seconds", () => {
     input1.setImageURL(input2)
   })
-  after(2.25, "seconds", () => {
+  project.after(2.25, "seconds", () => {
     input1.setImageURL(input3)
   })
-  after(2, "seconds", () => {
+  project.after(2, "seconds", () => {
     input1.setImageURL(input2)
   })
-  after(1.75, "seconds", () => {
+  project.after(1.75, "seconds", () => {
     input1.setImageURL(input3)
   })
-  after(1.5, "seconds", () => {
+  project.after(1.5, "seconds", () => {
     input1.setImageURL(input2)
   })
-  after(1.25, "seconds", () => {
+  project.after(1.25, "seconds", () => {
     input1.setImageURL(input3)
   })
-  after(1, "seconds", () => {
+  project.after(1, "seconds", () => {
     input1.setImageURL(input2)
   })
-  after(0.75, "seconds", () => {
+  project.after(0.75, "seconds", () => {
     input1.setImageURL(input3)
   })
-  after(0.5, "seconds", () => {
+  project.after(0.5, "seconds", () => {
     input1.setImageURL(input2)
   })
-  after(0.25, "seconds", () => {
+  project.after(0.25, "seconds", () => {
     input1.setImageURL(input3)
   })
-  after(2.75, "seconds", () => {
+  project.after(2.75, "seconds", () => {
     input1.setImageURL(input4)
   })
 }
@@ -628,7 +628,7 @@ sendbutton.onMouseDown(() => {
 //eliminated a lot of code
 var macroshake = (input1, input2, input3, input4, input5, input6) => {
   shake(input1, input2, input3, input4)
-  after(3.5, "seconds", () => {
+  project.after(3.5, "seconds", () => {
     sendhome(input5, input6, input1)
   })
 }
@@ -767,7 +767,7 @@ shakebutton.onMouseDown(() => {
       }
     }
   }
-  after(3.6, "seconds", () => {
+  project.after(3.6, "seconds", () => {
     setdones()
   })
 })
