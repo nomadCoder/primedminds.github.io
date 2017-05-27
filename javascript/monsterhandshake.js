@@ -5,8 +5,8 @@
 var project = new Woof({global: false})
 // }
 
-// fullScreen = false
-// project.setBackdropSize(window.innerWidth, window.innerHeight)
+fullScreen = false
+project.setBackdropSize(window.innerWidth, window.innerHeight)
 
 //helps determine position of monsters
 var ontheright = null;
