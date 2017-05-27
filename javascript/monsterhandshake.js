@@ -3,7 +3,7 @@
 // function setup() {
   
 var project = new Woof({global: false, width: 300, height: 300})
-project.parent("#main")
+// project.parent("#main")
 // }
 
 // fullScreen = false
