@@ -431,8 +431,8 @@ rightpedestal.sendToBack()
 
 //enables dragging and dropping
 var dragto = (input1) => {
-  input1.x = mouseX
-  input1.y = mouseY
+  input1.x = project.mouseX
+  input1.y = project.mouseY
 }
 var drop = (input1, input2, input3) => {
   if (input2 === leftpedestal) {
