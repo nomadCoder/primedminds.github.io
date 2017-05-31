@@ -368,7 +368,7 @@ var bandwstanding = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -39
+  x: 0
 })
 var bandwleft = new project.Image({
   project: project,
@@ -376,7 +376,7 @@ var bandwleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -39
+  x: 0
 })
 bandwleft.hide()
 var bandwright = new project.Image({
@@ -385,7 +385,7 @@ var bandwright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -39
+  x: 0
 })
 bandwright.hide()
 var bandwru = "https://s27.postimg.org/btvufut7n/Band_WRU.png"
@@ -399,13 +399,13 @@ var bandwhome = new project.Rectangle({
   color: "gray",
   width: 75,
   y: project.maxY - 100,
-  x: -29
+  x: 10
 })
 bandwhome.sendToBack()
 var bandwshakes = new project.Text({
   project: project,
   text: () => bandwshakes,
-  x: -30,
+  x: 0,
   y: project.maxY - 120,
   size: 30
 })
