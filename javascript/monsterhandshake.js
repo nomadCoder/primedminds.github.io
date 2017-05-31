@@ -172,7 +172,7 @@ var orangestanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: -260
+  x: -210
 })
 var orangeleft = new project.Image({
   project: project,
@@ -180,7 +180,7 @@ var orangeleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -260
+  x: -210
 })
 orangeleft.hide();
 var orangeright = new project.Image({
@@ -189,7 +189,7 @@ var orangeright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -260
+  x: -210
 })
 orangeright.hide();
 var orangeru = "https://s1.postimg.org/swd4il1q7/Orange_RU.png";
@@ -203,13 +203,13 @@ var orangehome = new project.Rectangle({
   color: "orange",
   width: 75,
   y: project.maxY - 100,
-  x: -245
+  x: -200
 })
 orangehome.sendToBack();
 var orangeshakes = new project.Text({
   project: project,
   text: () => orangeshakes,
-  x: -245,
+  x: -210,
   y: project.maxY - 120,
   size: 30
 })
@@ -221,7 +221,7 @@ var greenstanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: -185
+  x: -140
 })
 var greenleft = new project.Image({
   project: project,
@@ -229,7 +229,7 @@ var greenleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -185
+  x: -140
 })
 greenleft.hide();
 var greenright = new project.Image({
@@ -238,7 +238,7 @@ var greenright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -185
+  x: -140
 })
 greenright.hide();
 var greenru = "https://s12.postimg.org/dro881agd/Green_RU.png";
@@ -252,13 +252,13 @@ var greenhome = new project.Rectangle({
   color: "green",
   width: 75,
   y: project.maxY - 100,
-  x: -170
+  x: -130
 })
 greenhome.sendToBack()
 var greenshakes = new project.Text({
   project: project,
   text: () => greenshakes,
-  x: -170,
+  x: -140,
   y: project.maxY - 120,
   size: 30
 })
@@ -270,7 +270,7 @@ var bluestanding = new project.Image({
   height: 100,
   width: 80,
   y: project.maxY - 60,
-  x: -109
+  x: -70
 })
 var blueleft = new project.Image({
   project: project,
@@ -278,7 +278,7 @@ var blueleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -109
+  x: -70
 })
 blueleft.hide();
 var blueright = new project.Image({
@@ -287,7 +287,7 @@ var blueright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -109
+  x: -70
 })
 blueright.hide();
 var blueru = "https://s28.postimg.org/3x17q0sod/Blue_RU.png";
@@ -301,13 +301,13 @@ var bluehome = new project.Rectangle({
   color: "blue",
   width: 75,
   y: project.maxY - 100,
-  x: -99
+  x: -60
 })
 bluehome.sendToBack();
 var blueshakes = new project.Text({
   project: project,
   text: () => blueshakes,
-  x: -100,
+  x: -70,
   y: project.maxY - 120,
   size: 30
 })
