@@ -10,28 +10,25 @@ var arr = []
 var pgnsin = 0
 
 //holds the pigeons before they go into the grid
-var pgncontainer = document.getElementById("pgncontainer")
-// var pgncontainer = document.createElement("div")
-// pgncontainer.setAttribute("id", "pgncontainer")
-// document.body.appendChild(pgncontainer)
+var pgncontainer = document.createElement("div")
+pgncontainer.setAttribute("id", "pgncontainer")
+document.body.appendChild(pgncontainer)
 
 //this counts how many pigeons have been inserted into the grid
-var counter = document.getElementById("counter")
-// var counter = document.createElement("div")
-// counter.setAttribute("id", "counter")
+var counter = document.createElement("div")
+counter.setAttribute("id", "counter")
 var pigeonsLeft = document.createTextNode("Pigeons in the holes: " + (pgnsin))
 counter.appendChild(pigeonsLeft)
-// document.body.appendChild(counter)
+document.body.appendChild(counter)
 
 setInterval(() => {
   pigeonsLeft.nodeValue = "Pigeons in the holes: " + (pgnsin);
 }, 0)
 
 //creates the actual grid to hold the pigeons
-var table = document.getElementById("myTable")
-// var table = document.createElement("TABLE");
-//   table.setAttribute("id", "myTable");
-//   document.body.appendChild(table);
+var table = document.createElement("TABLE");
+  table.setAttribute("id", "myTable");
+  document.body.appendChild(table);
   for (var x = 0; x < r; x++) {
     var row = document.createElement("TR");
     for (var y = 0; y < c; y++) {
