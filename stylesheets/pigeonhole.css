@@ -38,8 +38,8 @@ td {
   border: 1px solid black;
   width: 200px;
   top: 100px;
-  text-align: center;
-  margin: auto;
+/*   text-align: center;
+  margin: auto; */
 }
 
 #button {
