@@ -58,7 +58,7 @@ for (var z = 0; z < (((r * c) / 2) + 1 ); z++) {
     pigeon.style.left = Math.floor(Math.random() * 150)+'px';
     pigeon.style.top = Math.floor(Math.random() * 150)+'px';
     arr.push(pigeon)
-    document.body.appendChild(pigeon);
+    document.body.pgncontainer.appendChild(pigeon);
 }
 
 //these are the pigeons that show up in the grid (note the different URL and the lack of a +1 when creating)
@@ -75,7 +75,7 @@ for (var z = 0; z < ((r * c) / 2); z++) {
     pigeon.style.left = Math.floor(Math.random() * 150)+'px';
     pigeon.style.top = Math.floor(Math.random() * 150)+'px';
     arr.push(pigeon)
-    document.body.appendChild(pigeon);
+    document.body.pgncontainer.appendChild(pigeon);
 }
 
 //enables draggablility
@@ -127,7 +127,7 @@ function createTable() {
     pigeon.style.left = Math.floor(Math.random() * 150)+'px';
     pigeon.style.top = Math.floor(Math.random() * 150)+'px';
     arr.push(pigeon)
-    document.body.appendChild(pigeon);
+    document.body.pgncontainer.appendChild(pigeon);
 }
 
 for (var z = 0; z < ((r * c) / 2); z++) {
@@ -143,7 +143,7 @@ for (var z = 0; z < ((r * c) / 2); z++) {
     pigeon.style.left = Math.floor(Math.random() * 150)+'px';
     pigeon.style.top = Math.floor(Math.random() * 150)+'px';
     arr.push(pigeon)
-    document.body.appendChild(pigeon);
+    document.body.pgncontainer.appendChild(pigeon);
 }
   
   arr.forEach(pigeon => {
@@ -185,7 +185,7 @@ function drop(ev) {
         pigeon.style.left = Math.floor(Math.random() * 150)+'px';
         pigeon.style.top = Math.floor(Math.random() * 150)+'px';
         arr.push(pigeon)
-        document.body.appendChild(pigeon)
+        document.body.pgncontainer.appendChild(pigeon)
         arr.forEach(pigeon => {
           pigeon.ondragstart=function(){setid(pigeon);}
         })
