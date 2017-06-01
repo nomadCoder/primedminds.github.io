@@ -6,12 +6,14 @@ html {
   border-radius: 4px;
 }
 
+table {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+}
+
 table, th, td {
-/*   position: absolute;
-  top: 100px; */
   border: 1px solid black;
-/*   right: 50px; */
-float: right;
 }
 
 td {
@@ -29,20 +31,26 @@ td {
 
 #pgncontainer {
   position: absolute;
-  border: 10px solid blue;
-  left: 50px;
-  top: 100px;
-  height: 300px;
-  width: 300px;
+  border-width: 5px;
+  border-style: solid;  
+  border-color: #ffe900;
+  border-radius: 10px;
+  left: 40px;
+  top: 90px;
+  height: 350px;
+  width: 350px;
 }
 
 #counter {
   position: absolute;
-  background-color: red;
+  background-color: #DC2222;
   border: 1px solid black;
+  border-radius: 5px;
   width: 200px;
-  top: 100px;
+  top: 50px;
   left: 445px;
+  text-align: center;
+  color: white;
 }
 
 #button {
