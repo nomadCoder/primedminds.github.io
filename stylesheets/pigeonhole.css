@@ -7,6 +7,7 @@ html {
 }
 
 table, th, td {
+  display: inline-block;
   top: 100px;
   border: 1px solid black;
   right: 50px;
@@ -26,6 +27,7 @@ td {
 }
 
 #pgncontainer {
+  display: inline-block;
   border: 10px solid blue;
   left: 50px;
   top: 100px;
@@ -34,6 +36,7 @@ td {
 }
 
 #counter {
+  display: inline-block;
   background-color: red;
   border: 1px solid black;
   width: 200px;
@@ -43,7 +46,8 @@ td {
 }
 
 #button {
-  position: absolute;
-  top: 75px;
-  right: 75px;
+ display: inline-block;
+ position: absolute;
+ top: 75px;
+ right: 75px;
 }
