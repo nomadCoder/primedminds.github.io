@@ -1,3 +1,11 @@
+html {
+	width: 1099px;
+	height: 600px;
+	background-color: #f5f5f5;
+   border: 1px solid black;
+	border-radius: 4px;
+}
+
 table, th, td {
    border: 1px solid black;
   float: right;
