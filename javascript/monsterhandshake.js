@@ -74,7 +74,7 @@ var redstanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: 200
+  x: 210
 })
 var redleft = new project.Image({
   project: project,
@@ -82,7 +82,7 @@ var redleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 200
+  x: 210
 })
 redleft.hide()
 var redright = new project.Image({
@@ -91,7 +91,7 @@ var redright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 200
+  x: 210
 })
 redright.hide()
 var redru = "https://s32.postimg.org/yb6divtcl/Red_RU.png";
@@ -103,15 +103,15 @@ var redrighturl = "https://s22.postimg.org/kpywpf8sx/Red_R.png";
 var redhome = new project.Rectangle({
   project: project,
   color: "red",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: 200
+  x: 175
 })
 redhome.sendToBack()
 var redshakes = new project.Text({
   project: project,
   text: () => redshakes,
-  x: 200,
+  x: 210,
   y: project.maxY - 120,
   size: 30
 })
@@ -123,7 +123,7 @@ var purplestanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: 120
+  x: 140
 })
 var purpleleft = new project.Image({
   project: project,
@@ -131,7 +131,7 @@ var purpleleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 120
+  x: 140
 })
 purpleleft.hide()
 var purpleright = new project.Image({
@@ -140,7 +140,7 @@ var purpleright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 120
+  x: 140
 })
 purpleright.hide()
 var purpleru = "https://s18.postimg.org/rffxef36h/Purple_RU.png";
@@ -152,15 +152,15 @@ var purplerighturl = "https://s15.postimg.org/92dq1rb97/Purple_R.png";
 var purplehome = new project.Rectangle({
   project: project,
   color: "purple",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: 125
+  x: 105
 })
 purplehome.sendToBack();
 var purpleshakes = new project.Text({
   project: project,
   text: () => purpleshakes,
-  x: 125,
+  x: 140,
   y: project.maxY - 120,
   size: 30
 })
@@ -201,9 +201,9 @@ var orangerighturl = "https://s10.postimg.org/7q094xle1/Orange_R.png";
 var orangehome = new project.Rectangle({
   project: project,
   color: "orange",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: -200
+  x: -245
 })
 orangehome.sendToBack();
 var orangeshakes = new project.Text({
@@ -250,9 +250,9 @@ var greenrighturl = "https://s12.postimg.org/ir8wowywd/Green_R.png";
 var greenhome = new project.Rectangle({
   project: project,
   color: "green",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: -130
+  x: -175
 })
 greenhome.sendToBack()
 var greenshakes = new project.Text({
@@ -299,9 +299,9 @@ var bluerighturl = "https://s24.postimg.org/ra1gmb9at/Blue_R.png";
 var bluehome = new project.Rectangle({
   project: project,
   color: "blue",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: -60
+  x: -105
 })
 bluehome.sendToBack();
 var blueshakes = new project.Text({
@@ -319,7 +319,7 @@ var blackstanding = new project.Image({
   height: 90,
   width: 75,
   y: project.maxY - 60,
-  x: 39
+  x: 70
 })
 var blackleft = new project.Image({
   project: project,
@@ -327,7 +327,7 @@ var blackleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 39
+  x: 70
 })
 blackleft.hide()
 var blackright = new project.Image({
@@ -336,7 +336,7 @@ var blackright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 39
+  x: 70
 })
 blackright.hide()
 var blackru = "https://s23.postimg.org/4q5s32ky3/Black_RU.png"
@@ -348,15 +348,15 @@ var blackrighturl = "https://s30.postimg.org/5z9lqtrpd/Black_R.png"
 var blackhome = new project.Rectangle({
   project: project,
   color: "black",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: 49
+  x: 35
 })
 blackhome.sendToBack()
 var blackshakes = new project.Text({
   project: project,
   text: () => blackshakes,
-  x: 47,
+  x: 70,
   y: project.maxY - 120,
   size: 30
 })
@@ -397,9 +397,9 @@ var bandwrighturl = "https://s27.postimg.org/qkdkp3v1v/Band_WR.png"
 var bandwhome = new project.Rectangle({
   project: project,
   color: "gray",
-  width: 75,
+  width: 70,
   y: project.maxY - 100,
-  x: 10
+  x: -35
 })
 bandwhome.sendToBack()
 var bandwshakes = new project.Text({
