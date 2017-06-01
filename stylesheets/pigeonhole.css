@@ -25,10 +25,10 @@ td {
 }
 
 #pgncontainer {
-  border: 100 px solid blue;
+  border: 100px solid blue;
   float: left;
-  height: 500 px;
-  width: 500 px;
+  height: 500px;
+  width: 500px;
 }
 
 #counter {
