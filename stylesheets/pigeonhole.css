@@ -1,14 +1,15 @@
 html {
-	width: 1090px;
-	height: 500px;
-	background-color: #f5f5f5;
-   border: 1px solid black;
-	border-radius: 4px;
+  width: 1090px;
+  height: 500px;
+  background-color: #f5f5f5;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 table, th, td {
-   border: 1px solid black;
-  float: right;
+  top: 100px;
+  border: 1px solid black;
+  right: 50px;
 }
 
 td {
@@ -36,12 +37,13 @@ td {
   background-color: red;
   border: 1px solid black;
   width: 200px;
+  top: 100px;
   text-align: center;
   margin: auto;
 }
 
 #button {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 75px;
+  right: 75px;
 }
