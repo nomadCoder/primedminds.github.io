@@ -2,7 +2,7 @@
 
 // function setup() {
   
-var project = new Woof({global: false, width: 1000, height: 600})
+var project = new Woof({global: false, width: 1000, height: 700})
 // }
 
 // fullScreen = false
