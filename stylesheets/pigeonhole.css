@@ -6,6 +6,13 @@ html {
   border-radius: 4px;
 }
 
+#myTable{
+  display: inline-block;
+  top: 100px;
+  border: 1px solid black;
+  right: 50px;
+}
+
 table, th, td {
   display: inline-block;
   top: 100px;
