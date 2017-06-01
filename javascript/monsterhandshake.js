@@ -74,7 +74,7 @@ var redstanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: 210
+  x: 245
 })
 var redleft = new project.Image({
   project: project,
@@ -82,7 +82,7 @@ var redleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 210
+  x: 245
 })
 redleft.hide()
 var redright = new project.Image({
@@ -91,7 +91,7 @@ var redright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 210
+  x: 245
 })
 redright.hide()
 var redru = "https://s32.postimg.org/yb6divtcl/Red_RU.png";
@@ -105,7 +105,7 @@ var redhome = new project.Rectangle({
   color: "red",
   width: 70,
   y: project.maxY - 100,
-  x: 175
+  x: 210
 })
 redhome.sendToBack()
 var redshakes = new project.Text({
