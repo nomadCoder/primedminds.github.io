@@ -26,9 +26,10 @@ td {
 
 #pgncontainer {
   border: 10px solid blue;
-  float: left;
-  height: 500px;
-  width: 500px;
+  left: 50px;
+  top: 100px;
+  height: 300px;
+  width: 300px;
 }
 
 #counter {
