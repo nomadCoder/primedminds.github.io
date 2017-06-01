@@ -123,7 +123,7 @@ var purplestanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: 140
+  x: 175
 })
 var purpleleft = new project.Image({
   project: project,
@@ -131,7 +131,7 @@ var purpleleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 140
+  x: 175
 })
 purpleleft.hide()
 var purpleright = new project.Image({
@@ -140,7 +140,7 @@ var purpleright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 140
+  x: 175
 })
 purpleright.hide()
 var purpleru = "https://s18.postimg.org/rffxef36h/Purple_RU.png";
@@ -154,7 +154,7 @@ var purplehome = new project.Rectangle({
   color: "purple",
   width: 70,
   y: project.maxY - 100,
-  x: 105
+  x: 140
 })
 purplehome.sendToBack();
 var purpleshakes = new project.Text({
@@ -172,7 +172,7 @@ var orangestanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: -210
+  x: -175
 })
 var orangeleft = new project.Image({
   project: project,
@@ -180,7 +180,7 @@ var orangeleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -210
+  x: -175
 })
 orangeleft.hide();
 var orangeright = new project.Image({
@@ -189,7 +189,7 @@ var orangeright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -210
+  x: -175
 })
 orangeright.hide();
 var orangeru = "https://s1.postimg.org/swd4il1q7/Orange_RU.png";
@@ -203,7 +203,7 @@ var orangehome = new project.Rectangle({
   color: "orange",
   width: 70,
   y: project.maxY - 100,
-  x: -245
+  x: -210
 })
 orangehome.sendToBack();
 var orangeshakes = new project.Text({
@@ -221,7 +221,7 @@ var greenstanding = new project.Image({
   height: 80,
   width: 65,
   y: project.maxY - 60,
-  x: -140
+  x: -105
 })
 var greenleft = new project.Image({
   project: project,
@@ -229,7 +229,7 @@ var greenleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -140
+  x: -105
 })
 greenleft.hide();
 var greenright = new project.Image({
@@ -238,7 +238,7 @@ var greenright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -140
+  x: -105
 })
 greenright.hide();
 var greenru = "https://s12.postimg.org/dro881agd/Green_RU.png";
@@ -252,7 +252,7 @@ var greenhome = new project.Rectangle({
   color: "green",
   width: 70,
   y: project.maxY - 100,
-  x: -175
+  x: -140
 })
 greenhome.sendToBack()
 var greenshakes = new project.Text({
@@ -270,7 +270,7 @@ var bluestanding = new project.Image({
   height: 100,
   width: 80,
   y: project.maxY - 60,
-  x: -70
+  x: -35
 })
 var blueleft = new project.Image({
   project: project,
@@ -278,7 +278,7 @@ var blueleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -70
+  x: -35
 })
 blueleft.hide();
 var blueright = new project.Image({
@@ -287,7 +287,7 @@ var blueright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: -70
+  x: -35
 })
 blueright.hide();
 var blueru = "https://s28.postimg.org/3x17q0sod/Blue_RU.png";
@@ -301,7 +301,7 @@ var bluehome = new project.Rectangle({
   color: "blue",
   width: 70,
   y: project.maxY - 100,
-  x: -105
+  x: -70
 })
 bluehome.sendToBack();
 var blueshakes = new project.Text({
@@ -319,7 +319,7 @@ var blackstanding = new project.Image({
   height: 90,
   width: 75,
   y: project.maxY - 60,
-  x: 70
+  x: 105
 })
 var blackleft = new project.Image({
   project: project,
@@ -327,7 +327,7 @@ var blackleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 70
+  x: 105
 })
 blackleft.hide()
 var blackright = new project.Image({
@@ -336,7 +336,7 @@ var blackright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 70
+  x: 105
 })
 blackright.hide()
 var blackru = "https://s23.postimg.org/4q5s32ky3/Black_RU.png"
@@ -350,7 +350,7 @@ var blackhome = new project.Rectangle({
   color: "black",
   width: 70,
   y: project.maxY - 100,
-  x: 35
+  x: 70
 })
 blackhome.sendToBack()
 var blackshakes = new project.Text({
@@ -368,7 +368,7 @@ var bandwstanding = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 0
+  x: 35
 })
 var bandwleft = new project.Image({
   project: project,
@@ -376,7 +376,7 @@ var bandwleft = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 0
+  x: 35
 })
 bandwleft.hide()
 var bandwright = new project.Image({
@@ -385,7 +385,7 @@ var bandwright = new project.Image({
   height: 100,
   width: 75,
   y: project.maxY - 60,
-  x: 0
+  x: 35
 })
 bandwright.hide()
 var bandwru = "https://s27.postimg.org/btvufut7n/Band_WRU.png"
@@ -399,7 +399,7 @@ var bandwhome = new project.Rectangle({
   color: "gray",
   width: 70,
   y: project.maxY - 100,
-  x: -35
+  x: 0
 })
 bandwhome.sendToBack()
 var bandwshakes = new project.Text({
