@@ -136,6 +136,22 @@ html {
     float: left;
 }
 
+#backMap {
+    top: 27px;
+    position: absolute;
+    background-color: white;
+    border-radius: 50px;
+    height: 35px;
+    width: 35px;
+    display: block;
+    background-image: url("/assets/1rUjP5K-ConvertImage.png");
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .3);
+    float: right;
+}
+
 #backHome-container:hover {
     transform: scale(1.07);
 }
