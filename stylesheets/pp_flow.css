@@ -67,12 +67,12 @@ html {
 }
 
 .left-arrow {
-    left: 0;
+    left: 10;
     cursor: pointer;
 }
 
 .right-arrow {
-    right: 0;
+    right: 10;
     cursor: pointer;
 }
 
