@@ -147,7 +147,7 @@ $(document).ready(function () {
         var nextDescriptor = flow[currentIndex].descriptor; 
         if (nextDescriptor.indexOf("V") != -1) {
             // is video 
-            window.location.href = "flow_video.html?s=" + nextDescriptor;
+            window.location.href = "si_flow_video.html?s=" + nextDescriptor;
         } else if (nextDescriptor.indexOf("I") != -1) {
             // is interactive 
             window.location.href = "si_flow.html?s=" + nextDescriptor;
