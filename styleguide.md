@@ -49,7 +49,9 @@ if (condition) {
   - Aspect Ratio: 10:6
   - 10 inches wide by 6 inches high, or
   - 3000 px wide by 1800 px high
-  ### Buttons:
+  ### Buttons
+  - They should match the buttons on the [About page](http://primedminds.com/about.html)
+  - Here's a quick reference for the CSS:
 ```
 .button {
     display: inline-block;
@@ -69,4 +71,3 @@ if (condition) {
     box-shadow: 0 4px 4px rgba(0, 0, 0, .6);
 }
 ```
-  - They should match the buttons on the [About page](http://primedminds.com/about.html)
