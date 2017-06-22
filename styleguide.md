@@ -25,13 +25,16 @@ Primed Minds Style Guide
     - Do not use “mySlides”, just “slides”
 
  General
-  - Opening brackets are preceded with a space but are on the same line {
-     // The rest of your code goes here and is indented one tab
-     // The following lines should be the same indentation.
-     // If you open another bracket {
-         // Start another indent
-     } // But close it on the same line!
-    }; // Closing brackets go on their own separate line
+  - Opening brackets are preceded with a space but are on the same line
+```
+if (isAwesome){
+  // The rest of your code goes here and is indented one tab
+  // The following lines should be the same indentation.
+  // If you open another bracket {
+    // Start another indent
+  } // But close it on the same line!
+}; // Closing brackets go on their own separate line
+```
   - Comment comment comment! When in doubt, comment about every 20 lines
     - Quick comments at the top of a function describing what it does go a long way!
   - Break down functions
