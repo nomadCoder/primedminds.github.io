@@ -40,3 +40,33 @@ if (condition) {
   - Break down functions
     - Try to have functions remain about 20 lines or less
     - If the function starts getting really long, ask yourself if you could break it up into two 
+
+## Design
+  ### Colors
+    - Red: #DC2222
+    - Yellow: #ffe900
+  ### Size
+    - Aspect Ratio: 10:6
+    - 10 inches wide by 6 inches high, or
+    - 3000 px wide by 1800 px high
+  ### Buttons:
+```
+.button {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 11px 20px;
+    color: white;
+    background-color: #f44336;
+    border-radius: 100px;
+    font-size: 13pt;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
+    transition: all .2s;
+    margin: 15px 0;
+}
+
+.button:hover {
+    transform: scale(1.09);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .6);
+}
+```
+    - They should match the buttons on the [About page](http://primedminds.com/about.html)
