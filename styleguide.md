@@ -5,8 +5,8 @@
     - i.e. an image for the about page would be under: assets/about/arrow.jpg
   - Javascript
     - That you wrote yourself - “javascript/[page name].js”
-    - NOTE: name of the js file should match the name of the .html!
-  - i.e. about.html will link to javascript/about.js
+      - NOTE: name of the js file should match the name of the .html!
+      - i.e. about.html will link to javascript/about.js
     - That you import – “public/javascript/name.js”
     - Avoid putting scripts into the html file itself.
       Instead, place them in a separate .js file linked to your .html
