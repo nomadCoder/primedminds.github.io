@@ -1,28 +1,28 @@
 # Primed Minds Style Guide
 
 ## File Locations
-  - Images – “assets/[page name]/[img title].jpg
-    - i.e. an image for the about page would be under: assets/about/arrow.jpg
+  - Images – `assets/[page name]/[img title].jpg`
+    - i.e. an image for the about page would be under: `assets/about/arrow.jpg`
   - Javascript
-    - That you wrote yourself - “javascript/[page name].js”
+    - That you wrote yourself - `javascript/[page name].js`
       - NOTE: name of the js file should match the name of the .html!
-      - i.e. about.html will link to javascript/about.js
-    - That you import – “public/javascript/name.js”
+      - i.e. about.html will link to `javascript/about.js`
+    - That you import – `public/javascript/name.js`
     - Avoid putting scripts into the html file itself.
       Instead, place them in a separate .js file linked to your .html
-  - CSS – “stylesheets/[page name].css
+  - CSS – `stylesheets/[page name].css`
     - NOTE: name of the CSS file should match the name of the .html!
    
 ## Naming
-  - Static Global Variables: name with ALL_CAPS_AND_UNDERSCORES
+  - Static Global Variables: name with `ALL_CAPS_AND_UNDERSCORES`
     - if this variable isn’t going to change throughout the code but is used multiple times
-    - i.e. GRAPH_HEIGHT = 500;
+    - i.e. `GRAPH_HEIGHT = 500;`
   - Other variables: lowerCamelCase
   - Functions: lowerCamelCase
   - Descriptive names
-    - “monsters”, not just “object”
+    - `monsters`, not just `object`
   - No unnecessary adjectives
-    - Do not use “mySlides”, just “slides”
+    - Do not use `mySlides`, just `slides`
 
 ## General
   - Opening brackets are preceded with a space but are on the same line
