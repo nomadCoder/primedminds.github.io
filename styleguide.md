@@ -1,6 +1,6 @@
-#Primed Minds Style Guide
+# Primed Minds Style Guide
 
- ##File Locations
+## File Locations
   - Images – “assets/[page name]/[img title].jpg
     - i.e. an image for the about page would be under: assets/about/arrow.jpg
   - Javascript
@@ -13,7 +13,7 @@
   - CSS – “stylesheets/[page name].css
     - NOTE: name of the CSS file should match the name of the .html!
    
- ##Naming
+## Naming
   - Static Global Variables: name with ALL_CAPS_AND_UNDERSCORES
     - if this variable isn’t going to change throughout the code but is used multiple times
     - i.e. GRAPH_HEIGHT = 500;
@@ -24,7 +24,7 @@
   - No unnecessary adjectives
     - Do not use “mySlides”, just “slides”
 
- ##General
+## General
   - Opening brackets are preceded with a space but are on the same line
 ```
 if (condition) {
