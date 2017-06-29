@@ -9,6 +9,27 @@ function sethm(a, b) {
   }
 }
 
+var flasher = document.getElementById("flasher");
+
+function flash() {
+  setTimeout(on, 500);
+  setTimeout(off, 1000);
+  setTimeout(on, 1500);
+  setTimeout(off, 2000);
+  setTimeout(on, 2500);
+  setTimeout(off, 3000);
+  setTimeout(on, 3500);
+  setTimeout(off, 4000);
+}
+
+function on() {
+  flasher.style.opacity = "1.0"
+}
+
+function off() {
+  flasher.style.opacity = "0.0"
+}
+
 function display() {
   if (isvideoopen === "no") {
     message.style.visibility = "visible";
