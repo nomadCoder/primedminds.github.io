@@ -2,6 +2,15 @@ body {
   background-color: #ffe900;
 }
 
+#flasher {
+  position: absolute;
+  height: calc(92vh / 9);
+  width: calc(75vh / 9);
+  background-color: #ffe900;
+  top: calc(675vh / 9);
+  left: calc(32vh / 9);
+  z-index: 2;
+}
 
 #backHome-container {
     z-index: 1;
