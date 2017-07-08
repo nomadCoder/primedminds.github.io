@@ -91,10 +91,6 @@ h3 > #main {
     margin: 80 auto;
     border-radius: 100px;
     background-color: #ffe900;
-    box-sizing: border-box;
-    padding: 11px 20px;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
     transition: all .4s;
 }
 
