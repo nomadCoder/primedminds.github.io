@@ -7,11 +7,11 @@ h1 {
 }
 
 #subscribelink:link {
-    color: black;
+    color: white;
 }
 
 #subscribelink:visited {
-    color: black;
+    color: white;
 }
 
 #subscribecontainer {
@@ -28,7 +28,7 @@ h1 {
     box-sizing: border-box;
     padding: 11px 20px;
     color: white;
-    background-color: #f44336;
+    background-color: #ffe900;
     border-radius: 100px;
     font-size: 13pt;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
