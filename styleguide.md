@@ -54,14 +54,11 @@ if (condition) {
   - Here's a quick reference for the CSS:
 ```
 .button {
-    display: inline-block;
-    box-sizing: border-box;
     padding: 11px 20px;
     color: white;
     background-color: #f44336;
     border-radius: 100px;
     font-size: 13pt;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
     transition: all .2s;
     margin: 15px 0;
 }
