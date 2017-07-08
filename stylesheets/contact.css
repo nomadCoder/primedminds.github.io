@@ -6,6 +6,14 @@ h1 {
     font-size: 48px;
 }
 
+#subscribelink:link {
+    color: black;
+}
+
+#subscribelink:visited {
+    color: black;
+}
+
 #subscribecontainer {
     height: 100px;
     width: 100px;
