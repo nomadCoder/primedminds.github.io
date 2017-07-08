@@ -76,6 +76,14 @@ h3 > #main {
     margin-left: 30px;
 }
 
+#contactbutton:link {
+    color: black;
+}
+
+#contactbutton:visited {
+    color: black;
+}
+
 #contact {
     width: 80%;
     text-align: center;
