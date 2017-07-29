@@ -14,7 +14,7 @@ body {
   width: calc(75vh / 9);
   background-color: #ffe900;
   top: calc(88vh); 
-  left: calc(101vh); 
+  left: 8vh; 
   z-index: 2;
 }
 
