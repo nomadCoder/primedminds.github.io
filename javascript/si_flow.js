@@ -4,7 +4,7 @@ var TOTAL_NUM_SLIDES;
 var urlParams = {};
 
 var flow = [{descriptor: "SIV1", link: "w50_SVUqiTs"},
-            {descriptor: "SII1", link: ""},      
+            {descriptor: "SII1", link: "SII1.html"},      
             {descriptor: "SIV2", link: "vOvESvFY5zc"},
             {descriptor: "SI2", link: ""},
             {descriptor: "SIV3", link: "1wdGTMcGumI"},
