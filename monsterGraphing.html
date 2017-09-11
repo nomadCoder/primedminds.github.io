@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploration 1.2</title>
+
+    <!-- Local css -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/graphing.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/materialize.min.css">
+
+
+    <!-- jquery js -->
+    <script src="public/javascript/jquery-1.12.3.min.js"></script>
+
+    <!-- materialize js -->
+    <script src="public/javascript/materialize.min.js"></script>
+    <!-- load p5 library -->
+    <script src="./public/javascript/p5.min.js"></script>
+
+    <!-- local js -->
+    <script src="javascript/monsterGraphing.js"></script>
+
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12 col-sm-12">
+        <p class="range-field"><span>Growth Speed: </span><input id="monster-growth-factor" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="20"></p>
+    
+        <input type="button" value="Fire!" id="monster-stretch-btn">
+        <p> y = mx + b</p>
+        <!-- I put the inline styles just to get them on the same line: Not sure what we want to do here.  -->
+        <p class="range-field"><span>m</span><input id="monster0-m-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="0"></p>
+        <p class="range-field"><span>b</span><input id="monster0-b-value" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="20"></p>
+        <p> y = mx + b</p>
+        <p class="range-field"><span>m</span><input id="monster1-m-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="0"></p>
+        <p class="range-field"><span>b</span><input id="monster1-b-value" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="70"></p>
+    </div> <!-- end sliders col--> 
+      <div class="col-md-5  col-sm-12">
+        <div id="monster-stretch-graph"></div>
+      </div> <!-- end graph col--> 
+    </div> <!-- end row --> 
+  </div> <!-- end container --> 
+</body>
+</html>
