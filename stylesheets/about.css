@@ -146,7 +146,7 @@ h3 > #main {
     padding: 20px 19px;
     border-radius: 8px;
     /*float: left;*/
-    margin: 20 auto;
+    margin: 0 auto;
     max-width: 70%;
 }
 
