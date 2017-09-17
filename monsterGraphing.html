@@ -7,8 +7,10 @@
     <title>Exploration 1.2</title>
 
     <!-- Local css -->
-    <link rel="stylesheet" type="text/css" href="stylesheets/graphing.css">
+    
     <link rel="stylesheet" type="text/css" href="stylesheets/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/monsterGraphing.css">
 
 
     <!-- jquery js -->
@@ -21,23 +23,27 @@
 
     <!-- local js -->
     <script src="javascript/monsterGraphing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>
+    
 
 
 </head>
 <body>
   <div class="container-fluid">
-    <div class="row">
-    <div class="col-md-12 col-sm-12">
-        <p class="range-field"><span>Growth Speed: </span><input id="monster-growth-factor" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="20"></p>
-    
-        <input type="button" value="Fire!" id="monster-stretch-btn">
-        <p> y = mx + b</p>
-        <!-- I put the inline styles just to get them on the same line: Not sure what we want to do here.  -->
-        <p class="range-field"><span>m</span><input id="monster0-m-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="0"></p>
-        <p class="range-field"><span>b</span><input id="monster0-b-value" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="20"></p>
-        <p> y = mx + b</p>
-        <p class="range-field"><span>m</span><input id="monster1-m-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="0"></p>
-        <p class="range-field"><span>b</span><input id="monster1-b-value" style="width: 80%; margin-left: 5%;" type="range" min="0" max="100" value="70"></p>
+    <div class="row font-large main-row">
+    <div class="col-md-4 col-sm-12">
+        <div class="text-middle">
+        <input class="button" type="button" value="Fire!" id="monster-stretch-btn">
+        </div>
+        <!-- First monster values -->
+        <p> y = <span id="monster0-m-function-value">m</span>x + <span id="monster0-b-function-value">b</span></p>
+        <p class="range-field"><span>m</span><input id="monster0-m-value" style="width: 80%; margin-left: 5%;" type="range" class="sliders" min="-10" max="10" value="0" step="0.1"></p>
+        <p class="range-field"><span>b</span><input id="monster0-b-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="-20"></p>
+
+        <!-- Second monster values -->
+        <p> y = <span id="monster1-m-function-value">m</span>x + <span id="monster1-b-function-value">b</span></p>
+        <p class="range-field"><span>m</span><input id="monster1-m-value" style="width: 80%; margin-left: 5%;" type="range" min="-10" max="10" value="0" step="0.1"></p>
+        <p class="range-field"><span>b</span><input id="monster1-b-value" style="width: 80%; margin-left: 5%;" type="range" min="-50" max="50" value="10"></p>
     </div> <!-- end sliders col--> 
       <div class="col-md-5  col-sm-12">
         <div id="monster-stretch-graph"></div>
