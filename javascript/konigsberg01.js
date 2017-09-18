@@ -118,30 +118,30 @@ var water = [
 
 // debugging purposes:
 // uncomment the below code to display the above polygons on the screen
-water.forEach(function(section) {
-  section.forEach(function(segment, index) {
-    if (index !== section.length - 1) {
-      new Line({
-        color: "red",
-        width: 5,
-        x: segment.x * width,
-        y: segment.y * height,
-        x1: section[index + 1].x * width ,
-        y1: section[index + 1].y * height
-      });
-    }
-    else {
-      new Line({
-        color: "red",
-        width: 5,
-        x: segment.x * width,
-        y: segment.y * height,
-        x1: section[0].x * width,
-        y1: section[0].y * height
-      });
-    }
-  });
-});
+// water.forEach(function(section) {
+//   section.forEach(function(segment, index) {
+//     if (index !== section.length - 1) {
+//       new Line({
+//         color: "red",
+//         width: 5,
+//         x: segment.x * width,
+//         y: segment.y * height,
+//         x1: section[index + 1].x * width ,
+//         y1: section[index + 1].y * height
+//       });
+//     }
+//     else {
+//       new Line({
+//         color: "red",
+//         width: 5,
+//         x: segment.x * width,
+//         y: segment.y * height,
+//         x1: section[0].x * width,
+//         y1: section[0].y * height
+//       });
+//     }
+//   });
+// });
 
 // x and y coordinates for where the monster drowns and splashes in above water segments
 var drowningPositions = [
@@ -301,33 +301,27 @@ every(0.1, "seconds", function() {
   }
 });
 
-// function that checks if dot walked into a water spot 
+// function that checks if the monster is in the water
 function isInWater(x, y) {
-  var isInWater = false;
-
-  for(var k = 0; k < water.length; k++){
-    polygon = water[k];
-
-    var j = polygon.length - 1;
-    for(var i = 0; i < polygon.length; i++) {
-      if (
-        polygon[i].y * height < y 
-        && polygon[j].y * height >= y
-        || polygon[j].y * height < y
-        && polygon[i].y * height >= y
-      ) {
-        if ((polygon[i].x * width) + (y - (polygon[i].y * height)) / ((polygon[j].y * height) - (polygon[i].y * height) * (polygon[j].x * width) - (polygon[i].x * width)) < x ) {
-          isInWater = !isInWater;
-        }
-      }
-      j = i;
-    }
-
-    if (isInWater) {
-      return true;
-    }
-  }
-
-  // if reached here, not in water
-  return false; 
+  return water.some(function(polygon) {
+    return inside({x: x / width, y: y / height}, polygon);
+  });
 }
+
+// function to determine if a point is inside a polygon. Source:
+// https://github.com/substack/point-in-polygon
+function inside(point, vs) {
+  var x = point.x, y = point.y;
+
+  var inside = false;
+  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    var xi = vs[i].x, yi = vs[i].y;
+    var xj = vs[j].x, yj = vs[j].y;
+
+    var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+
