@@ -38,6 +38,7 @@ monster.water = [
 ];
 
 var splash = new Audio("./assets/bridges/splash.mp3");
+var scream = new Audio("./assets/bridges/scream.mp3");
 
 // invisible sprite for detecting what the monster's feet are touching, and drawing the path
 var monsterFeet = new Rectangle({
@@ -51,7 +52,7 @@ var monsterFeet = new Rectangle({
 monsterFeet.penColor = "red";
 monsterFeet.penWidth = "5";
 
-// the native Pen feature of Woof draws a line that is jagged; this workaround fixes that
+// the native Pen feature of Woof draws a line that is jagged; this workaround fixes that.
 // to turn the pen on: monsterFeet.pen = true; off: monsterFeet.pen = false;
 monsterFeet.drawPen = function() {
   if (monsterFeet.pen) {
@@ -275,6 +276,9 @@ var coordHistory = [
 var historyCount = 0;
 
 monster.onMouseDown(function() {
+  if (replace) {
+    replace = false;
+  }
   monsterMouseDown = true;
   monsterFeet.pen = true;
 });
@@ -314,7 +318,11 @@ forever(function() {
     }
 
     // turning pen on and off with keys or mouse
-    if (keysDown.includes("up") || keysDown.includes("right") || keysDown.includes("down") || keysDown.includes("left")) {
+    if ( keysDown.includes("up")
+      || keysDown.includes("right")
+      || keysDown.includes("down")
+      || keysDown.includes("left")
+    ){
       monsterFeet.pen = true;
     }
     else if (monsterMouseDown) {
@@ -330,63 +338,69 @@ forever(function() {
     // sometimes the most recent 'safe' position isn't actually safe, so if we can go back
     // two positions, it's more sure to be out of the water
     if (!isInWater(monsterFeet.x, monsterFeet.y)) {
-      historyCount++;
-      coordHistory[historyCount % 3].x = monster.x;
-      coordHistory[historyCount % 3].y = monster.y;
+      trackHistory();
     }
-    // if the monster is touching the water, make him 'drown'
-    else {
+    // if the monster is touching the water, make him 'drown' (unless replacing him)
+    else if (!replace) {
       drown();
     }
   }
 });
 
+function trackHistory() {
+  historyCount++;
+  coordHistory[historyCount % 3].x = monster.x;
+  coordHistory[historyCount % 3].y = monster.y;
+}
+
 // deactivate bridges when you go over them
 forever(function() {
   bridges.forEach(function(bridge, index) {
-    if (monsterFeet.touching(bridge)) {
-      // if the bridge is active, remember the entry point and mark it 'touched'
-      if (bridge.active) {
-        if (!bridge.touched) {
-          bridge.entry = {x: monsterFeet.x, y: monsterFeet.y};
+    if (!drowning && !replace) {
+      if (monsterFeet.touching(bridge)) {
+        // if the bridge is active, remember the entry point and mark it 'touched'
+        if (bridge.active) {
+          if (!bridge.touched) {
+            bridge.entry = {x: monsterFeet.x, y: monsterFeet.y};
+          }
+          bridge.touched = true;
         }
-        bridge.touched = true;
-      }
-      // if it's not active, don't let the monster cross
-      else {
-        monsterFeet.pen = false;
-        monster.x = coordHistory[(historyCount - 2) % 3].x;
-        monster.y = coordHistory[(historyCount - 2) % 3].y;
-        canMove = false;
-        monsterMouseDown = false;
-        after(0.1, "seconds", function() { canMove = true; });
-      }
-    }
-    // if he's not touching the bridge, but the bridge is marked 'touched', this means he has just
-    // been touching the bridge, so check to see if he exited on the same side as he entered
-    else if (bridge.touched) {
-      bridge.touched = false;
-      // all but the middle bridge are oriented vertically,
-      // so check the y value of the entry point against the current y value
-      if (index !== 6) {
-        // entry: top; exit: bottom
-        if (bridge.entry.y > bridge.y && monsterFeet.y < bridge.y) {
-          bridge.active = false;
-        }
-        // entry: bottom; exit: top
-        else if (bridge.entry.y < bridge.y && monsterFeet.y > bridge.y) {
-          bridge.active = false;
+        // if it's not active, don't let the monster cross
+        else {
+          monsterFeet.pen = false;
+          monster.x = coordHistory[(historyCount - 2) % 3].x;
+          monster.y = coordHistory[(historyCount - 2) % 3].y;
+          canMove = false;
+          monsterMouseDown = false;
+          after(0.1, "seconds", function() { canMove = true; });
         }
       }
-      // middle bridge is oriented horizontally, so check the x values
-      else {
-        // entry: right; exit: left
-        if (bridge.entry.x > bridge.x && monsterFeet.x < bridge.x) {
-          bridge.active = false;
+      // if he's not touching the bridge, but the bridge is marked 'touched', this means he has just
+      // been touching the bridge, so check to see if he exited on the same side as he entered
+      else if (bridge.touched) {
+        bridge.touched = false;
+        // all but the middle bridge are oriented vertically,
+        // so check the y value of the entry point against the current y value
+        if (index !== 6) {
+          // entry: top; exit: bottom
+          if (bridge.entry.y > bridge.y && monsterFeet.y < bridge.y) {
+            bridge.active = false;
+          }
+          // entry: bottom; exit: top
+          else if (bridge.entry.y < bridge.y && monsterFeet.y > bridge.y) {
+            bridge.active = false;
+          }
         }
-        // entry: left; exit: right
-        else if (bridge.entry.x < bridge.x && monsterFeet.x > bridge.x) {
-          bridge.active = false;
+        // middle bridge is oriented horizontally, so check the x values
+        else {
+          // entry: right; exit: left
+          if (bridge.entry.x > bridge.x && monsterFeet.x < bridge.x) {
+            bridge.active = false;
+          }
+          // entry: left; exit: right
+          else if (bridge.entry.x < bridge.x && monsterFeet.x > bridge.x) {
+            bridge.active = false;
+          }
         }
       }
     }
@@ -402,11 +416,19 @@ every(0.1, "seconds", function() {
   }
 });
 
+// when "try again" is clicked, you can re-place the monster anywhere on the screen
+var replace = false;
+forever(function() {
+  if (replace) {
+    monster.x = mouseX;
+    monster.y = mouseY;
+  }
+});
+
 // 'try again' button behavior
 tryAgain.button.onMouseDown(function() {
   monsterFeet.pen = false;
-  monster.x = minX + 75;
-  monster.y = maxY - 100;
+  replace = true;
   clearPen();
   bridges.forEach(function(bridge) { bridge.active = true; });
 });
@@ -488,6 +510,7 @@ function drown() {
   
   // play splash sound 
   splash.play();
+  scream.play();
 
   // drowning animation
   var count = 0;
