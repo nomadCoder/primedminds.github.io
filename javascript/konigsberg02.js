@@ -75,6 +75,8 @@ monsterFeet.drawPen = function() {
 };
 
 var tryAgain = createButton(minX + 100, -0.45 * height, "Try Again");
+var destroyBridge = createButton(minX + 300, -0.45 * height, "Destroy Bridge");
+var rebuildBridge = createButton(minX + 500, -0.45 * height, "Rebuild Bridge");
 
 // holds polygon coordinates that represent water locations
 // the x and y values are ratios relative to the width/height of the canvas
@@ -262,6 +264,17 @@ bridges.forEach(function(bridge) {
   bridge.touched = false;
   bridge.active = true;
   bridge.brightness = 0;
+  bridge.onMouseDown(function() {
+    if (destroying) {
+      bridge.destroyed = true;
+      destroying = false;
+    }
+    else if (rebuilding) {
+      bridge.destroyed = false;
+      rebuilding = false;
+    }
+    document.body.style.cursor = "default";
+  });
 });
 
 var canMove = true;
@@ -359,7 +372,7 @@ forever(function() {
     if (!drowning && !replace) {
       if (monsterFeet.touching(bridge)) {
         // if the bridge is active, remember the entry point and mark it 'touched'
-        if (bridge.active) {
+        if (bridge.active && !bridge.destroyed) {
           if (!bridge.touched) {
             bridge.entry = {x: monsterFeet.x, y: monsterFeet.y};
           }
@@ -430,7 +443,22 @@ tryAgain.button.onMouseDown(function() {
   monsterFeet.pen = false;
   replace = true;
   clearPen();
-  bridges.forEach(function(bridge) { bridge.active = true; });
+  bridges.forEach(function(bridge) {
+    bridge.active = true;
+    bridge.destroyed = false;
+  });
+});
+
+var destroying = false;
+destroyBridge.button.onMouseDown(function() {
+  destroying = true;
+  document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+});
+
+var rebuilding = false;
+rebuildBridge.button.onMouseDown(function() {
+  rebuilding = true;
+  document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
 });
 
 // function that checks if the monster is in the water
@@ -533,57 +561,51 @@ function drown() {
 // creates a red button in alignment with primed minds style guide
 // returns an object of sprites that make up parts of the button
 function createButton(x, y, textString) {
-  var shadowCircle1 = new Circle({
-    radius: 25,
-    color: "#BBB",
-    x: x - 65,
-    y: y - 4
-  });
-
-  var shadowCircle2 = new Circle({
-    radius: 25,
-    color: "#BBB",
-    x: x + 66,
-    y: y - 4
-  });
-
-  var shadowBox = new Rectangle({
-    width: 125,
-    height: 50,
-    x: x,
-    y: y - 4,
-    color: "#BBB"
-  });
-
-  var buttonCircle1 = new Circle({
-    radius: 25,
-    color: "#f44336",
-    x: x - 65,
-    y: y
-  });
-
-  var buttonCircle2 = new Circle({
-    radius: 25,
-    color: "#f44336",
-    x: x + 66,
-    y: y
-  });
-
-  var button = new Rectangle({
-    width: 125,
-    height: 50,
-    x: x,
-    y: y,
-    color: "#f44336"
-  });
-
-  var text = new Text({
-    text: textString,
-    x: x,
-    y: y,
-    size: 20,
-    color: "white"
-  });
-
-  return { button: button, text: text, buttonCircle1: buttonCircle1, buttonCircle2: buttonCircle2, shadowBox: shadowBox, shadowCircle1: shadowCircle1, shadowCircle2: shadowCircle2 };
+  return {
+    shadowCircle1: new Circle({
+      radius: 25,
+      color: "#BBB",
+      x: x - 65,
+      y: y - 4
+    }),
+    shadowCircle2: new Circle({
+      radius: 25,
+      color: "#BBB",
+      x: x + 66,
+      y: y - 4
+    }),
+    shadowBox: new Rectangle({
+      width: 125,
+      height: 50,
+      x: x,
+      y: y - 4,
+      color: "#BBB"
+    }),
+    buttonCircle1: new Circle({
+      radius: 25,
+      color: "#f44336",
+      x: x - 65,
+      y: y
+    }),
+    buttonCircle2: new Circle({
+      radius: 25,
+      color: "#f44336",
+      x: x + 66,
+      y: y
+    }),
+    button: new Rectangle({
+      width: 125,
+      height: 50,
+      x: x,
+      y: y,
+      color: "#f44336"
+    }),
+    text: new Text({
+      text: textString,
+      x: x,
+      y: y,
+      size: 20,
+      color: "white"
+    })
+  };
 }
