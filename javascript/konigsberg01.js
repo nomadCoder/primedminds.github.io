@@ -13,7 +13,7 @@ if (document.images) {
   water3.src = "./assets/bridges/WaterMonster3.png";
 }
 
-setBackdropURL("./assets/bridges/KonigMap.jpg");
+setBackdropURL("./assets/bridges/KonigMapGreen.jpg");
 
 // monster sprite
 var monster = new Image({
