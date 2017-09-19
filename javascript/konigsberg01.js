@@ -205,80 +205,63 @@ var drowningPositions = [
   {x: -0.18, y: -0.21}
 ];
 
-// this array holds a series of lines that mark the entry/exit points of the bridges
-// they're used to detect if the monster has crossed a bridge or not
-// the respawn property is the point the monster returns to if trying to cross a previously crossed bridge
-var bridgeBoundaries = [
-  // top left bridge
-  [
-    {x: -0.335, y: 0.25, x1: -0.25, y1: 0.28, respawn: {x: -0.2998, y: 0.3567}},
-    {x: -0.31, y: 0.12, x1: -0.22, y1: 0.15, respawn: {x: -0.2583, y: 0.1417}}
-  ],
-  // top middle bridge
-  [
-    {x: -0.05, y: 0.27, x1: 0.035, y1: 0.237, respawn: {x: -0.0058, y: 0.3451}},
-    {x: -0.08, y: 0.14, x1: 0.01, y1: 0.11, respawn: {x: -0.0335, y: 0.1333}}
-  ],
-  // top right bridge
-  [
-    {x: 0.23, y: 0.26, x1: 0.31, y1: 0.28, respawn: {x: 0.2737, y: 0.362}},
-    {x: 0.28, y: 0.15, x1: 0.353, y1: 0.17, respawn: {x: 0.33, y: 0.1754}}
-  ],
-  // bottom right bridge
-  [
-    {x: 0.273, y: -0.15, x1: 0.345, y1: -0.17, respawn: {x: 0.3183, y: -0.0922}},
-    {x: 0.23, y: -0.25, x1: 0.32, y1: -0.28, respawn: {x: 0.2875, y: -0.2566}}
-  ],
-  // bottom middle bridge
-  [
-    {x: -0.1, y: -0.14, x1: -0.02, y1: -0.15, respawn: {x: -0.0627, y: -0.05}},
-    {x: -0.115, y: -0.245, x1: -0.022, y1: -0.25, respawn: {x: -0.0735, y: -0.2313}}
-  ],
-  // bottom left bridge
-  [
-    {x: -0.31, y: -0.08, x1: -0.22, y1: -0.13, respawn: {x: -0.2552, y: -0.0374}},
-    {x: -0.345, y: -0.18, x1: -0.245, y1: -0.22, respawn: {x: -0.3014, y: -0.1934}}
-  ],
-  // middle bridge
-  [
-    {x: 0.1, y: 0.03, x1: 0.1, y1: -0.055, respawn: {x: 0.07, y: 0.03}},
-    {x: 0.18, y: 0.04, x1: 0.2, y1: -0.05, respawn: {x: 0.22, y: 0.02}}
-  ]
+var bridges = [
+  new Rectangle({
+    x: -0.2746 * width,
+    y: 0.2 * height,
+    width: 0.0862 * width,
+    height: 0.1394 * height,
+    angle: 195
+  }),
+  new Rectangle({
+    x: -0.0238 * width,
+    y: 0.1895 * height,
+    width: 0.09 * width,
+    height: 0.1395 * height,
+    angle: 165
+  }),
+  new Rectangle({
+    x: 0.2919 * width,
+    y: 0.2211 * height,
+    width: 0.0731 * width,
+    height: 0.1184 * height,
+    angle: 210
+  }),
+  new Rectangle({
+    x: 0.2919 * width,
+    y: -0.2211 * height,
+    width: 0.0769 * width,
+    height: 0.1184 * height,
+    angle: 160
+  }),
+  new Rectangle({
+    x: -0.066 * width,
+    y: -0.2 * height,
+    width: 0.0846 * width,
+    height: 0.1184 * height,
+    angle: 170
+  }),
+  new Rectangle({
+    x: -0.2814 * width,
+    y: -0.1527 * height,
+    width: 0.0923 * width,
+    height: 0.1184 * height,
+    angle: 160
+  }),
+  new Rectangle({
+    x: 0.1462 * width,
+    y: -0.0077 * height,
+    width: 0.0923 * width,
+    height: 0.0815 * height,
+    angle: 180
+  })
 ];
 
-// bridge object constructor consisting of its two line boundaries
-function Bridge(line1, line2) {
-  this.active = true;
-  this.line1 = line1;
-  this.line2 = line2;
-}
-
-// create an array of bridge objects using the coordinates in bridgeBoundaries
-// var bridges = bridgeBoundaries.map(function(set) {
-//   var line1 = new Line({
-//     x: set[0].x * width,
-//     y: set[0].y * height,
-//     x1: set[0].x1 * width,
-//     y1: set[0].y1 * height,
-//     width: 5,
-//     // brightness: 0
-//   });
-//   line1.crossed = false;
-//   line1.touched = false;
-//   line1.respawn = set[0].respawn;
-//   var line2 = new Line({
-//     x: set[1].x * width,
-//     y: set[1].y * height,
-//     x1: set[1].x1 * width,
-//     y1: set[1].y1 * height,
-//     width: 5,
-//     // brightness: 0
-//   });
-//   line2.crossed = false;
-//   line2.touched = false;
-//   line2.respawn = set[1].respawn;
-//   return new Bridge(line1, line2);
-// });
+bridges.forEach(function(bridge) {
+  bridge.touched = false;
+  bridge.active = true;
+  bridge.brightness = 0;
+});
 
 var canMove = true;
 var drowning = false;
@@ -358,81 +341,18 @@ forever(function() {
   }
 });
 
-var bridges = [
-  new Rectangle({
-    color: "yellow",
-    x: -0.2746 * width,
-    y: 0.2 * height,
-    width: 0.0862 * width,
-    height: 0.1394 * height,
-    angle: 195
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: -0.0238 * width,
-    y: 0.1895 * height,
-    width: 0.09 * width,
-    height: 0.1395 * height,
-    angle: 165
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: 0.2919 * width,
-    y: 0.2211 * height,
-    width: 0.0731 * width,
-    height: 0.1184 * height,
-    angle: 210
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: 0.2919 * width,
-    y: -0.2211 * height,
-    width: 0.0769 * width,
-    height: 0.1184 * height,
-    angle: 160
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: -0.066 * width,
-    y: -0.2 * height,
-    width: 0.0846 * width,
-    height: 0.1184 * height,
-    angle: 170
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: -0.2814 * width,
-    y: -0.1527 * height,
-    width: 0.0923 * width,
-    height: 0.1184 * height,
-    angle: 160
-  }),
-  new Rectangle({
-    color: "yellow",
-    x: 0.1462 * width,
-    y: -0.0077 * height,
-    width: 0.0923 * width,
-    height: 0.0815 * height,
-    angle: 180
-  })
-];
-
-bridges.forEach(function(bridge) {
-  bridge.touched = false;
-  bridge.active = true;
-  bridge.brightness = 0;
-});
-
+// deactivate bridges when you go over them
 forever(function() {
   bridges.forEach(function(bridge, index) {
     if (monsterFeet.touching(bridge)) {
+      // if the bridge is active, remember the entry point and mark it 'touched'
       if (bridge.active) {
         if (!bridge.touched) {
           bridge.entry = {x: monsterFeet.x, y: monsterFeet.y};
         }
         bridge.touched = true;
-        bridge.color = "blue";
       }
+      // if it's not active, don't let the monster cross
       else {
         monsterFeet.pen = false;
         monster.x = coordHistory[(historyCount - 2) % 3].x;
@@ -442,90 +362,36 @@ forever(function() {
         after(0.1, "seconds", function() { canMove = true; });
       }
     }
+    // if he's not touching the bridge, but the bridge is marked 'touched', this means he has just
+    // been touching the bridge, so check to see if he exited on the same side as he entered
     else if (bridge.touched) {
       bridge.touched = false;
+      // all but the middle bridge are oriented vertically,
+      // so check the y value of the entry point against the current y value
       if (index !== 6) {
-        if (bridge.entry.y > bridge.y) {
-          if (monsterFeet.y > bridge.y) {
-            bridge.color = "yellow";
-          }
-          else {
-            bridge.color = "red";
-            bridge.active = false;
-          }
+        // entry: top; exit: bottom
+        if (bridge.entry.y > bridge.y && monsterFeet.y < bridge.y) {
+          bridge.active = false;
         }
-        else {
-          if (monsterFeet.y < bridge.y) {
-            bridge.color = "yellow";
-          }
-          else {
-            bridge.color = "red";
-            bridge.active = false;
-          }
+        // entry: bottom; exit: top
+        else if (bridge.entry.y < bridge.y && monsterFeet.y > bridge.y) {
+          bridge.active = false;
         }
       }
+      // middle bridge is oriented horizontally, so check the x values
       else {
-        if (bridge.entry.x > bridge.x) {
-          if (monsterFeet.x > bridge.x) {
-            bridge.color = "yellow";
-          }
-          else {
-            bridge.color = "red";
-            bridge.active = false;
-          }
+        // entry: right; exit: left
+        if (bridge.entry.x > bridge.x && monsterFeet.x < bridge.x) {
+          bridge.active = false;
         }
-        else {
-          if (monsterFeet.x < bridge.x) {
-            bridge.color = "yellow";
-          }
-          else {
-            bridge.color = "red";
-            bridge.active = false;
-          }
+        // entry: left; exit: right
+        else if (bridge.entry.x < bridge.x && monsterFeet.x > bridge.x) {
+          bridge.active = false;
         }
       }
     }
   });
 });
-
-// detect bridge crossing
-// forever(function() {
-//   bridges.forEach(function(bridge) {
-//     var line1 = bridge.line1;
-//     var line2 = bridge.line2;
-//     // if the bridge is active, detect if either of the boundaries are being crossed
-//     if (bridge.active) {
-//       detectBoundaryCrossing(line1);
-//       detectBoundaryCrossing(line2);
-//     }
-//     // if the bridge is inactive (i.e. both boundaries have been crossed), don't let the monster cross
-//     else {
-//       if (monsterFeet.touching(line1)) {
-//         monsterFeet.pen = false;
-//         // monster.x = line1.respawn.x * width;
-//         // monster.y = line1.respawn.y * height;
-//         monster.x = coordHistory[(historyCount - 2) % 3].x;
-//         monster.y = coordHistory[(historyCount - 2) % 3].y;
-//         canMove = false;
-//         monsterMouseDown = false;
-//       }
-//       if (monsterFeet.touching(line2)) {
-//         monsterFeet.pen = false;
-//         // monster.x = line2.respawn.x * width;
-//         // monster.y = line2.respawn.y * height;
-//         monster.x = coordHistory[(historyCount - 2) % 3].x;
-//         monster.y = coordHistory[(historyCount - 2) % 3].y;
-//         canMove = false;
-//         monsterMouseDown = false;
-//       }
-//       after(0.1, "seconds", function() { canMove = true; });
-//     }
-//     // mark the bridge inactive if both boundaries have been crossed
-//     if (line1.crossed && line2.crossed && !monsterFeet.touching(line1) && !monsterFeet.touching(line2)) {
-//       bridge.active = false;
-//     }
-//   });
-// });
 
 // walking animation
 var costume = 0;
@@ -542,19 +408,7 @@ tryAgain.button.onMouseDown(function() {
   monster.x = minX + 75;
   monster.y = maxY - 100;
   clearPen();
-  bridges.forEach(function(bridge) {
-    // bridge.active = true;
-    // bridge.line1.crossed = false;
-    // bridge.line1.touched = false;
-    // bridge.line2.crossed = false;
-    // bridge.line2.touched = false;
-
-    // bridge.line1.color = "black";
-    // bridge.line2.color = "black";
-
-    bridge.active = true;
-    bridge.color = "yellow";
-  });
+  bridges.forEach(function(bridge) { bridge.active = true; });
 });
 
 // function that checks if the monster is in the water
@@ -651,27 +505,6 @@ function drown() {
     monster.y = coordHistory[(historyCount - 2) % 3].y;
     monster.setImageURL(monster.walking[0]);
   });
-}
-
-function detectBoundaryCrossing(line) {
-  if (monsterFeet.touching(line)) {
-    if (line.touched) {
-      line.crossed = false;
-      line.color = "black";
-    }
-    else {
-      line.crossed = true;
-      line.color = "red";
-    }
-  }
-  else {
-    if (line.crossed) {
-      line.touched = true;
-    }
-    else {
-      line.touched = false;
-    }
-  }
 }
 
 // creates a red button in alignment with primed minds style guide
