@@ -101,8 +101,8 @@ monsterFeet.drawPen = function() {
 };
 
 var tryAgain = createButton(minX + 100, -0.45 * height, "Try Again");
-var destroyBridge = createButton(minX + 300, -0.45 * height, "Destroy Bridge");
-var rebuildBridge = createButton(minX + 500, -0.45 * height, "Rebuild Bridge");
+var destroyBridge = createButton(minX + 300, -0.45 * height, "Bust Bridge");
+var rebuildBridge = createButton(minX + 500, -0.45 * height, "Build Bridge");
 
 // holds polygon coordinates that represent water locations
 // the x and y values are ratios relative to the width/height of the canvas
@@ -367,6 +367,90 @@ var bridgeImages = [
   })
 ];
 
+var blankBridge = "./assets/bridges/build-bridge-04.png";
+
+// these are the new bridges that the player can add
+var extraBridges = [
+  // in the water segment second from the left on the top
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: -0.1531 * width,
+    y: 0.2274 * height
+  }),
+  // left half of the water segment second from the right on the top
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.0763 * width,
+    y: 0.1531 * height,
+    angle: -20
+  }),
+  // right half of the water segment second from the right on the top
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.2077 * width,
+    y: 0.1642 * height,
+    angle: 20
+  }),
+  // in the rightmost top segment
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.4154 * width,
+    y: 0.2695 * height,
+    angle: 20
+  }),
+  // in the rightmost bottom segment
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.4154 * width,
+    y: -0.23 * height,
+  }),
+  // right half of the water segment second from the right on the bottom
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.2077 * width,
+    y: -0.17 * height,
+    angle: -30
+  }),
+  // left half of the water segment second from the right on the bottom
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: 0.05 * width,
+    y: -0.175 * height,
+    angle: 10
+  }),
+  // in the segment second from the left on the bottom
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: -0.17 * width,
+    y: -0.2 * height,
+    angle: -10
+  }),
+  new Image({
+    url: blankBridge,
+    width: 0.097 * width,
+    height: 0.19 * height,
+    x: -0.3691 * width,
+    y: -0.0841 * height,
+    angle: -40
+  }),
+];
+
 bridges.forEach(function(bridge, index) {
   bridge.touched = false;
   bridge.active = true;
@@ -377,10 +461,48 @@ bridges.forEach(function(bridge, index) {
       bridge.destroyed = true;
       destroying = false;
     }
-    else if (rebuilding && bridge.destroyed) {
+    else if (building && bridge.destroyed) {
       runRebuildAnimation(bridgeImages[index]);
       bridge.destroyed = false;
-      rebuilding = false;
+      building = false;
+    }
+    document.body.style.cursor = "default";
+  });
+});
+
+var extraBridgeImages = extraBridges.map(function(bridge) {
+  return new Image({
+    x: bridge.x,
+    y: bridge.y,
+    url: bridgeFrames.bust[0],
+    width: bridge.width * 1.5,
+    height: bridge.height * 1.5,
+    angle: bridge.angle,
+    showing: false
+  });
+});
+
+extraBridges.forEach(function(bridge, index) {
+  bridge.active = true;
+  bridge.built = false;
+  bridge.brightness = 0;
+  bridge.destroyed = false;
+  bridge.touched = false;
+
+  bridge.onMouseDown(function() {
+    if (building && !bridge.built) {
+      runBuildAnimation(extraBridgeImages[index], bridge);
+      bridge.built = true;
+      building = false;
+      bridge.destroyed = false;
+      bridges.push(bridge);
+    }
+    else if (destroying && bridge.built) {
+      runDestroyAnimation(extraBridgeImages[index]);
+      bridge.built = false;
+      destroying = false;
+      bridge.destroyed = true;
+      // bridges.remove(bridge);
     }
     document.body.style.cursor = "default";
   });
@@ -415,6 +537,23 @@ function runRebuildAnimation(bridgeImage) {
   });
 }
 
+function runBuildAnimation(bridgeImage, bridge) {
+  bridgeImage.hide();
+  bridgeImage.setImageURL(bridgeFrames.build[0]);
+  bridgeImage.show();
+  after(0.4, "seconds", function() {
+    bridgeImage.setImageURL(bridgeFrames.build[1]);
+    after(0.4, "seconds", function() {
+      bridgeImage.setImageURL(bridgeFrames.build[2]);
+      after(0.4, "seconds", function() {
+        bridgeImage.hide();
+        bridge.brightness = 100;
+      });
+    });
+  });
+}
+
+
 var canMove = true;
 var drowning = false;
 var monsterMouseDown = false;
@@ -438,6 +577,7 @@ monster.onMouseUp(function() {
   monsterMouseDown = false;
   monsterFeet.pen = false;
 });
+
 
 // monster movement
 forever(function() {
@@ -559,6 +699,19 @@ forever(function() {
   });
 });
 
+// deactivate extra bridges when you go over them
+// forever(function() {
+//   if (!drowning && !replace) {
+//     if (monsterFeet.touching(testBridge)) {
+//       if (testBridge.active && !testBridge.destroyed) {
+
+//       }
+//     }
+
+//   }
+// });
+
+
 // walking animation
 var costume = 0;
 every(0.1, "seconds", function() {
@@ -594,17 +747,22 @@ destroyBridge.button.onMouseDown(function() {
   document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
 });
 
-var rebuilding = false;
+var building = false;
 rebuildBridge.button.onMouseDown(function() {
-  rebuilding = true;
+  building = true;
   document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
 });
 
 // function that checks if the monster is in the water
 function isInWater(x, y) {
+  if (extraBridges.some(builtAndTouching)) return false;
   return water.some(function(polygon) {
     return inside({x: x / width, y: y / height}, polygon);
   });
+}
+
+function builtAndTouching(bridge) {
+  return bridge.touching(monsterFeet) && bridge.built;
 }
 
 // function to determine if a point is inside a polygon. Source:
