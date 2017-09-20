@@ -442,6 +442,7 @@ monster.onMouseUp(function() {
 // monster movement
 forever(function() {
   monsterFeet.drawPen();
+  monster.sendToFront();
 
   // keep the feet always at the feet
   monsterFeet.x = monster.x;
