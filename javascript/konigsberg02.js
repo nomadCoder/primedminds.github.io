@@ -1,16 +1,42 @@
 // preload sprite images for better animation performance
 if (document.images) {
-  walking1 = document.createElement("img");
-  walking2 = document.createElement("img");
-  water1 = document.createElement("img");
-  water2 = document.createElement("img");
-  water3 = document.createElement("img");
+  var walking1 = document.createElement("img");
+  var walking2 = document.createElement("img");
+  var water1 = document.createElement("img");
+  var water2 = document.createElement("img");
+  var water3 = document.createElement("img");
+
+  var build1 = document.createElement("img");
+  var build2 = document.createElement("img");
+  var build3 = document.createElement("img");
+  var build4 = document.createElement("img");
+
+  var bust1 = document.createElement("img");
+  var bust2 = document.createElement("img");
+  var bust3 = document.createElement("img");
+  var bust4 = document.createElement("img");
+
+  var cobblestones = document.createElement("img");
+  var dynamite = document.createElement("img");
 
   walking1.src = "./assets/bridges/WalkingMonster1.png";
   walking2.src = "./assets/bridges/WalkingMonster2.png";
   water1.src = "./assets/bridges/WaterMonster1.png";
   water2.src = "./assets/bridges/WaterMonster2.png";
   water3.src = "./assets/bridges/WaterMonster3.png";
+
+  build1.src = "./assets/bridges/build-bridge-01.png";
+  build2.src = "./assets/bridges/build-bridge-02.png";
+  build3.src = "./assets/bridges/build-bridge-03.png";
+  build4.src = "./assets/bridges/build-bridge-04.png";
+
+  bust1.src = "./assets/bridges/busted-bridge-01.png";
+  bust2.src = "./assets/bridges/busted-bridge-02.png";
+  bust3.src = "./assets/bridges/busted-bridge-03.png";
+  bust4.src = "./assets/bridges/busted-bridge-04.png";
+
+  cobblestones.src = "./assets/bridges/cobblestones.png";
+  dynamite.src = "./assets/bridges/dynamite.png";
 }
 
 setBackdropURL("./assets/bridges/KonigMapGreen.jpg");
@@ -260,22 +286,134 @@ var bridges = [
   })
 ];
 
-bridges.forEach(function(bridge) {
+var bridgeFrames = {
+  build: [
+    "./assets/bridges/build-bridge-01.png",
+    "./assets/bridges/build-bridge-02.png",
+    "./assets/bridges/build-bridge-03.png",
+    "./assets/bridges/build-bridge-04.png",
+  ],
+  bust: [
+    "./assets/bridges/busted-bridge-01.png",
+    "./assets/bridges/busted-bridge-02.png",
+    "./assets/bridges/busted-bridge-03.png",
+    "./assets/bridges/busted-bridge-04.png",
+  ]
+};
+
+var bridgeImages = [
+  new Image({
+    x: -0.27 * width,
+    y: 0.2 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.18 * width,
+    height: 0.2634 * height,
+    angle: 190,
+    showing: false
+  }),
+  new Image({
+    x: -0.0193 * width,
+    y: 0.1895 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.18 * width,
+    height: 0.2634 * height,
+    angle: 160,
+    showing: false
+  }),
+  new Image({
+    x: 0.301 * width,
+    y: 0.2137 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.1619 * width,
+    height: 0.2634 * height,
+    angle: 201,
+    showing: false
+  }),
+  new Image({
+    x: 0.29 * width,
+    y: -0.2211 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.18 * width,
+    height: 0.2634 * height,
+    angle: -25,
+    showing: false
+  }),
+  new Image({
+    x: -0.068 * width,
+    y: -0.1895 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.18 * width,
+    height: 0.2634 * height,
+    angle: -365,
+    showing: false
+  }),
+  new Image({
+    x: -0.2724 * width,
+    y: -0.1527 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.2053 * width,
+    height: 0.2634 * height,
+    angle: 155,
+    showing: false
+  }),
+  new Image({
+    x: 0.1417 * width,
+    y: -0.013 * height,
+    url: bridgeFrames.bust[0],
+    width: 0.171 * width,
+    height: 0.2266 * height,
+    angle: 90,
+    showing: false
+  })
+];
+
+bridges.forEach(function(bridge, index) {
   bridge.touched = false;
   bridge.active = true;
   bridge.brightness = 0;
   bridge.onMouseDown(function() {
-    if (destroying) {
+    if (destroying && !bridge.destroyed) {
+      runDestroyAnimation(bridgeImages[index]);
       bridge.destroyed = true;
       destroying = false;
     }
-    else if (rebuilding) {
+    else if (rebuilding && bridge.destroyed) {
+      runRebuildAnimation(bridgeImages[index]);
       bridge.destroyed = false;
       rebuilding = false;
     }
     document.body.style.cursor = "default";
   });
 });
+
+function runDestroyAnimation(bridgeImage) {
+  bridgeImage.setImageURL(bridgeFrames.bust[0]);
+  bridgeImage.show();
+  after(0.4, "seconds", function() {
+    bridgeImage.setImageURL(bridgeFrames.bust[1]);
+    after(0.4, "seconds", function() {
+      bridgeImage.setImageURL(bridgeFrames.bust[2]);
+      after(0.4, "seconds", function() {
+        bridgeImage.setImageURL(bridgeFrames.bust[3]);
+      });
+    });
+  });
+}
+
+function runRebuildAnimation(bridgeImage) {
+  bridgeImage.hide();
+  bridgeImage.setImageURL(bridgeFrames.build[0]);
+  bridgeImage.show();
+  after(0.4, "seconds", function() {
+    bridgeImage.setImageURL(bridgeFrames.build[1]);
+    after(0.4, "seconds", function() {
+      bridgeImage.setImageURL(bridgeFrames.build[2]);
+      after(0.4, "seconds", function() {
+        bridgeImage.hide();
+      });
+    });
+  });
+}
 
 var canMove = true;
 var drowning = false;
