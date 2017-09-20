@@ -502,7 +502,6 @@ extraBridges.forEach(function(bridge, index) {
       bridge.built = false;
       destroying = false;
       bridge.destroyed = true;
-      // bridges.remove(bridge);
     }
     document.body.style.cursor = "default";
   });
@@ -738,6 +737,13 @@ tryAgain.button.onMouseDown(function() {
   bridges.forEach(function(bridge) {
     bridge.active = true;
     bridge.destroyed = false;
+  });
+  extraBridges.forEach(function(bridge, index) {
+    bridge.brightness = 0;
+    bridge.built = false;
+    bridge.destroyed = false;
+    bridge.active = true;
+    extraBridgeImages[index].hide();
   });
 });
 
