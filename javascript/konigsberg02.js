@@ -67,10 +67,9 @@ monster.water = [
 
 var splash = new Audio("./assets/bridges/splash.mp3");
 var scream = new Audio("./assets/bridges/scream.mp3");
+var explosion = new Audio("./assets/bridges/explosion.mp3");
 
 var tryAgain = createButton(0, -0.45 * height, "Try Again");
-// var bustBridge = createButton(150, -0.45 * height, "Bust Bridge");
-// var buildBridge = createButton(-150, -0.45 * height, "Build Bridge");
 
 var bustBridge = {
   button: new Image({
@@ -546,6 +545,7 @@ extraBridges.forEach(function(bridge, index) {
 function runDestroyAnimation(bridgeImage) {
   bridgeImage.setImageURL(bridgeFrames.bust[0]);
   bridgeImage.show();
+  explosion.play();
   after(0.4, "seconds", function() {
     bridgeImage.setImageURL(bridgeFrames.bust[1]);
     after(0.4, "seconds", function() {
@@ -607,25 +607,25 @@ var monsterFeet = new Rectangle({
 monsterFeet.penColor = "red";
 monsterFeet.penWidth = "5";
 
+// records the full history of monsterFeet locations so the pen can draw them
 var fullHistory = [];
 
+// this hack makes it possible for the pen to appear over some sprites but below other sprites
+// for example, the pen drawing is always under the monster, but it's above the extra bridges
 ready(function() {
   var proj = monster.project;
   var spCtx = proj._spriteContext;
+
+  function renderSprite(sprite) {
+    sprite._render(spCtx);
+  }
+
   proj._renderSprites = function() {
     spCtx.clearRect(0, 0, proj.width, proj.height);
-    bridgeImages.forEach(function(bridge) {
-      bridge._render(spCtx);
-    });
-    extraBridges.forEach(function(bridge) {
-      bridge._render(spCtx);
-    });
-    extraBridgeImages.forEach(function(bridge) {
-      bridge._render(spCtx);
-    });
-    extraBridgeBoundaries.forEach(function(bridge) {
-      bridge._render(spCtx);
-    });
+    bridgeImages.forEach(renderSprite);
+    extraBridges.forEach(renderSprite);
+    extraBridgeImages.forEach(renderSprite);
+    extraBridgeBoundaries.forEach(renderSprite);
     if (!replace) {
       var lastCoords = coordHistory[historyCount % 3];
       var lastX = lastCoords.x;
@@ -651,40 +651,8 @@ ready(function() {
     for (part in buildBridge) {
       buildBridge[part]._render(spCtx);
     }
-    // bustBridge._render(spCtx);
-    // buildBridge._render(spCtx);
   };
 });
-
-onKeyDown(function() {
-  if (keysDown.includes("space")) {
-    var proj = monster.project;
-    var pen = proj._penContext;
-    var sprite = proj._spriteContext;
-  }
-});
-
-// the native Pen feature of Woof draws a line that is jagged; this workaround fixes that.
-// to turn the pen on: monsterFeet.pen = true; off: monsterFeet.pen = false;
-// monsterFeet.drawPen = function() {
-//   if (monsterFeet.pen) {
-//     var proj = monsterFeet.project;
-    // var lastCoords = coordHistory[historyCount % 3];
-    // var lastX = lastCoords.x;
-    // var lastY = lastCoords.y - 40;
-//     if(monsterFeet.x != lastX || monsterFeet.y != lastY) {
-//       proj._penContext.save();
-//       proj._penContext.beginPath();
-//       proj._penContext.moveTo(...proj.translateToCanvas(lastX, lastY));
-//       proj._penContext.lineTo(...proj.translateToCanvas(monsterFeet.x, monsterFeet.y));
-//       proj._penContext.lineCap = "round";
-//       proj._penContext.strokeStyle = monsterFeet.penColor;
-//       proj._penContext.lineWidth = monsterFeet.penWidth;
-//       proj._penContext.stroke();
-//       proj._penContext.restore();
-//     }
-//   }
-// };
 
 var canMove = true;
 var drowning = false;
@@ -703,12 +671,11 @@ monster.onMouseDown(function() {
     replace = false;
   }
   monsterMouseDown = true;
-  monsterFeet.pen = true;
+  // monsterFeet.pen = true;
 });
 
 monster.onMouseUp(function() {
   monsterMouseDown = false;
-  // monsterFeet.pen = false;
 });
 
 
@@ -716,7 +683,6 @@ monster.onMouseUp(function() {
 forever(function() {
   monster.sendToFront();
   monsterFeet.sendToFront();
-  // monsterFeet.drawPen();
 
   // keep the feet always at the feet
   monsterFeet.x = monster.x;
@@ -749,15 +715,12 @@ forever(function() {
       || keysDown.includes("down")
       || keysDown.includes("left")
     ){
-      monsterFeet.pen = true;
+      // monsterFeet.pen = true;
     }
     else if (monsterMouseDown) {
       monster.x = mouseX;
       monster.y = mouseY;
-      monsterFeet.pen = true;
-    }
-    else {
-      // monsterFeet.pen = false;
+      // monsterFeet.pen = true;
     }
 
     // if the monster isn't in the water, keep track of the three most recent 'safe' positions
@@ -794,7 +757,7 @@ forever(function() {
         }
         // if it's not active, don't let the monster cross
         else {
-          monsterFeet.pen = false;
+          // monsterFeet.pen = false;
           monster.x = coordHistory[(historyCount - 2) % 3].x;
           monster.y = coordHistory[(historyCount - 2) % 3].y;
           canMove = false;
@@ -834,19 +797,6 @@ forever(function() {
   });
 });
 
-// deactivate extra bridges when you go over them
-// forever(function() {
-//   if (!drowning && !replace) {
-//     if (monsterFeet.touching(testBridge)) {
-//       if (testBridge.active && !testBridge.destroyed) {
-
-//       }
-//     }
-
-//   }
-// });
-
-
 // walking animation
 var costume = 0;
 every(0.1, "seconds", function() {
@@ -869,24 +819,20 @@ forever(function() {
 tryAgain.button.onMouseDown(function() {
   document.body.style.cursor = "default";
   fullHistory = [];
-  monsterFeet.pen = false;
-  replace = true;
-  clearPen();
   bridges.forEach(function(bridge) {
-    bridge.active = true;
-    bridge.destroyed = false;
+    if (!bridge.destroyed) {
+      bridge.active = true;
+    }
   });
-  bridgeImages.forEach(function(img) {
-    img.hide();
-  })
-  extraBridges.forEach(function(bridge, index) {
-    bridge.brightness = 0;
-    bridge.built = false;
-    bridge.destroyed = false;
-    bridge.active = true;
-    extraBridgeImages[index].hide();
+  extraBridges.forEach(function(bridge) {
+    if (bridge.built && !bridge.destroyed) {
+      bridge.active = true;
+    }
   });
+  replace = true;
 });
+
+
 
 var destroying = false;
 bustBridge.button.onMouseDown(function() {
@@ -917,55 +863,6 @@ buildBridge.button.onMouseDown(function() {
     buildBridge.highlight.hide();
   }
 });
-
-
-// var destroying = false;
-// bustBridge.button.onMouseDown(function() {
-//   destroying = !destroying;
-//   building = false;
-//   if (destroying) {
-//     bustBridge.button.color = "#FFE900";
-//     bustBridge.buttonCircle1.color = "#FFE900";
-//     bustBridge.buttonCircle2.color = "#FFE900";
-//     bustBridge.text.color = "black";
-//     buildBridge.button.color = "#f44336";
-//     buildBridge.buttonCircle1.color = "#f44336";
-//     buildBridge.buttonCircle2.color = "#f44336";
-//     buildBridge.text.color = "white";
-//     document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
-//   }
-//   else {
-//     bustBridge.button.color = "#f44336";
-//     bustBridge.buttonCircle1.color = "#f44336";
-//     bustBridge.buttonCircle2.color = "#f44336";
-//     bustBridge.text.color = "white";
-//     document.body.style.cursor = "default";
-//   }
-// });
-
-// var building = false;
-// buildBridge.button.onMouseDown(function() {
-//   building = !building;
-//   destroying = false;
-//   if (building) {
-//     buildBridge.button.color = "#FFE900";
-//     buildBridge.buttonCircle1.color = "#FFE900";
-//     buildBridge.buttonCircle2.color = "#FFE900";
-//     buildBridge.text.color = "black";
-//     bustBridge.button.color = "#f44336";
-//     bustBridge.buttonCircle1.color = "#f44336";
-//     bustBridge.buttonCircle2.color = "#f44336";
-//     bustBridge.text.color = "white";
-//     document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
-//   }
-//   else {
-//     buildBridge.button.color = "#f44336";
-//     buildBridge.buttonCircle1.color = "#f44336";
-//     buildBridge.buttonCircle2.color = "#f44336";
-//     buildBridge.text.color = "white";
-//     document.body.style.cursor = "default";
-//   }
-// });
 
 // function that checks if the monster is in the water
 function isInWater(x, y) {
@@ -998,7 +895,7 @@ function inside(point, vs) {
 function drown() {
   monsterMouseDown = false;
   drowning = true;
-  monsterFeet.pen = false;
+  // monsterFeet.pen = false;
 
   // get width/height ratios for the monster's position
   var x = monsterFeet.x / width;
