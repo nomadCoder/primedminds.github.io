@@ -10,6 +10,7 @@ if (document.images) {
   var build2 = document.createElement("img");
   var build3 = document.createElement("img");
   var build4 = document.createElement("img");
+  var build5 = document.createElement("img");
 
   var bust1 = document.createElement("img");
   var bust2 = document.createElement("img");
@@ -25,10 +26,11 @@ if (document.images) {
   water2.src = "./assets/bridges/WaterMonster2.png";
   water3.src = "./assets/bridges/WaterMonster3.png";
 
-  build1.src = "./assets/bridges/build-bridge-01.png";
-  build2.src = "./assets/bridges/build-bridge-02.png";
-  build3.src = "./assets/bridges/build-bridge-03.png";
-  build4.src = "./assets/bridges/build-bridge-04.png";
+  build1.src = "./assets/bridges/build-bridge-01n.png";
+  build2.src = "./assets/bridges/build-bridge-02n.png";
+  build3.src = "./assets/bridges/build-bridge-03n.png";
+  build4.src = "./assets/bridges/build-bridge-04n.png";
+  build5.src = "./assets/bridges/build-bridge-05.png";
 
   bust1.src = "./assets/bridges/busted-bridge-01.png";
   bust2.src = "./assets/bridges/busted-bridge-02.png";
@@ -66,43 +68,9 @@ monster.water = [
 var splash = new Audio("./assets/bridges/splash.mp3");
 var scream = new Audio("./assets/bridges/scream.mp3");
 
-// invisible sprite for detecting what the monster's feet are touching, and drawing the path
-var monsterFeet = new Rectangle({
-  width: 40,
-  height: 5,
-  x: monster.x,
-  y: monster.y - 40,
-  brightness: 0
-});
-
-monsterFeet.penColor = "red";
-monsterFeet.penWidth = "5";
-
-// the native Pen feature of Woof draws a line that is jagged; this workaround fixes that.
-// to turn the pen on: monsterFeet.pen = true; off: monsterFeet.pen = false;
-monsterFeet.drawPen = function() {
-  if (monsterFeet.pen) {
-    var proj = monsterFeet.project;
-    var lastCoords = coordHistory[historyCount % 3];
-    var lastX = lastCoords.x;
-    var lastY = lastCoords.y - 40;
-    if(monsterFeet.x != lastX || monsterFeet.y != lastY) {
-      proj._penContext.save();
-      proj._penContext.beginPath();
-      proj._penContext.moveTo(...proj.translateToCanvas(lastX, lastY));
-      proj._penContext.lineTo(...proj.translateToCanvas(monsterFeet.x, monsterFeet.y));
-      proj._penContext.lineCap = "round";
-      proj._penContext.strokeStyle = monsterFeet.penColor;
-      proj._penContext.lineWidth = monsterFeet.penWidth;
-      proj._penContext.stroke();
-      proj._penContext.restore();
-    }
-  }
-};
-
 var tryAgain = createButton(minX + 100, -0.45 * height, "Try Again");
-var destroyBridge = createButton(minX + 300, -0.45 * height, "Bust Bridge");
-var rebuildBridge = createButton(minX + 500, -0.45 * height, "Build Bridge");
+var bustBridge = createButton(minX + 300, -0.45 * height, "Bust Bridge");
+var buildBridge = createButton(minX + 500, -0.45 * height, "Build Bridge");
 
 // holds polygon coordinates that represent water locations
 // the x and y values are ratios relative to the width/height of the canvas
@@ -219,19 +187,43 @@ var water = [
 // x and y coordinates for where the monster drowns and splashes in above water segments
 var drowningPositions = [
   // leftmost forked segment
-  {x: -0.44, y: 0.05},
+  [
+    {x: -0.44, y: 0.05},
+    {x: -0.34, y: -0.12}
+  ],
   // first top segment
-  {x: -0.154, y: 0.24},
+  [
+    {x: -0.2, y: 0.24},
+    {x: -0.1, y: 0.24}
+  ],
   // second top segment
-  {x: 0.123, y: 0.15},
+  [
+    {x: 0.04, y: 0.15},
+    {x: 0.123, y: 0.15},
+    {x: 0.25, y: 0.15}
+  ],
   // rightmost top segment
-  {x: 0.4, y: 0.24},
+  [
+    {x: 0.35, y: 0.24},
+    {x: 0.455, y: 0.27}
+  ],
   // rightmost bottom segment
-  {x: 0.4, y: -0.23},
+  [
+    {x: 0.37, y: -0.23},
+    {x: 0.47, y: -0.23}
+  ],
   // 2nd from the right bottom segment
-  {x: 0.123, y: -0.13},
+  [
+    {x: 0.24, y: -0.17},
+    {x: 0.123, y: -0.13},
+    {x: 0, y: -0.2}
+  ],
+
   // 3rd from the right bottom segment
-  {x: -0.18, y: -0.21}
+  [
+    {x: -0.13, y: -0.195},
+    {x: -0.21, y: -0.195}
+  ]
 ];
 
 var bridges = [
@@ -288,10 +280,10 @@ var bridges = [
 
 var bridgeFrames = {
   build: [
-    "./assets/bridges/build-bridge-01.png",
-    "./assets/bridges/build-bridge-02.png",
-    "./assets/bridges/build-bridge-03.png",
-    "./assets/bridges/build-bridge-04.png",
+    "./assets/bridges/build-bridge-01n.png",
+    "./assets/bridges/build-bridge-02n.png",
+    "./assets/bridges/build-bridge-03n.png",
+    "./assets/bridges/build-bridge-04n.png",
   ],
   bust: [
     "./assets/bridges/busted-bridge-01.png",
@@ -331,11 +323,11 @@ var bridgeImages = [
   }),
   new Image({
     x: 0.29 * width,
-    y: -0.2211 * height,
+    y: -0.22 * height,
     url: bridgeFrames.bust[0],
     width: 0.18 * width,
     height: 0.2634 * height,
-    angle: -25,
+    angle: -20,
     showing: false
   }),
   new Image({
@@ -360,21 +352,21 @@ var bridgeImages = [
     x: 0.1417 * width,
     y: -0.013 * height,
     url: bridgeFrames.bust[0],
-    width: 0.171 * width,
+    width: 0.1 * width,
     height: 0.2266 * height,
     angle: 90,
     showing: false
   })
 ];
 
-var blankBridge = "./assets/bridges/build-bridge-04.png";
+var blankBridge = "./assets/bridges/build-bridge-05.png";
 
 // these are the new bridges that the player can add
 var extraBridges = [
   // in the water segment second from the left on the top
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: -0.1531 * width,
     y: 0.2274 * height
@@ -382,25 +374,25 @@ var extraBridges = [
   // left half of the water segment second from the right on the top
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
-    x: 0.0763 * width,
+    x: 0.077 * width,
     y: 0.1531 * height,
     angle: -20
   }),
   // right half of the water segment second from the right on the top
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
-    height: 0.19 * height,
-    x: 0.2077 * width,
+    width: 0.07 * width,
+    height: 0.2 * height,
+    x: 0.19 * width,
     y: 0.1642 * height,
     angle: 20
   }),
   // in the rightmost top segment
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: 0.4154 * width,
     y: 0.2695 * height,
@@ -409,7 +401,7 @@ var extraBridges = [
   // in the rightmost bottom segment
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: 0.4154 * width,
     y: -0.23 * height,
@@ -417,16 +409,16 @@ var extraBridges = [
   // right half of the water segment second from the right on the bottom
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
-    height: 0.19 * height,
-    x: 0.2077 * width,
+    width: 0.07 * width,
+    height: 0.21 * height,
+    x: 0.19 * width,
     y: -0.17 * height,
     angle: -30
   }),
   // left half of the water segment second from the right on the bottom
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: 0.05 * width,
     y: -0.175 * height,
@@ -435,7 +427,7 @@ var extraBridges = [
   // in the segment second from the left on the bottom
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: -0.17 * width,
     y: -0.2 * height,
@@ -443,7 +435,7 @@ var extraBridges = [
   }),
   new Image({
     url: blankBridge,
-    width: 0.097 * width,
+    width: 0.07 * width,
     height: 0.19 * height,
     x: -0.3691 * width,
     y: -0.0841 * height,
@@ -459,14 +451,14 @@ bridges.forEach(function(bridge, index) {
     if (destroying && !bridge.destroyed) {
       runDestroyAnimation(bridgeImages[index]);
       bridge.destroyed = true;
-      destroying = false;
+      // destroying = false;
     }
     else if (building && bridge.destroyed) {
       runRebuildAnimation(bridgeImages[index]);
       bridge.destroyed = false;
-      building = false;
+      // building = false;
     }
-    document.body.style.cursor = "default";
+    // document.body.style.cursor = "default";
   });
 });
 
@@ -475,8 +467,8 @@ var extraBridgeImages = extraBridges.map(function(bridge) {
     x: bridge.x,
     y: bridge.y,
     url: bridgeFrames.bust[0],
-    width: bridge.width * 1.5,
-    height: bridge.height * 1.5,
+    width: bridge.width * 1.9,
+    height: bridge.height * 1.4,
     angle: bridge.angle,
     showing: false
   });
@@ -493,17 +485,17 @@ extraBridges.forEach(function(bridge, index) {
     if (building && !bridge.built) {
       runBuildAnimation(extraBridgeImages[index], bridge);
       bridge.built = true;
-      building = false;
+      // building = false;
       bridge.destroyed = false;
       bridges.push(bridge);
     }
     else if (destroying && bridge.built) {
       runDestroyAnimation(extraBridgeImages[index]);
       bridge.built = false;
-      destroying = false;
+      // destroying = false;
       bridge.destroyed = true;
     }
-    document.body.style.cursor = "default";
+    // document.body.style.cursor = "default";
   });
 });
 
@@ -530,7 +522,10 @@ function runRebuildAnimation(bridgeImage) {
     after(0.4, "seconds", function() {
       bridgeImage.setImageURL(bridgeFrames.build[2]);
       after(0.4, "seconds", function() {
-        bridgeImage.hide();
+        bridgeImage.setImageURL(bridgeFrames.build[3]);
+        after(0.4, "seconds", function() {
+          bridgeImage.hide();
+        });
       });
     });
   });
@@ -545,13 +540,102 @@ function runBuildAnimation(bridgeImage, bridge) {
     after(0.4, "seconds", function() {
       bridgeImage.setImageURL(bridgeFrames.build[2]);
       after(0.4, "seconds", function() {
-        bridgeImage.hide();
-        bridge.brightness = 100;
+        bridgeImage.setImageURL(bridgeFrames.build[3]);
+        after(0.4, "seconds", function() {
+          bridgeImage.hide();
+          bridge.brightness = 100;
+        });
       });
     });
   });
 }
 
+
+// invisible sprite for detecting what the monster's feet are touching, and drawing the path
+var monsterFeet = new Rectangle({
+  width: 10,
+  height: 5,
+  x: monster.x,
+  y: monster.y - 40,
+  brightness: 0
+});
+
+monsterFeet.penColor = "red";
+monsterFeet.penWidth = "5";
+
+var fullHistory = [];
+
+ready(function() {
+  var proj = monster.project;
+  var spCtx = proj._spriteContext;
+  proj._renderSprites = function() {
+    spCtx.clearRect(0, 0, proj.width, proj.height);
+    bridgeImages.forEach(function(bridge) {
+      bridge._render(spCtx);
+    });
+    extraBridges.forEach(function(bridge) {
+      bridge._render(spCtx);
+    });
+    extraBridgeImages.forEach(function(bridge) {
+      bridge._render(spCtx);
+    });
+    if (!replace) {
+      var lastCoords = coordHistory[historyCount % 3];
+      var lastX = lastCoords.x;
+      var lastY = lastCoords.y - 40;
+      spCtx.beginPath();
+      spCtx.moveTo(...proj.translateToCanvas(fullHistory[0].x, fullHistory[0].y));
+      fullHistory.forEach(function(coord) {
+        spCtx.lineTo(...proj.translateToCanvas(coord.x, coord.y));
+      });
+      spCtx.lineCap = "round";
+      spCtx.strokeStyle = monsterFeet.penColor;
+      spCtx.lineWidth = monsterFeet.penWidth;
+      spCtx.stroke();
+    }
+    monster._render(spCtx);
+    monsterFeet._render(spCtx);
+    for (var part in tryAgain) {
+      tryAgain[part]._render(spCtx);
+    }
+    for (part in bustBridge) {
+      bustBridge[part]._render(spCtx);
+    }
+    for (part in buildBridge) {
+      buildBridge[part]._render(spCtx);
+    }
+  };
+});
+
+onKeyDown(function() {
+  if (keysDown.includes("space")) {
+    var proj = monster.project;
+    var pen = proj._penContext;
+    var sprite = proj._spriteContext;
+  }
+});
+
+// the native Pen feature of Woof draws a line that is jagged; this workaround fixes that.
+// to turn the pen on: monsterFeet.pen = true; off: monsterFeet.pen = false;
+// monsterFeet.drawPen = function() {
+//   if (monsterFeet.pen) {
+//     var proj = monsterFeet.project;
+    // var lastCoords = coordHistory[historyCount % 3];
+    // var lastX = lastCoords.x;
+    // var lastY = lastCoords.y - 40;
+//     if(monsterFeet.x != lastX || monsterFeet.y != lastY) {
+//       proj._penContext.save();
+//       proj._penContext.beginPath();
+//       proj._penContext.moveTo(...proj.translateToCanvas(lastX, lastY));
+//       proj._penContext.lineTo(...proj.translateToCanvas(monsterFeet.x, monsterFeet.y));
+//       proj._penContext.lineCap = "round";
+//       proj._penContext.strokeStyle = monsterFeet.penColor;
+//       proj._penContext.lineWidth = monsterFeet.penWidth;
+//       proj._penContext.stroke();
+//       proj._penContext.restore();
+//     }
+//   }
+// };
 
 var canMove = true;
 var drowning = false;
@@ -566,6 +650,7 @@ var historyCount = 0;
 
 monster.onMouseDown(function() {
   if (replace) {
+    fullHistory = [];
     replace = false;
   }
   monsterMouseDown = true;
@@ -574,14 +659,15 @@ monster.onMouseDown(function() {
 
 monster.onMouseUp(function() {
   monsterMouseDown = false;
-  monsterFeet.pen = false;
+  // monsterFeet.pen = false;
 });
 
 
 // monster movement
 forever(function() {
-  monsterFeet.drawPen();
   monster.sendToFront();
+  monsterFeet.sendToFront();
+  // monsterFeet.drawPen();
 
   // keep the feet always at the feet
   monsterFeet.x = monster.x;
@@ -622,7 +708,7 @@ forever(function() {
       monsterFeet.pen = true;
     }
     else {
-      monsterFeet.pen = false;
+      // monsterFeet.pen = false;
     }
 
     // if the monster isn't in the water, keep track of the three most recent 'safe' positions
@@ -639,6 +725,7 @@ forever(function() {
 });
 
 function trackHistory() {
+  fullHistory.push({x: monsterFeet.x, y: monsterFeet.y});
   historyCount++;
   coordHistory[historyCount % 3].x = monster.x;
   coordHistory[historyCount % 3].y = monster.y;
@@ -731,6 +818,7 @@ forever(function() {
 
 // 'try again' button behavior
 tryAgain.button.onMouseDown(function() {
+  fullHistory = [];
   monsterFeet.pen = false;
   replace = true;
   clearPen();
@@ -748,15 +836,51 @@ tryAgain.button.onMouseDown(function() {
 });
 
 var destroying = false;
-destroyBridge.button.onMouseDown(function() {
-  destroying = true;
-  document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+bustBridge.button.onMouseDown(function() {
+  destroying = !destroying;
+  building = false;
+  if (destroying) {
+    bustBridge.button.color = "#FFE900";
+    bustBridge.buttonCircle1.color = "#FFE900";
+    bustBridge.buttonCircle2.color = "#FFE900";
+    bustBridge.text.color = "black";
+    buildBridge.button.color = "#f44336";
+    buildBridge.buttonCircle1.color = "#f44336";
+    buildBridge.buttonCircle2.color = "#f44336";
+    buildBridge.text.color = "white";
+    document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+  }
+  else {
+    bustBridge.button.color = "#f44336";
+    bustBridge.buttonCircle1.color = "#f44336";
+    bustBridge.buttonCircle2.color = "#f44336";
+    bustBridge.text.color = "white";
+    document.body.style.cursor = "default";
+  }
 });
 
 var building = false;
-rebuildBridge.button.onMouseDown(function() {
-  building = true;
-  document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
+buildBridge.button.onMouseDown(function() {
+  building = !building;
+  destroying = false;
+  if (building) {
+    buildBridge.button.color = "#FFE900";
+    buildBridge.buttonCircle1.color = "#FFE900";
+    buildBridge.buttonCircle2.color = "#FFE900";
+    buildBridge.text.color = "black";
+    bustBridge.button.color = "#f44336";
+    bustBridge.buttonCircle1.color = "#f44336";
+    bustBridge.buttonCircle2.color = "#f44336";
+    bustBridge.text.color = "white";
+    document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
+  }
+  else {
+    buildBridge.button.color = "#f44336";
+    buildBridge.buttonCircle1.color = "#f44336";
+    buildBridge.buttonCircle2.color = "#f44336";
+    buildBridge.text.color = "white";
+    document.body.style.cursor = "default";
+  }
 });
 
 // function that checks if the monster is in the water
@@ -799,43 +923,97 @@ function drown() {
   // make the monster drown at the appropriate water segment
   // rightmost forked
   if (x < -0.3) {
-    monster.x = drowningPositions[0].x * width;
-    monster.y = drowningPositions[0].y * height;
+    if (monster.y > 0 && monster.x > -0.4 * width) {
+      monster.x = drowningPositions[0][0].x * width;
+      monster.y = drowningPositions[0][0].y * height;
+    }
+    else {
+      monster.x = drowningPositions[0][1].x * width;
+      monster.y = drowningPositions[0][1].y * height;
+    }
+    
   }
   else if (x < -0.03) {
     // top left
     if (y > 0) {
-      monster.x = drowningPositions[1].x * width;
-      monster.y = drowningPositions[1].y * height;
+      if (monster.x < extraBridges[0].x) {
+        monster.x = drowningPositions[1][0].x * width;
+        monster.y = drowningPositions[1][0].y * height;
+      }
+      else {
+        monster.x = drowningPositions[1][1].x * width;
+        monster.y = drowningPositions[1][1].y * height;
+      }
+      
     }
     // bottom left
     else {
-      monster.x = drowningPositions[6].x * width;
-      monster.y = drowningPositions[6].y * height;
+      if (monster.x > extraBridges[7].x) {
+        monster.x = drowningPositions[6][0].x * width;
+        monster.y = drowningPositions[6][0].y * height;
+      }
+      else {
+        monster.x = drowningPositions[6][1].x * width;
+        monster.y = drowningPositions[6][1].y * height;
+      }
     }
   }
   else if (x < 0.29) {
     // top second from right
     if (y > -0.05) {
-      monster.x = drowningPositions[2].x * width;
-      monster.y = drowningPositions[2].y * height;
+      if (monster.x < extraBridges[1].x) {
+        monster.x = drowningPositions[2][0].x * width;
+        monster.y = drowningPositions[2][0].y * height;
+      }
+      else if (monster.x > extraBridges[1].x && monster.x < extraBridges[2].x) {
+        monster.x = drowningPositions[2][1].x * width;
+        monster.y = drowningPositions[2][1].y * height;
+      }
+      else {
+        monster.x = drowningPositions[2][2].x * width;
+        monster.y = drowningPositions[2][2].y * height;
+      }
     }
     // bottom second from right
     else {
-      monster.x = drowningPositions[5].x * width;
-      monster.y = drowningPositions[5].y * height;
+      if (monster.x > extraBridges[5].x) {
+        monster.x = drowningPositions[5][0].x * width;
+        monster.y = drowningPositions[5][0].y * height;
+      }
+      else if (monster.x < extraBridges[5].x && monster.x > extraBridges[6].x) {
+        monster.x = drowningPositions[5][1].x * width;
+        monster.y = drowningPositions[5][1].y * height;
+      }
+      else {
+        monster.x = drowningPositions[5][2].x * width;
+        monster.y = drowningPositions[5][2].y * height;
+      }
     }
   }
   else {
-    // top left
+    // top right
     if (y > 0) {
-      monster.x = drowningPositions[3].x * width;
-      monster.y = drowningPositions[3].y * height;
+      if (monster.x < extraBridges[3].x) {
+        monster.x = drowningPositions[3][0].x * width;
+        monster.y = drowningPositions[3][0].y * height;
+      }
+      else {
+        monster.x = drowningPositions[3][1].x * width;
+        monster.y = drowningPositions[3][1].y * height;
+      }
+      
     }
-    // bottom left
+    // bottom right
     else {
-      monster.x = drowningPositions[4].x * width;
-      monster.y = drowningPositions[4].y * height;
+      if (monster.x < extraBridges[4].x) {
+        monster.x = drowningPositions[4][0].x * width;
+        monster.y = drowningPositions[4][0].y * height;
+      }
+      else {
+        monster.x = drowningPositions[4][1].x * width;
+        monster.y = drowningPositions[4][1].y * height;
+      }
+      
     }
   }
   
@@ -867,13 +1045,13 @@ function createButton(x, y, textString) {
   return {
     shadowCircle1: new Circle({
       radius: 25,
-      color: "#BBB",
+      color: "#4fb13e",
       x: x - 65,
       y: y - 4
     }),
     shadowCircle2: new Circle({
       radius: 25,
-      color: "#BBB",
+      color: "#4fb13e",
       x: x + 66,
       y: y - 4
     }),
@@ -882,7 +1060,7 @@ function createButton(x, y, textString) {
       height: 50,
       x: x,
       y: y - 4,
-      color: "#BBB"
+      color: "#4fb13e",
     }),
     buttonCircle1: new Circle({
       radius: 25,
