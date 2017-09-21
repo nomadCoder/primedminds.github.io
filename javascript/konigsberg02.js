@@ -30,7 +30,7 @@ if (document.images) {
   build2.src = "./assets/bridges/build-bridge-02n.png";
   build3.src = "./assets/bridges/build-bridge-03n.png";
   build4.src = "./assets/bridges/build-bridge-04n.png";
-  build5.src = "./assets/bridges/build-bridge-05n.png";
+  build5.src = "./assets/bridges/build-bridge-05-n.png";
 
   bust1.src = "./assets/bridges/busted-bridge-01.png";
   bust2.src = "./assets/bridges/busted-bridge-02.png";
@@ -393,7 +393,7 @@ var bridgeImages = [
   })
 ];
 
-var blankBridge = "./assets/bridges/build-bridge-05.png";
+var blankBridge = "./assets/bridges/build-bridge-05-n.png";
 
 // these are the new bridges that the player can add
 var extraBridges = [
@@ -894,7 +894,7 @@ bustBridge.button.onMouseDown(function() {
   building = false;
   buildBridge.highlight.hide();
   if (destroying) {
-    document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+    document.body.style.cursor = "url('./assets/bridges/dynamite.png') 20 20, auto";
     bustBridge.highlight.show();
   }
   else {
@@ -909,7 +909,7 @@ buildBridge.button.onMouseDown(function() {
   destroying = false;
   bustBridge.highlight.hide();
   if (building) {
-    document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
+    document.body.style.cursor = "url('./assets/bridges/cobblestones.png') 20 20, auto";
     buildBridge.highlight.show();
   }
   else {
