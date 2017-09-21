@@ -74,7 +74,7 @@ monsterFeet.drawPen = function() {
   }
 };
 
-var tryAgain = createButton(minX + 100, -0.45 * height, "Try Again");
+var tryAgain = createButton(0, -0.45 * height, "Try Again");
 
 // holds polygon coordinates that represent water locations
 // the x and y values are ratios relative to the width/height of the canvas

@@ -30,7 +30,7 @@ if (document.images) {
   build2.src = "./assets/bridges/build-bridge-02n.png";
   build3.src = "./assets/bridges/build-bridge-03n.png";
   build4.src = "./assets/bridges/build-bridge-04n.png";
-  build5.src = "./assets/bridges/build-bridge-05.png";
+  build5.src = "./assets/bridges/build-bridge-05n.png";
 
   bust1.src = "./assets/bridges/busted-bridge-01.png";
   bust2.src = "./assets/bridges/busted-bridge-02.png";
@@ -68,9 +68,43 @@ monster.water = [
 var splash = new Audio("./assets/bridges/splash.mp3");
 var scream = new Audio("./assets/bridges/scream.mp3");
 
-var tryAgain = createButton(minX + 100, -0.45 * height, "Try Again");
-var bustBridge = createButton(minX + 300, -0.45 * height, "Bust Bridge");
-var buildBridge = createButton(minX + 500, -0.45 * height, "Build Bridge");
+var tryAgain = createButton(0, -0.45 * height, "Try Again");
+// var bustBridge = createButton(150, -0.45 * height, "Bust Bridge");
+// var buildBridge = createButton(-150, -0.45 * height, "Build Bridge");
+
+var bustBridge = {
+  button: new Image({
+    url: "./assets/bridges/dynamite.png",
+    x: -150,
+    y: -0.45 * height
+  }),
+};
+bustBridge.highlight = new Rectangle({
+  x: bustBridge.button.x,
+  y: bustBridge.button.y,
+  width: bustBridge.button.height,
+  height: bustBridge.button.height,
+  color: "yellow",
+  brightness: 50,
+  showing: false,
+});
+
+var buildBridge = {
+  button: new Image({
+    url: "./assets/bridges/cobblestones.png",
+    x: 150,
+    y: -0.45 * height
+  }),
+};
+buildBridge.highlight = new Rectangle({
+  x: buildBridge.button.x,
+  y: buildBridge.button.y,
+  width: bustBridge.button.height,
+  height: bustBridge.button.height,
+  color: "yellow",
+  brightness: 50,
+  showing: false
+});
 
 // holds polygon coordinates that represent water locations
 // the x and y values are ratios relative to the width/height of the canvas
@@ -189,40 +223,40 @@ var drowningPositions = [
   // leftmost forked segment
   [
     {x: -0.44, y: 0.05},
-    {x: -0.34, y: -0.12}
+    {x: -0.33, y: -0.12}
   ],
   // first top segment
   [
-    {x: -0.2, y: 0.24},
-    {x: -0.1, y: 0.24}
+    {x: -0.21, y: 0.24},
+    {x: -0.1, y: 0.2}
   ],
   // second top segment
   [
-    {x: 0.04, y: 0.15},
+    {x: 0.0325, y: 0.15},
     {x: 0.123, y: 0.15},
-    {x: 0.25, y: 0.15}
+    {x: 0.25, y: 0.17}
   ],
   // rightmost top segment
   [
-    {x: 0.35, y: 0.24},
-    {x: 0.455, y: 0.27}
+    {x: 0.36, y: 0.24},
+    {x: 0.47, y: 0.27}
   ],
   // rightmost bottom segment
   [
-    {x: 0.37, y: -0.23},
+    {x: 0.355, y: -0.23},
     {x: 0.47, y: -0.23}
   ],
   // 2nd from the right bottom segment
   [
-    {x: 0.24, y: -0.17},
+    {x: 0.25, y: -0.18},
     {x: 0.123, y: -0.13},
     {x: 0, y: -0.2}
   ],
 
   // 3rd from the right bottom segment
   [
-    {x: -0.13, y: -0.195},
-    {x: -0.21, y: -0.195}
+    {x: -0.12, y: -0.195},
+    {x: -0.22, y: -0.195}
   ]
 ];
 
@@ -366,15 +400,16 @@ var extraBridges = [
   // in the water segment second from the left on the top
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
+    width: 0.1 * width,
     height: 0.19 * height,
     x: -0.1531 * width,
-    y: 0.2274 * height
+    y: 0.2274 * height,
+    angle: -5
   }),
   // left half of the water segment second from the right on the top
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
+    width: 0.08 * width,
     height: 0.19 * height,
     x: 0.077 * width,
     y: 0.1531 * height,
@@ -383,43 +418,43 @@ var extraBridges = [
   // right half of the water segment second from the right on the top
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.2 * height,
-    x: 0.19 * width,
+    width: 0.08 * width,
+    height: 0.22 * height,
+    x: 0.2 * width,
     y: 0.1642 * height,
-    angle: 20
+    angle: 25
   }),
   // in the rightmost top segment
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
+    width: 0.1 * width,
     height: 0.19 * height,
     x: 0.4154 * width,
     y: 0.2695 * height,
-    angle: 20
+    angle: 15
   }),
   // in the rightmost bottom segment
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.19 * height,
+    width: 0.1 * width,
+    height: 0.18 * height,
     x: 0.4154 * width,
     y: -0.23 * height,
   }),
   // right half of the water segment second from the right on the bottom
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.21 * height,
-    x: 0.19 * width,
+    width: 0.08 * width,
+    height: 0.22 * height,
+    x: 0.2 * width,
     y: -0.17 * height,
     angle: -30
   }),
   // left half of the water segment second from the right on the bottom
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.19 * height,
+    width: 0.1 * width,
+    height: 0.18 * height,
     x: 0.05 * width,
     y: -0.175 * height,
     angle: 10
@@ -427,16 +462,16 @@ var extraBridges = [
   // in the segment second from the left on the bottom
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.19 * height,
+    width: 0.08 * width,
+    height: 0.18 * height,
     x: -0.17 * width,
     y: -0.2 * height,
     angle: -10
   }),
   new Image({
     url: blankBridge,
-    width: 0.07 * width,
-    height: 0.19 * height,
+    width: 0.08 * width,
+    height: 0.23 * height,
     x: -0.3691 * width,
     y: -0.0841 * height,
     angle: -40
@@ -448,17 +483,16 @@ bridges.forEach(function(bridge, index) {
   bridge.active = true;
   bridge.brightness = 0;
   bridge.onMouseDown(function() {
-    if (destroying && !bridge.destroyed) {
-      runDestroyAnimation(bridgeImages[index]);
-      bridge.destroyed = true;
-      // destroying = false;
+    if (bridge.active) {
+      if (destroying && !bridge.destroyed) {
+        runDestroyAnimation(bridgeImages[index]);
+        bridge.destroyed = true;
+      }
+      else if (building && bridge.destroyed) {
+        runRebuildAnimation(bridgeImages[index]);
+        bridge.destroyed = false;
+      }
     }
-    else if (building && bridge.destroyed) {
-      runRebuildAnimation(bridgeImages[index]);
-      bridge.destroyed = false;
-      // building = false;
-    }
-    // document.body.style.cursor = "default";
   });
 });
 
@@ -474,6 +508,17 @@ var extraBridgeImages = extraBridges.map(function(bridge) {
   });
 });
 
+var extraBridgeBoundaries = extraBridgeImages.map(function(bridge) {
+  return new Rectangle({
+    x: bridge.x,
+    y: bridge.y,
+    width: bridge.width * 0.35,
+    height: bridge.height * 0.75,
+    brightness: 0,
+    angle: bridge.angle
+  });
+});
+
 extraBridges.forEach(function(bridge, index) {
   bridge.active = true;
   bridge.built = false;
@@ -482,20 +527,19 @@ extraBridges.forEach(function(bridge, index) {
   bridge.touched = false;
 
   bridge.onMouseDown(function() {
-    if (building && !bridge.built) {
-      runBuildAnimation(extraBridgeImages[index], bridge);
-      bridge.built = true;
-      // building = false;
-      bridge.destroyed = false;
-      bridges.push(bridge);
+    if (bridge.active) {
+      if (building && !bridge.built) {
+        runBuildAnimation(extraBridgeImages[index], bridge);
+        bridge.built = true;
+        bridge.destroyed = false;
+        bridges.push(bridge);
+      }
+      else if (destroying && bridge.built) {
+        runDestroyAnimation(extraBridgeImages[index]);
+        bridge.built = false;
+        bridge.destroyed = true;
+      }
     }
-    else if (destroying && bridge.built) {
-      runDestroyAnimation(extraBridgeImages[index]);
-      bridge.built = false;
-      // destroying = false;
-      bridge.destroyed = true;
-    }
-    // document.body.style.cursor = "default";
   });
 });
 
@@ -579,6 +623,9 @@ ready(function() {
     extraBridgeImages.forEach(function(bridge) {
       bridge._render(spCtx);
     });
+    extraBridgeBoundaries.forEach(function(bridge) {
+      bridge._render(spCtx);
+    });
     if (!replace) {
       var lastCoords = coordHistory[historyCount % 3];
       var lastX = lastCoords.x;
@@ -604,6 +651,8 @@ ready(function() {
     for (part in buildBridge) {
       buildBridge[part]._render(spCtx);
     }
+    // bustBridge._render(spCtx);
+    // buildBridge._render(spCtx);
   };
 });
 
@@ -818,6 +867,7 @@ forever(function() {
 
 // 'try again' button behavior
 tryAgain.button.onMouseDown(function() {
+  document.body.style.cursor = "default";
   fullHistory = [];
   monsterFeet.pen = false;
   replace = true;
@@ -826,6 +876,9 @@ tryAgain.button.onMouseDown(function() {
     bridge.active = true;
     bridge.destroyed = false;
   });
+  bridgeImages.forEach(function(img) {
+    img.hide();
+  })
   extraBridges.forEach(function(bridge, index) {
     bridge.brightness = 0;
     bridge.built = false;
@@ -839,23 +892,14 @@ var destroying = false;
 bustBridge.button.onMouseDown(function() {
   destroying = !destroying;
   building = false;
+  buildBridge.highlight.hide();
   if (destroying) {
-    bustBridge.button.color = "#FFE900";
-    bustBridge.buttonCircle1.color = "#FFE900";
-    bustBridge.buttonCircle2.color = "#FFE900";
-    bustBridge.text.color = "black";
-    buildBridge.button.color = "#f44336";
-    buildBridge.buttonCircle1.color = "#f44336";
-    buildBridge.buttonCircle2.color = "#f44336";
-    buildBridge.text.color = "white";
     document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+    bustBridge.highlight.show();
   }
   else {
-    bustBridge.button.color = "#f44336";
-    bustBridge.buttonCircle1.color = "#f44336";
-    bustBridge.buttonCircle2.color = "#f44336";
-    bustBridge.text.color = "white";
     document.body.style.cursor = "default";
+    bustBridge.highlight.hide();
   }
 });
 
@@ -863,25 +907,65 @@ var building = false;
 buildBridge.button.onMouseDown(function() {
   building = !building;
   destroying = false;
+  bustBridge.highlight.hide();
   if (building) {
-    buildBridge.button.color = "#FFE900";
-    buildBridge.buttonCircle1.color = "#FFE900";
-    buildBridge.buttonCircle2.color = "#FFE900";
-    buildBridge.text.color = "black";
-    bustBridge.button.color = "#f44336";
-    bustBridge.buttonCircle1.color = "#f44336";
-    bustBridge.buttonCircle2.color = "#f44336";
-    bustBridge.text.color = "white";
     document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
+    buildBridge.highlight.show();
   }
   else {
-    buildBridge.button.color = "#f44336";
-    buildBridge.buttonCircle1.color = "#f44336";
-    buildBridge.buttonCircle2.color = "#f44336";
-    buildBridge.text.color = "white";
     document.body.style.cursor = "default";
+    buildBridge.highlight.hide();
   }
 });
+
+
+// var destroying = false;
+// bustBridge.button.onMouseDown(function() {
+//   destroying = !destroying;
+//   building = false;
+//   if (destroying) {
+//     bustBridge.button.color = "#FFE900";
+//     bustBridge.buttonCircle1.color = "#FFE900";
+//     bustBridge.buttonCircle2.color = "#FFE900";
+//     bustBridge.text.color = "black";
+//     buildBridge.button.color = "#f44336";
+//     buildBridge.buttonCircle1.color = "#f44336";
+//     buildBridge.buttonCircle2.color = "#f44336";
+//     buildBridge.text.color = "white";
+//     document.body.style.cursor = "url('./assets/bridges/dynamite.png'), auto";
+//   }
+//   else {
+//     bustBridge.button.color = "#f44336";
+//     bustBridge.buttonCircle1.color = "#f44336";
+//     bustBridge.buttonCircle2.color = "#f44336";
+//     bustBridge.text.color = "white";
+//     document.body.style.cursor = "default";
+//   }
+// });
+
+// var building = false;
+// buildBridge.button.onMouseDown(function() {
+//   building = !building;
+//   destroying = false;
+//   if (building) {
+//     buildBridge.button.color = "#FFE900";
+//     buildBridge.buttonCircle1.color = "#FFE900";
+//     buildBridge.buttonCircle2.color = "#FFE900";
+//     buildBridge.text.color = "black";
+//     bustBridge.button.color = "#f44336";
+//     bustBridge.buttonCircle1.color = "#f44336";
+//     bustBridge.buttonCircle2.color = "#f44336";
+//     bustBridge.text.color = "white";
+//     document.body.style.cursor = "url('./assets/bridges/cobblestones.png'), auto";
+//   }
+//   else {
+//     buildBridge.button.color = "#f44336";
+//     buildBridge.buttonCircle1.color = "#f44336";
+//     buildBridge.buttonCircle2.color = "#f44336";
+//     buildBridge.text.color = "white";
+//     document.body.style.cursor = "default";
+//   }
+// });
 
 // function that checks if the monster is in the water
 function isInWater(x, y) {
@@ -891,8 +975,8 @@ function isInWater(x, y) {
   });
 }
 
-function builtAndTouching(bridge) {
-  return bridge.touching(monsterFeet) && bridge.built;
+function builtAndTouching(bridge, index) {
+  return extraBridgeBoundaries[index].touching(monsterFeet) && bridge.built;
 }
 
 // function to determine if a point is inside a polygon. Source:
