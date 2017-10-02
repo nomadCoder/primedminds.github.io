@@ -1,21 +1,10 @@
 body {
   background-color: #ffe900;
 }
-
 #background {
-  height: 100vh;
-  width: 166.67vh;
+  height: 900px;
+  width: 1500px;
   z-index: 1;
-}
-
-#flasher {
-  position: absolute;
-  height: calc(95vh / 9);
-  width: calc(75vh / 9);
-  background-color: #ffe900;
-  top: calc(88vh); 
-  left: 8vh; 
-  z-index: 2;
 }
 
 #backHome-container {
