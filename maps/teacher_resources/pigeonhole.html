@@ -1,15 +1,21 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Pigeonhole Map</title>
-    <link rel="stylesheet" href="../../stylesheets/trpigeonholemap.css">
-          <script src="../../javascript/mapcode.js"></script>
-          <script src="../../javascript/header.js"></script>
+       <link rel="stylesheet" href="../../stylesheets/messymonsters.css">
+    <script src="../../javascript/header.js"></script>
+    <script src="../../javascript/mapcode.js"></script>
 
 </head>
-<body>
+<body onload="flash()">
+  <div id='backHome-container'>
+        <a href='../../resources.html'>
+            <div id='backHome'></div>
+        Back to Resources </a> 
+    </div> 
 <img id="background" onmousemove="hideall()" onclick="getlocations(event)" src="https://trello-attachments.s3.amazonaws.com/5877b048233b368f5368e436/58c06651187c83189be5df15/de22d932908de18e2d34085c45c47389/PPPigeonMap.png" alt="Pigeonhole Map"> </img>
 
 <div class="hover" id="hTask1" onmouseover="sethm('hTask1', 'mTask1')"></div>
