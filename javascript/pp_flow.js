@@ -6,7 +6,7 @@ var urlParams = {};
 var flow = [{descriptor: "PPV1", link: "zbfVO-JvW10"},
             {descriptor: "PPI1", link: "PPI1.html"},      // konig bridge interactive
             {descriptor: "PPV2", link: "F1ULIVqnkbc"},
-            {descriptor: "PPI2", link: ""},
+            {descriptor: "PPI2", link: "PPI2.html"},
             {descriptor: "PPV3", link: "uvEQjJW1UzY"},
             {descriptor: "PPS3", link: "PPS3.html"},
             {descriptor: "PPV4", link: "97CunrfBqyQ"},     
