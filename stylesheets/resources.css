@@ -1,6 +1,34 @@
 /* IMPORTANT
 Put rest of page in div with id="main"
 This pads the rest of the page below the navbar */
+.openvideo {
+  height: calc(750vh / 9);
+  width: calc(1350vh / 9);
+  position: absolute;
+  background-color: #ffe900;
+  top: calc(100vh / 9);
+  left: calc(100vh / 9);
+  margin: auto;
+  border-style: solid;
+  border-color: #DC2222;
+  border-radius: 50px;
+  z-index: 4;
+}
+
+.video {
+  position: absolute;
+  top: calc(100vh / 9);
+  left: calc(125vh / 9);
+  width: calc(1067.5vh / 9);
+  height: calc(600vh / 9);
+}
+.close {
+  position: absolute;
+  top: calc(10vh / 9);
+  right: calc(10vh / 9);
+  height: calc(100vh / 9);
+  width: calc(100vh / 9);
+}
 
 #main,
 #source,{
