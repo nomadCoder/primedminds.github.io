@@ -4,10 +4,10 @@ This pads the rest of the page below the navbar */
 
 #main,
 #team,
-#partners /*{
+#partners {
     max-width: 1300px;
     margin: 50px;
-}*/
+}
 
 #main {
     margin-bottom: 0px;
