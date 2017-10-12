@@ -36,6 +36,11 @@ $(document).ready(function() {
         $(".pbio2").slideDown(100);
         $(".pbio2").css("display", "table");
     });
+    $(".partner3").on("mouseenter", function(event) {
+        event.preventDefault();
+        $(".pbio3").slideDown(100);
+        $(".pbio3").css("display", "table");
+    });
 
     // move mouse to disappear / show cursor
     $(".partner1").on("mouseleave", function() {
@@ -46,6 +51,12 @@ $(document).ready(function() {
         event.preventDefault();
         $(".pbio2").slideUp(100);
     });
+    
+    $(".partner3").on("mouseleave", function(event) {
+        event.preventDefault();
+        $(".pbio3").slideUp(100);
+    });
+
 
     $(".team1,.team2,.team3").hover(function() {
         $(this).css('cursor', 'pointer');
@@ -60,6 +71,9 @@ $(document).ready(function() {
     });
     $(".partner2").on("mouseleave", function() {
         $(".pbio2").slideUp(100);
+    });
+     $(".partner3").on("mouseleave", function() {
+        $(".pbio3").slideUp(100);
     });
 
 
