@@ -67,6 +67,38 @@ function clamp(min, max, value) {
 
 }
 
+function signOf(value) {
+  var result = Math.sign(value);
+  if(result === 0) {
+    result = 1;
+  }
+  return result;
+}
+
+//the start and end are x y vectors for the two lines. 
+function intersect(start, end, testStart, testEnd, lengthOfTestLine) {
+  var result = {tValue: 0, hit: false};
+  var thisLine = relativeVec(testEnd, testStart);
+  var thisLineNormal = normalize(thisLine);
+  var thisLineNormalPerp = perpClockwise(thisLineNormal);
+
+  //
+  var relP1 = relativeVec(start, testStart);
+  var relP2 = relativeVec(end, testStart);
+  var v1 = {x: dot(relP1, thisLineNormalPerp), y: dot(relP1, thisLineNormal)};
+  var v2 = {x: dot(relP2, thisLineNormalPerp), y: dot(relP2, thisLineNormal)};
+
+  var t = v1.x / (v1.x - v2.x);
+  result.tValue = t;
+  if(t > 0.0 && t < 1.0) {
+    var yTest = lerpLinear(v1.y, t, v2.y);
+    if(yTest > 0.0 && yTest < lengthOfTestLine) {
+      result.hit = true;
+    }
+  }
+  return result;
+}
+
 function roundToNearestTenth(value) {
   var res = Math.round(value * 100) / 100; //round value to nearst tenth
   return res;

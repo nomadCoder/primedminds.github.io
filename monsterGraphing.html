@@ -18,8 +18,8 @@
     <!-- materialize js -->
     <!-- <script src="public/javascript/materialize.min.js"></script> -->
     <!-- load p5 library -->
-    <script src="./public/javascript/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>
+    <!-- <script src="./public/javascript/p5.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script> -->
 
     <!-- local js -->
     <script src="javascript/math.js"></script>
@@ -30,10 +30,24 @@
 
 </head>
 <body>
+    <img class="preloaded-image" id="BlackStretch0" src="assets/monsters/BlackStretch0.png" />
+  <img class="preloaded-image" id="RedStretch0" src="assets/monsters/RedStretch0.png" />
+
+  <img class="preloaded-image" id="BlackNoArms" src="assets/monsters/BlackNoArms.png" />
+  <img class="preloaded-image" id="RedNoArms" src="assets/monsters/RedNoArms.png" />
+
+  <img class="preloaded-image" id="RedArms" src="assets/monsters/RedArms.png" />
+  <img class="preloaded-image" id="OrangeArms" src="assets/monsters/OrangeArms.png" />
+
+  <img class="preloaded-image" id="River" src="assets/monsters/River.png" />
+  <img class="preloaded-image" id="Road" src="assets/monsters/Road.png" />
+  <img class="preloaded-image" id="RiverBridge" src="assets/monsters/RiverBridge.png" />
+  <img class="preloaded-image" id="Meadow" src="assets/monsters/Meadow.png" />
+
   <div class="container-fluid">
     <div class="row font-large main-row">
     <div class="col-md-3 col-sm-12">
-        <div class="text-middle">
+        <div class="text-middle" style="margin-top: 2em">
             <input class="button" type="button" value="Stretch!" id="monster-stretch-btn">
             <form id="submit-values">
             <!-- First monster values -->
@@ -71,5 +85,6 @@
       </div> <!-- end graph col--> 
     </div> <!-- end row --> 
   </div> <!-- end container --> 
+
 </body>
 </html>

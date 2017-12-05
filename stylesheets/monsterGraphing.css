@@ -3,7 +3,13 @@
 }
 
 .main-row {
-	padding: 10%;	
+	padding: 3%;	
+  padding-right: 0;
+}
+
+.side-column {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .button {
@@ -40,8 +46,8 @@
 }
 
 .spaced-out {
-    padding-top: 0.7em;
-    padding-bottom: 0.7em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
     position: relative;
 }
 
@@ -73,6 +79,10 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -11px;
+}
+
+.preloaded-image {
+  display: none;
 }
 
 /*output { 
